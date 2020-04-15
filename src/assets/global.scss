@@ -1,0 +1,26 @@
+
+
+body {
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.vue-grid-item {
+  background-color: white;
+
+  outline: 1vh solid;
+}
+
+.chartComponent{
+  padding: 1vh;
+}
+
