@@ -1,68 +1,72 @@
 <template>
-    <div id="app" >
+    <div id="app">
 
-            <br/>
+        <br/>
 
-            <grid-layout
-                    :layout="layout"
-                    :col-num="12"
-                    :row-height="30"
-                    :is-draggable="true"
-                    :is-resizable="true"
-                    :is-mirrored="false"
-                    :vertical-compact="true"
-                    :margin="[10, 10]"
-                    :use-css-transforms="true"
-            >
-
-                <grid-item v-for="item in layout" :key="item.i"
-                           :x="item.x"
-                           :y="item.y"
-                           :w="item.w"
-                           :h="item.h"
-                           :i="item.i">
-                    <line-component class="wrapper chartComponent"
-                                    :chart-labels=" ['January', 'February', 'March', 'April', 'May', 'June', 'July']"
-                                    :chart-data=" {
-                                                      label: 'Data One',
-                                                      backgroundColor: '#f87979',
-                                                      data: [40, 39, 10, 40, 39, 80, 40]
-                                                   }"
-                                    ></line-component>
-                </grid-item>
-            </grid-layout>
-
+        <div class="d-flex justify-content-between">
+            <v-checkbox v-for="item in layout" :key="item.i" v-model="item.show" :label="item.title"></v-checkbox>
         </div>
 
-<!--    </div>-->
+
+        <grid-layout
+                :layout="layout"
+                :col-num="12"
+                :row-height="30"
+                :is-draggable="true"
+                :is-resizable="true"
+                :is-mirrored="false"
+                :vertical-compact="true"
+                :margin="[30, 30]"
+                :use-css-transforms="true"
+        >
+
+            <grid-item v-for="item in layout" :key="item.i"
+                       :x="item.x"
+                       :y="item.y"
+                       :w="item.w"
+                       :h="item.h"
+                       :i="item.i">
+                <template>
+                    <component  class="wrapper chartComponent" v-if="item.show===true&&item.component" :is="item.component"
+                      :chartLabels="item.chartLabels" :chartData="item.chartData"
+                    ></component>
+                    <div v-else v-html="item.component"></div>
+                </template>
+
+            </grid-item>
+
+        </grid-layout>
+
+    </div>
+
+
 </template>
 
 
 <script>
-    var testLayout = [
-        {"x":0,"y":0,"w":10,"h":10,"i":"0"},
-
-
-    ];
 
 
     import {GridLayout, GridItem} from 'vue-grid-layout'
     import LineComponent from "@/components/LineComponent";
+    import BarComponent from "@/components/BarComponent";
+    import mockLayout from "@/mocks/mockLayout";
 
     export default {
 
         components: {
-            GridLayout, GridItem, LineComponent
+            GridLayout, GridItem, LineComponent, BarComponent
         }
         ,
         data() {
             return {
-                layout: testLayout,
+                layout: [],
+                checkBoxLineChart: false,
+                checkBoxBarChart: false,
             }
 
         },
         mounted() {
-            this.index = this.layout.length;
+               this.layout=mockLayout
         },
 
 
