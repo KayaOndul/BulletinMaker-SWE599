@@ -1,6 +1,6 @@
 <script>
     import {Line} from 'vue-chartjs'
-
+    import Constants from '../assets/constants'
     export default {
         extends: Line,
         props: {
@@ -19,28 +19,7 @@
         },
         data() {
             return {
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            },
-                            gridLines: {
-                                display: true
-                            }
-                        }],
-                        xAxes: [{
-                            gridLines: {
-                                display: false
-                            }
-                        }]
-                    },
-                    legend: {
-                        display: false
-                    },
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
+                options: Constants.lineOptions
             }
         },
         methods: {

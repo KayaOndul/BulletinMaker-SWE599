@@ -1,13 +1,10 @@
 <script>
     import {Bar} from 'vue-chartjs'
-
+    import Constants from '../assets/constants'
     export default {
         extends: Bar,
         props: {
-            reRender: {
-                type: Boolean,
-                required: false
-            },
+
             chartData: {
                 type: Object,
                 required: false
@@ -19,28 +16,7 @@
         },
         data() {
             return {
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            },
-                            gridLines: {
-                                display: true
-                            }
-                        }],
-                        xAxes: [{
-                            gridLines: {
-                                display: false
-                            }
-                        }]
-                    },
-                    legend: {
-                        display: false
-                    },
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
+                options:Constants.barOptions
             }
         },
 

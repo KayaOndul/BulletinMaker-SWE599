@@ -1,6 +1,6 @@
 export default [
     {
-        "x": 0, "y": 0, "w": 10, "h": 10, "i": 0, component: 'LineComponent',
+        "x": 0, "y": 0, "w": 5, "h": 5, "i": 0, component: 'LineComponent',
         title: 'LineChart',
         show: true,
         chartLabels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -14,7 +14,7 @@ export default [
         }
     },
     {
-        "x": 0, "y": 2, "w": 10, "h": 10, "i": 1, component: 'BarComponent',
+        "x": 0, "y": 2, "w": 5, "h": 5, "i": 1, component: 'BarComponent',
         title: 'BarChart',
         show: true,
         chartLabels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
