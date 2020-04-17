@@ -31,9 +31,9 @@
                     <v-btn icon @click="()=>addPane(item.i)">
                         <v-icon>mdi-plus</v-icon>
                     </v-btn>
-                    <SelectChartButton />
-                    <v-btn icon @click="()=>removePane(item.i)" >
-                        <v-icon>mdi-trash-can-outline </v-icon>
+                    <SelectChartButton :index="item.i" @selections="changeChartHandler"/>
+                    <v-btn icon @click="()=>removePane(item.i)">
+                        <v-icon>mdi-trash-can-outline</v-icon>
                     </v-btn>
 
                 </div>
@@ -63,10 +63,11 @@
     import EmptyPane from "@/components/EmptyPane"
     import mockLayout from "@/mocks/mockLayout";
     import SelectChartButton from "@/components/SelectChartButton";
+
     export default {
 
         components: {
-            GridLayout, GridItem, LineComponent, BarComponent, EmptyPane,SelectChartButton
+            GridLayout, GridItem, LineComponent, BarComponent, EmptyPane, SelectChartButton
         }
         ,
         data() {
@@ -109,6 +110,23 @@
             removePane(index) {
                 this.layout = this.layout.filter(e => e.i !== index)
             },
+
+
+            changeChartHandler(payload) {
+                console.log(payload)
+                var lay = Object.assign([], this.layout)
+                lay = lay.map(e => {
+                    if (e.i === payload.index) {
+                        var retVal=Object.assign({},e)
+                        retVal.component= payload.componentName === 'LineChart' ? 'LineComponent' : 'BarComponent'
+                        retVal.chartLabels=payload.chartLabels
+                        retVal.chartData.data=payload.chartData
+                        return retVal
+                    }
+                    return e
+                })
+                this.layout = lay
+            }
 
         }
     }
