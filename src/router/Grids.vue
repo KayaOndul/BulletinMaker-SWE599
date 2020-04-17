@@ -31,11 +31,9 @@
                     <v-btn icon @click="()=>addPane(item.i)">
                         <v-icon>mdi-plus</v-icon>
                     </v-btn>
-                    <v-btn icon>
-                        <v-icon>mdi-wrench</v-icon>
-                    </v-btn>
-                    <v-btn icon>
-                        <v-icon>mdi-trash-can-outline</v-icon>
+                    <SelectChartButton />
+                    <v-btn icon @click="()=>removePane(item.i)" >
+                        <v-icon>mdi-trash-can-outline </v-icon>
                     </v-btn>
 
                 </div>
@@ -64,11 +62,11 @@
     import BarComponent from "@/components/BarComponent";
     import EmptyPane from "@/components/EmptyPane"
     import mockLayout from "@/mocks/mockLayout";
-
+    import SelectChartButton from "@/components/SelectChartButton";
     export default {
 
         components: {
-            GridLayout, GridItem, LineComponent, BarComponent, EmptyPane
+            GridLayout, GridItem, LineComponent, BarComponent, EmptyPane,SelectChartButton
         }
         ,
         data() {
@@ -86,26 +84,32 @@
 
         methods: {
             addPane(index) {
-                console.log(index)
-                var lay = this.layout
-                var yVal = parseInt(this.layout.filter(e => e["i"] === index)["y"])
-                var xVal = parseInt(this.layout.filter(e => e["i"] === index)["x"])
+
+
+                var refPane = this.layout.filter(e => index === parseInt(e.i))[0]
                 var iMax = this.layout.map(a => a.i).reduce((a, b) => {
                     return Math.max(a, b)
                 }) + 1
-                console.log(iMax, xVal, yVal)
-                lay.map(e => {
-                    return {
-                        ...e,
-                        " y": e.y + 5
+                var lay = this.layout.map(e => {
+                    if (e["x"] === refPane.x && e["i"] !== index) {
+                        return {
+                            ...e,
+                            " y": e.y + 5
+                        }
                     }
+                    return e;
 
                 })
                 lay.push({
-                    "x": 0, "y": yVal, "w": 5, "h": 5, "i": iMax, component: 'EmptyPane', show:true
+                    "x": refPane.x, "y": refPane.y + 5, "w": 5, "h": 5, "i": iMax, component: 'EmptyPane', show: true
 
                 })
-            }
+                this.layout = lay
+            },
+            removePane(index) {
+                this.layout = this.layout.filter(e => e.i !== index)
+            },
+
         }
     }
 

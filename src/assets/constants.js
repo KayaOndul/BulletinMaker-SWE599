@@ -43,5 +43,12 @@ export default {
         },
         responsive: true,
         maintainAspectRatio: false
-    }
+    },
+    chartTypes:[
+        'LineChart',
+        'BarChart',
+        'html',
+        'text',
+        'picture'
+    ]
 }
