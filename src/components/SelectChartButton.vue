@@ -39,7 +39,7 @@
                                 <v-text-field label="Enter image url" v-model="pictureURL"></v-text-field>
                             </v-row>
                             <v-row v-if="selection.search('text')!==-1">
-                                <v-textarea outlined label="Enter text"></v-textarea>
+                                <v-textarea outlined label="Enter text" v-model="textData"></v-textarea>
                             </v-row>
                         </v-col>
                     </v-row>
@@ -74,13 +74,14 @@
 
         data: () => ({
             dialog: false,
-            title:'',
+            title: '',
             selection: '',
             html: '',
             file: null,
             jsonData: [],
             jsonDataTyped: "",
             pictureURL: "",
+            textData: ""
 
 
         }),
@@ -93,7 +94,8 @@
                     this.file = null,
                     this.jsonData = [],
                     this.pictureURL = "",
-                    this.title=''
+                    this.title = '',
+                    this.textData = ''
 
             },
 
@@ -103,7 +105,7 @@
             },
 
             closeHandler() {
-                const title=this.title
+                const title = this.title
                 if (this.selection.search('Chart') !== -1 && this.file) {
                     const keys = Object.keys(this.jsonData[0])
                     const chartData = this.jsonData.map(e => e[keys[1]])
@@ -111,16 +113,21 @@
 
                     const componentName = this.selection
                     const index = this.index
-                    this.$emit('selections', {componentName, chartData, chartLabels, index,title})
+                    this.$emit('selections', {componentName, chartData, chartLabels, index, title})
                 } else if (this.selection.search('html') !== -1) {
                     const component = this.html
                     const index = this.index
-                    this.$emit('toHtml', {component, index,title})
+                    this.$emit('toHtml', {component, index, title})
                 } else if (this.selection.search('picture') !== -1) {
 
-                    const URL=this.pictureURL
+                    const URL = this.pictureURL
                     const index = this.index
-                    this.$emit('toPicture', {URL,index,title})
+                    this.$emit('toPicture', {URL, index, title})
+                } else if (this.selection.search('text') !== -1) {
+
+                    const textData = this.textData
+                    const index = this.index
+                    this.$emit('toText', {textData, index, title})
                 }
 
 

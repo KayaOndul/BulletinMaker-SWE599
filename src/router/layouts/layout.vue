@@ -7,52 +7,8 @@
         >
             <v-toolbar>
 
-                <v-menu style="border-left: 1px solid black"
-                        open-on-hover
-                        left
-                        bottom
-                >
-                    <template v-slot:activator="{ on }">
-                        <v-btn icon v-on="on">
-                            <v-app-bar-nav-icon/>
-                        </v-btn>
-                    </template>
 
-                    <v-list class="navList">
-                        <v-list-item>
-                            <v-list-item-avatar>
-                                <v-img  src="https://cdn.vuetifyjs.com/images/lists/3.jpg"/>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title>
-                                    <div class="navName">Voltron Girl</div>
-                                </v-list-item-title>
-                            </v-list-item-content>
-
-                        </v-list-item>
-
-                        <v-list-item @click="()=>{this.$router.push('/home')}">
-                            <v-list-item-title>Home</v-list-item-title>
-                        </v-list-item>
-                        <v-list-item @click="()=>{this.$router.push('/profile')}">
-                            <v-list-item-title>Profile</v-list-item-title>
-                        </v-list-item>
-                        <v-list-item @click="()=>{this.$router.push('/feed')}">
-                            <v-list-item-title>Feed</v-list-item-title>
-                        </v-list-item>
-                        <v-list-item @click="()=>{this.$router.push('/community')}">
-                            <v-list-item-title>Communities</v-list-item-title>
-                        </v-list-item>
-
-                        <v-list-item @click="()=>{this.$router.push('/logout')}">
-                            <v-list-item-title style="color: red">Log Out</v-list-item-title>
-                        </v-list-item>
-
-
-
-                    </v-list>
-                </v-menu>
-                <v-toolbar-title><strong class="teal--text" >Bulletin Maker</strong></v-toolbar-title>
+                <v-toolbar-title><strong  class="teal--text display-1 font-weight-bold" >Bulletin Maker</strong></v-toolbar-title>
 
 
 
