@@ -33,7 +33,7 @@
                                               v-model="jsonDataTyped"/>
                             </v-row>
                             <v-row v-if="selection.search('html')!==-1">
-                                <v-text-field outlined label="Enter Html"></v-text-field>
+                                <v-text-field outlined label="Enter Html"   v-model="html"></v-text-field>
                             </v-row>
                             <v-row v-if="selection.search('picture')!==-1">
                                 <v-text-field outlined label="Enter image url"></v-text-field>
@@ -107,6 +107,13 @@
                     const index=this.index
                     this.$emit('selections', {componentName,chartData,chartLabels,index})
                 }
+
+                if (this.selection.search('html') !== -1) {
+                    const component=this.html
+                    const index=this.index
+                    this.$emit('toHtml', {component,index})
+                }
+
 
                 this.getInitialState()
             }

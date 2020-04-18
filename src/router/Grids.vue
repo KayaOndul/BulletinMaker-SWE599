@@ -31,17 +31,21 @@
                     <v-btn icon @click="()=>addPane(item.i)">
                         <v-icon>mdi-plus</v-icon>
                     </v-btn>
-                    <SelectChartButton :index="item.i" @selections="changeChartHandler"/>
+                    <SelectChartButton :index="item.i"
+                                       @selections="changeChartHandler"
+                                       @toHtml="putHtmlHandler"
+                    />
                     <v-btn icon @click="()=>removePane(item.i)">
                         <v-icon>mdi-trash-can-outline</v-icon>
                     </v-btn>
 
                 </div>
                 <template>
-                    <component class="wrapper chartComponent" v-if="item.show===true&&item.component"
+                    <component class="wrapper chartComponent" v-if="item.isComponent"
                                :is="item.component"
                                :chartLabels="item.chartLabels" :chartData="item.chartData"
                     ></component>
+                    <div style="font-size: 12px" v-else v-html="item.component"></div>
                 </template>
 
             </grid-item>
@@ -118,9 +122,24 @@
                 lay = lay.map(e => {
                     if (e.i === payload.index) {
                         var retVal=Object.assign({},e)
+                        retVal.isComponent=true
                         retVal.component= payload.componentName === 'LineChart' ? 'LineComponent' : 'BarComponent'
                         retVal.chartLabels=payload.chartLabels
                         retVal.chartData.data=payload.chartData
+                        return retVal
+                    }
+                    return e
+                })
+                this.layout = lay
+            },
+            putHtmlHandler(payload){
+                console.log(payload)
+                var lay = Object.assign([], this.layout)
+                lay = lay.map(e => {
+                    if (e.i === payload.index) {
+                        var retVal=Object.assign({},e)
+                        retVal.component= payload.component
+                        retVal.isComponent=false
                         return retVal
                     }
                     return e
