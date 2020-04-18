@@ -53,7 +53,7 @@ export default {
     ],
     template:{
         "x": 0, "y": 2, "w": 5, "h": 5, "i": 1, component: 'BarComponent',
-        title: 'BarChart',
+        title: '',
         show: true,
         chartLabels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         chartData: {

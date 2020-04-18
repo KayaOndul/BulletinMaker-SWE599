@@ -7,31 +7,6 @@
         >
             <v-toolbar>
 
-
-                <v-toolbar-title><strong class="teal--text" >Voltron</strong></v-toolbar-title>
-
-                <v-text-field class="ml-6 mt-6"
-                              @keypress.enter.prevent="searchItem"
-                              v-model="model"
-                              placeholder="Search"
-                              outlined
-                              rounded
-                              solo
-                              :color="'teal darken-4'"
-                              :background-color="'grey lighten-5'"
-
-                              clearable
-                              flat
-                              dense
-                              light
-                ></v-text-field>
-
-                <NotificationBell
-                        :propNotifications="notItems"
-
-                />
-
-
                 <v-menu style="border-left: 1px solid black"
                         open-on-hover
                         left
@@ -77,6 +52,13 @@
 
                     </v-list>
                 </v-menu>
+                <v-toolbar-title><strong class="teal--text" >Bulletin Maker</strong></v-toolbar-title>
+
+
+
+
+
+
             </v-toolbar>
         </v-card>
 

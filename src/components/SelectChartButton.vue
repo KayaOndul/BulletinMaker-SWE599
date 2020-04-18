@@ -15,7 +15,7 @@
                 <v-container>
                     <v-row>
                         <v-col>
-                            <v-text-field label="Title*" type="text" required></v-text-field>
+                            <v-text-field label="Title*" type="text" v-model="title" required></v-text-field>
                             <v-select
                                     v-model="selection"
                                     :items="chartTypes"
@@ -33,10 +33,10 @@
                                               v-model="jsonDataTyped"/>
                             </v-row>
                             <v-row v-if="selection.search('html')!==-1">
-                                <v-text-field outlined label="Enter Html"   v-model="html"></v-text-field>
+                                <v-text-field outlined label="Enter Html" v-model="html"></v-text-field>
                             </v-row>
                             <v-row v-if="selection.search('picture')!==-1">
-                                <v-text-field outlined label="Enter image url"></v-text-field>
+                                <v-text-field label="Enter image url" v-model="pictureURL"></v-text-field>
                             </v-row>
                             <v-row v-if="selection.search('text')!==-1">
                                 <v-textarea outlined label="Enter text"></v-textarea>
@@ -68,20 +68,23 @@
             XlsxRead,
             XlsxJson,
 
+
         },
 
 
         data: () => ({
             dialog: false,
+            title:'',
             selection: '',
             html: '',
             file: null,
             jsonData: [],
             jsonDataTyped: "",
-            uploadButton: false,
+            pictureURL: "",
+
 
         }),
-        props:['index'],
+        props: ['index'],
         methods: {
             getInitialState() {
                 this.dialog = false,
@@ -89,7 +92,8 @@
                     this.html = '',
                     this.file = null,
                     this.jsonData = [],
-                    this.uploadButton = false
+                    this.pictureURL = "",
+                    this.title=''
 
             },
 
@@ -97,21 +101,26 @@
                 if (val)
                     Object.assign(this.jsonData, val)
             },
+
             closeHandler() {
+                const title=this.title
                 if (this.selection.search('Chart') !== -1 && this.file) {
-                    const keys=Object.keys(this.jsonData[0])
-                    const chartData=this.jsonData.map(e=>e[keys[1]])
-                    const chartLabels=this.jsonData.map(e=>e[keys[0]])
+                    const keys = Object.keys(this.jsonData[0])
+                    const chartData = this.jsonData.map(e => e[keys[1]])
+                    const chartLabels = this.jsonData.map(e => e[keys[0]])
 
-                    const componentName=this.selection
-                    const index=this.index
-                    this.$emit('selections', {componentName,chartData,chartLabels,index})
-                }
+                    const componentName = this.selection
+                    const index = this.index
+                    this.$emit('selections', {componentName, chartData, chartLabels, index,title})
+                } else if (this.selection.search('html') !== -1) {
+                    const component = this.html
+                    const index = this.index
+                    this.$emit('toHtml', {component, index,title})
+                } else if (this.selection.search('picture') !== -1) {
 
-                if (this.selection.search('html') !== -1) {
-                    const component=this.html
-                    const index=this.index
-                    this.$emit('toHtml', {component,index})
+                    const URL=this.pictureURL
+                    const index = this.index
+                    this.$emit('toPicture', {URL,index,title})
                 }
 
 

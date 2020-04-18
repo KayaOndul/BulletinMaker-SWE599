@@ -11,15 +11,17 @@ body {
 }
 .wrapper {
   position: relative;
-  height: 100%;
+  height: 80%;
   width: 100%;
 }
 .vue-grid-item {
   background-color: whitesmoke;
-
-
 }
-
+.vue-resizable-handle{
+  transform: scale(3);
+  bottom: 0!important;
+  right: 0!important;
+}
 .chartComponent{
   padding: 1vh;
 }
