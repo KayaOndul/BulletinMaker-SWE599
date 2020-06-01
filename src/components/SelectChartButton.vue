@@ -60,8 +60,8 @@
 
 <script>
     import Constants from '../assets/constants'
-    import XlsxRead from "../../../swe599/node_modules/vue-xlsx/dist/components/XlsxRead";
-    import XlsxJson from "../../../swe599/node_modules/vue-xlsx/dist/components/XlsxJson";
+    import {XlsxRead} from 'vue-xlsx'
+    import {XlsxJson} from 'vue-xlsx'
 
     export default {
         components: {
