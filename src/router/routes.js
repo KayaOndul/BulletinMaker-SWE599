@@ -1,5 +1,6 @@
 import Home from "@/router/views/Home";
 import Grids from "@/router/Grids";
+
 export default [
     {
         name: 'Home',
@@ -11,6 +12,6 @@ export default [
         path: '/Grids',
         component: Grids,
     },
-    {path:'*',Grids}
+    {path: '*', component: Grids}
 
 ]
