@@ -22,10 +22,10 @@ from rest_framework import permissions
 from rest_framework.routers import DefaultRouter
 from rest_framework_swagger.views import get_swagger_view
 
+import api
 from api import views
 
-router = DefaultRouter()
-router.register(r'users', views.UserViewSet)
+
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -45,6 +45,7 @@ urlpatterns = [
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     url(r'^admin/', admin.site.urls),
-    url(r'^', include(router.urls)),
+    url(r'^', include('api.urls')),
+
 
 ]
