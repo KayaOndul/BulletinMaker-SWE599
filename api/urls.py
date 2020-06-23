@@ -3,10 +3,9 @@ from rest_framework.routers import DefaultRouter
 
 from api import views
 
-router = DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'reports', views.ReportViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path(r'users/<str:username>',views.UserViews.by_username,name='by_usename'),
+    path(r'users/<str:username>/changepassword',views.UserViews.change_password,name='change_password'),
+
 ]
