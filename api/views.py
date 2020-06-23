@@ -1,10 +1,16 @@
+from django.http import JsonResponse
 from rest_framework.decorators import api_view
-
-from .models import User
-from rest_framework import viewsets
-from .serializers import PersonSerializer
 
 
 class UserViews:
     @api_view(["GET"])
-    def index(request):
+    def index(self, request):
+        return JsonResponse('Hello', safe=False)
+
+    @api_view(["POST"])
+    def postNewUser(self, request):
+        pass
+
+    @api_view(["GET"])
+    def getAllUsers(self,request):
+        pass
