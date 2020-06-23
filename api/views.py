@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from rest_framework.decorators import api_view
 
-# Create your views here.
+from .models import User
+from rest_framework import viewsets
+from .serializers import PersonSerializer
+
+
+class UserViews:
+    @api_view(["GET"])
+    def index(request):
