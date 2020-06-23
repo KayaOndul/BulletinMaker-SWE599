@@ -1,13 +1,12 @@
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
 from api import views
-from api.views import UserViews
+
+router = DefaultRouter()
+router.register(r'users', views.UserViewSet)
+
 
 urlpatterns = [
-    # path('user/',views.UserViews.index,name="getUser"),
-    path('user/',include([
-        path('',views.UserViews.getAllUsers,name='users_all'),
-        path('<username>',UserViews.getUser,name='get_user')
-    ])),
-
+    path('', include(router.urls)),
 ]
