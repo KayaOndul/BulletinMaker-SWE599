@@ -1,17 +1,25 @@
-import Home from "@/router/views/Home";
-import Grids from "@/router/Grids";
+import Grids from "@/router/views/Grids";
+import Login from "@/router/views/Login";
+import Register from "@/router/views/Register";
 
 export default [
     {
         name: 'Home',
-        path: '/Home',
-        component: Home,
-    },
-    {
-        name: 'Grids',
-        path: '/Grids',
+        path: '/',
         component: Grids,
     },
-    {path: '*', component: Grids}
+    {
+        name: 'Login',
+        path: '/Login',
+        component: Login
+    },
+    {
+        name: 'Register',
+        path: '/Register',
+        component: Register
+    },
+
+
+    {path: '*', redirect:'/'}
 
 ]

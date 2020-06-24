@@ -71,14 +71,14 @@
 
 <script>
 
-    import Layout from '../router/layouts/layout'
+    import Layout from '../layouts/layout'
     import {GridLayout, GridItem} from 'vue-grid-layout'
     import LineComponent from "@/components/LineComponent";
     import BarComponent from "@/components/BarComponent";
     import EmptyPane from "@/components/EmptyPane"
     import mockLayout from "@/mocks/mockLayout";
     import SelectChartButton from "@/components/SelectChartButton";
-    import Constants from '../assets/constants'
+    import Constants from '../../assets/constants'
 
     export default {
 
