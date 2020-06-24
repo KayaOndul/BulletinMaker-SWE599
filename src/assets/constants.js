@@ -48,8 +48,8 @@ export default {
         'LineChart',
         'BarChart',
         'html',
-        'text',
-        'picture'
+        'picture',
+        'Free Editor'
     ],
     template:{
         "x": 0, "y": 2, "w": 5, "h": 5, "i": 1, component: 'BarComponent',

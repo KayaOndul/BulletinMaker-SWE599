@@ -38,9 +38,12 @@
                             <v-row v-if="selection.search('picture')!==-1">
                                 <v-text-field label="Enter image url" v-model="pictureURL"></v-text-field>
                             </v-row>
-                            <v-row v-if="selection.search('text')!==-1">
-                                <v-textarea outlined label="Enter text" v-model="textData"></v-textarea>
+                            <v-row v-if="selection.search('Free')!==-1">
+                                <text-editor @modified="(value)=>this.content=value"
+                                />
                             </v-row>
+
+
                         </v-col>
                     </v-row>
                 </v-container>
@@ -60,6 +63,7 @@
 
 <script>
     import Constants from '../assets/constants'
+    import TextEditor from "@/components/TextEditor";
     import {XlsxRead} from 'vue-xlsx'
     import {XlsxJson} from 'vue-xlsx'
 
@@ -67,6 +71,7 @@
         components: {
             XlsxRead,
             XlsxJson,
+            TextEditor
 
 
         },
@@ -81,6 +86,7 @@
             jsonData: [],
             jsonDataTyped: "",
             pictureURL: "",
+            content: '',
             textData: ""
 
 
@@ -88,14 +94,15 @@
         props: ['index'],
         methods: {
             getInitialState() {
-                this.dialog = false,
-                    this.selection = '',
-                    this.html = '',
-                    this.file = null,
-                    this.jsonData = [],
-                    this.pictureURL = "",
-                    this.title = '',
-                    this.textData = ''
+                this.dialog = false;
+                this.selection = '';
+                this.html = '';
+                this.file = null;
+                this.jsonData = [];
+                this.pictureURL = "";
+                this.title = '';
+                this.textData = '';
+                this.content = '';
 
             },
 
@@ -123,12 +130,18 @@
                     const URL = this.pictureURL
                     const index = this.index
                     this.$emit('toPicture', {URL, index, title})
-                } else if (this.selection.search('text') !== -1) {
-
-                    const textData = this.textData
+                } else if (this.selection.search('Free Editor') !== -1) {
+                    const data = this.content
                     const index = this.index
-                    this.$emit('toText', {textData, index, title})
+                    this.$emit('toEditor', {data, index, title})
+
                 }
+                // else if (this.selection === 'text') {
+                //
+                //     const textData = this.textData
+                //     const index = this.index
+                //     this.$emit('toText', {textData, index, title})
+                // }
 
 
                 this.getInitialState()

@@ -33,7 +33,8 @@
                                            @selections="changeChartHandler"
                                            @toHtml="putHtmlHandler"
                                            @toPicture="pictureHandler"
-                                           @toText="textHandler"
+                                           @toEditor="editorHandler"
+
 
                         />
                         <v-btn icon @click="()=>removePane(item.i)">
@@ -49,9 +50,9 @@
                         ></component>
                         <v-img contain max-height="100%" v-else-if="item.URL&&item.isComponent===false"
                                :src="item.URL"/>
-                        <v-textarea auto-grow solo clearable filled
-                                     class="pa-3" v-else-if="item.textData&&item.isComponent===false"
-                                    :value="item.textData"/>
+                        <div style="width: 1000px"
+                                     class="ma-3" v-else-if="item.data&&item.isComponent===false"
+                             v-html="item.data"/>
                         <div style="margin: 2vh ;font-size: 12px" v-else v-html="item.component"></div>
                     </template>
 
@@ -81,7 +82,7 @@
     import Constants from '../../assets/constants'
 
     export default {
-
+        name:'Grids',
         components: {
             GridLayout, GridItem, LineComponent, BarComponent, EmptyPane, SelectChartButton, Layout
         }
@@ -185,13 +186,13 @@
                 })
                 this.layout = lay
             },
-            textHandler(payload) {
+            editorHandler(payload) {
                 console.log(payload)
                 var lay = Object.assign([], this.layout)
                 lay = lay.map(e => {
                     if (e.i === payload.index) {
                         var retVal = Object.assign({}, e)
-                        retVal.textData = payload.textData ? payload.textData : "..."
+                        retVal.data = payload.data ? payload.data : "..."
                         retVal.isComponent = false
                         retVal.title = payload.title
                         return retVal
@@ -200,6 +201,7 @@
                 })
                 this.layout = lay
             },
+
 
 
         }
