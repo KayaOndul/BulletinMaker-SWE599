@@ -12,15 +12,18 @@ from api.service.services import UserService
 
 class UserViews:
 
-    @api_view(["GET"])
-    def getUser(self, request, username):
+    @api_view(["GET", "PATCH"])
+    def user(self, request, username):
+        if request.method is "GET":
+            serializer = UserSerializer(data=request.data)
+            if not serializer.is_valid():
+                return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = UserSerializer(data=request.data)
-        if not serializer.is_valid():
-            return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            data = UserService.get_user_by_username(username)
+            return JsonResponse(data, safe=False, status=status.HTTP_200_OK)
 
-        data = UserService.get_user_by_username(username)
-        return JsonResponse(data, safe=False, status=status.HTTP_200_OK)
+        if request.method is "PATCH":
+            pass
 
     @api_view(["GET"])
     def getAll(self):
@@ -88,6 +91,42 @@ class AuthViews:
             return response.Response(None, status.HTTP_204_NO_CONTENT)
 
 
-class ReportViewSet(viewsets.ModelViewSet):
-    queryset = Report.objects.all()
-    serializer_class = ReportSerializer
+class ReportViews:
+
+    @api_view(["GET", "PATCH", "DELETE"])
+    def report_detail(self, request):
+        pass
+        # todo
+
+    @api_view(['GET'])
+    def report_list(self, request):
+        pass
+        # todo
+
+
+class PaneViews:
+
+    @api_view(["GET", "PATCH", "DELETE"])
+    def pane_detail(self, request):
+        pass
+        # todo
+
+    @api_view(['GET'])
+    def pane_list(self, request):
+        pass
+        # todo
+
+
+class SubscriptionViews:
+
+    @api_view(["GET", "PATCH", "DELETE"])
+    def subscription_detail(self, request):
+        pass
+        # todo
+
+    @api_view(["GET"])
+    def subscription_list(self, request):
+        pass
+        # todo
+
+
