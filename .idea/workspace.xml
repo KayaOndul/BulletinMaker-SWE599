@@ -2,15 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0aabf98-86c5-4ac6-a70c-c58ed13c7bad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bulletin599/variables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bulletin599/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bulletin599/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -22,7 +31,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="postgresql&#10;sqlite" />
+    <property name="DatabaseDriversLRU" value="sqlite&#10;postgresql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
@@ -34,7 +43,52 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api/service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Django Server.bulletin599">
+    <configuration name="Test: api.tests.UserTest" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="bulletin599" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="api.tests.UserTest" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: api.tests.test_views.TestUserEndpoints" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="bulletin599" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="api.tests.test_views.TestUserEndpoints" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="bulletin599" type="Python.DjangoServer" factoryName="Django server">
       <module name="bulletin599" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -59,6 +113,12 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Django tests.Test: api.tests.test_views.TestUserEndpoints" />
+        <item itemvalue="Django tests.Test: api.tests.UserTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -72,7 +132,7 @@
       <updated>1592651980166</updated>
       <workItem from="1592651986580" duration="7137000" />
       <workItem from="1592899456142" duration="1568000" />
-      <workItem from="1592915997818" duration="4641000" />
+      <workItem from="1592915997818" duration="31402000" />
     </task>
     <servers />
   </component>
@@ -80,10 +140,14 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="532" y="255" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592653203683">
+    <state x="532" y="255" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592924111400">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="532" y="255" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592653203683" />
+    <state x="532" y="255" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592924111399" />
+    <state x="591" y="386" width="727" height="434" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1592954656697">
+      <screen x="0" y="27" width="1920" height="1173" />
+    </state>
+    <state x="591" y="386" width="727" height="434" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592954656697" />
     <state x="100" y="100" width="1720" height="1000" key="DiffContextDialog" timestamp="1592660036510">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
@@ -92,45 +156,78 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="690" y="301" width="530" height="605" key="FileChooserDialogImpl/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592916019647" />
-    <state width="1864" height="310" key="GridCell.Tab.0.bottom" timestamp="1592663134068">
+    <state width="1864" height="383" key="GridCell.Tab.0.bottom" timestamp="1592965167226">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="310" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592663134068" />
-    <state width="1864" height="310" key="GridCell.Tab.0.center" timestamp="1592663134068">
+    <state width="1864" height="383" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
+    <state width="1864" height="383" key="GridCell.Tab.0.center" timestamp="1592965167226">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="310" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592663134068" />
-    <state width="1864" height="310" key="GridCell.Tab.0.left" timestamp="1592663134068">
+    <state width="1864" height="383" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
+    <state width="1864" height="383" key="GridCell.Tab.0.left" timestamp="1592965167226">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="310" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592663134068" />
-    <state width="1864" height="310" key="GridCell.Tab.0.right" timestamp="1592663134068">
+    <state width="1864" height="383" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
+    <state width="1864" height="383" key="GridCell.Tab.0.right" timestamp="1592965167226">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="310" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592663134068" />
-    <state width="1864" height="383" key="GridCell.Tab.1.bottom" timestamp="1592663132654">
+    <state width="1864" height="383" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
+    <state width="1864" height="383" key="GridCell.Tab.1.bottom" timestamp="1592965167226">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592663132654" />
-    <state width="1864" height="383" key="GridCell.Tab.1.center" timestamp="1592663132654">
+    <state width="1864" height="383" key="GridCell.Tab.1.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
+    <state width="1864" height="383" key="GridCell.Tab.1.center" timestamp="1592965167226">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592663132654" />
-    <state width="1864" height="383" key="GridCell.Tab.1.left" timestamp="1592663132654">
+    <state width="1864" height="383" key="GridCell.Tab.1.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
+    <state width="1864" height="383" key="GridCell.Tab.1.left" timestamp="1592965167226">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592663132654" />
-    <state width="1864" height="383" key="GridCell.Tab.1.right" timestamp="1592663132654">
+    <state width="1864" height="383" key="GridCell.Tab.1.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
+    <state width="1864" height="383" key="GridCell.Tab.1.right" timestamp="1592965167226">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592663132654" />
+    <state width="1864" height="383" key="GridCell.Tab.1.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
     <state width="318" height="572" key="HiddenNamespacesPopup" timestamp="1592653180930">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state width="318" height="572" key="HiddenNamespacesPopup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592653180930" />
-    <state x="675" y="236" width="560" height="734" key="RollbackChangesDialog" timestamp="1592659913417">
+    <state x="675" y="236" width="560" height="734" key="RollbackChangesDialog" timestamp="1592924503899">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="675" y="236" width="560" height="734" key="RollbackChangesDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592659913417" />
+    <state x="675" y="236" width="560" height="734" key="RollbackChangesDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592924503899" />
+    <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1593008966363">
+      <screen x="0" y="27" width="1920" height="1173" />
+    </state>
+    <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593008966363" />
+    <state x="2090" y="127" width="1650" height="853" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1593008519762">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2090" y="127" width="1650" height="853" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593008519762" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/views.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/service/services.py</url>
+          <line>10</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/views.py</url>
+          <line>69</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/bulletin599$Test__api_tests_test_views_TestUserEndpoints.coverage" NAME="Test: api.tests.test_views.TestUserEndpoints Coverage Results" MODIFIED="1592953879068" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/bulletin599$Test__api_tests_UserTest.coverage" NAME="Test: api.tests.UserTest Coverage Results" MODIFIED="1592925545684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
