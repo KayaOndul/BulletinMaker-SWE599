@@ -8,7 +8,8 @@ from django.db import models
 class User(AbstractUser):
     bio = models.TextField(max_length=500, blank=True)
     friends = models.ManyToManyField("self",blank=True)
-    username = models.CharField(max_length=30,unique=True,db_index=True,primary_key=True)
+    username = models.CharField(max_length=30,unique=True,blank=False)
+    email=models.CharField(max_length=50,unique=True,blank=False)
 
     # created_reports=models.ForeignKey('Report',on_delete=models.PROTECT,related_name='created_reports')
 
