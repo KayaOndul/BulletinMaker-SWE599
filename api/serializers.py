@@ -1,14 +1,22 @@
 from django.contrib.auth.hashers import make_password
+from django.forms import CharField
 from rest_framework import serializers
 
 from api.models import User, Report
-import crypt
+
+
+class CreateReportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Report
+
+        fields = ('title',)
 
 
 class ReportSerializer(serializers.ModelSerializer):
+    owner=serializers.StringRelatedField()
     class Meta:
         model = Report
-        fields = ('owner', 'subscribers', 'savedData')
+        fields = ('title', 'owner', 'subscribers')
 
 
 class UserSerializer(serializers.ModelSerializer):

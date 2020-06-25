@@ -1,13 +1,11 @@
 from django.contrib.auth import logout, authenticate
-from django.contrib.auth.hashers import make_password
 from django.http import JsonResponse
-from rest_framework import viewsets, status, permissions, response
+from rest_framework import status, permissions, response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from api.models import Report
-from api.serializers import ReportSerializer, UserSerializer, UserCreateSerializer
-from api.service.services import UserService
+from api.serializers import UserSerializer, UserCreateSerializer, ReportSerializer, CreateReportSerializer
+from api.service.services import UserService, ReportService
 
 
 class UserViews:
@@ -85,7 +83,7 @@ class AuthViews:
 
     @api_view(["POST"])
     @permission_classes([permissions.AllowAny])
-    def logout(request):
+    def logout(self, request):
         if request.method == 'POST':
             logout(request)
             return response.Response(None, status.HTTP_204_NO_CONTENT)
@@ -98,9 +96,20 @@ class ReportViews:
         pass
         # todo
 
-    @api_view(['GET'])
-    def report_list(self, request):
-        pass
+    @api_view(['GET', "POST"])
+    def report_list(self, username):
+        serializer = CreateReportSerializer(data=self.data)
+
+        if serializer.is_valid() is False:
+            return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if self.method == "POST":
+            if self.user.username != username:
+                raise PermissionError('Only domain owner  can save a report on its behalf')
+
+            report = ReportService.create_report(serializer,user=self.user)
+            return JsonResponse(report.data,status= status.HTTP_201_CREATED, safe=False)
+        else:
+            pass
         # todo
 
 
@@ -128,5 +137,3 @@ class SubscriptionViews:
     def subscription_list(self, request):
         pass
         # todo
-
-

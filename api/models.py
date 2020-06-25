@@ -14,13 +14,12 @@ class User(AbstractUser):
     username = models.CharField(max_length=30, unique=True, blank=False)
     email = models.CharField(max_length=50, unique=True, blank=False)
 
-    # created_reports=models.ForeignKey('Report',on_delete=models.PROTECT,related_name='created_reports')
-
     def __str__(self):
         return self.username
 
 
 class Report(models.Model):
+    title = models.CharField(max_length=50, unique=True, blank=False)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_reports')
     subscribers = models.ManyToManyField(
         User,
@@ -29,8 +28,12 @@ class Report(models.Model):
 
     )
 
+    def __str__(self):
+        return self.title
+
 
 class Pane(models.Model):
+    title = models.CharField(max_length=50, unique=True, blank=False)
     report = models.ForeignKey(Report, on_delete=models.CASCADE, related_name='parent_report')
     subscribers = models.ManyToManyField(
         User,
@@ -39,14 +42,23 @@ class Pane(models.Model):
     )
     savedData = JSONField(blank=True, null=True)
 
+    def __str__(self):
+        return self.title
+
 
 class PaneSubscription(models.Model):
     pane = models.ForeignKey(Pane, on_delete=models.CASCADE, null=True)
     person = models.ForeignKey(User, on_delete=models.CASCADE)
     date_joined = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.pane.title + ' / ' + self.person.username
+
 
 class ReportSubscription(models.Model):
     report = models.ForeignKey(Report, on_delete=models.CASCADE)
     person = models.ForeignKey(User, on_delete=models.CASCADE)
     date_joined = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.report.title + ' / ' + self.person.username
