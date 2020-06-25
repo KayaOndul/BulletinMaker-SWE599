@@ -1,10 +1,4 @@
-
-const setLocalStorage = (payload) => {
-    localStorage.setItem('token', payload.access)
-    localStorage.setItem('refresh', payload.refresh)
-    localStorage.setItem('username', payload.username)
-    localStorage.setItem('image', payload.image)
-}
+import helpers from "@/service/helpers";
 
 const getDefaultState = () => {
     return {
@@ -22,7 +16,7 @@ export default {
     mutations: {
 
         auth_success(state, payLoad) {
-            setLocalStorage(payLoad)
+            helpers.setLocalStorage(payLoad)
             state.token = payLoad.access;
             state.refresh = payLoad.refresh
             state.username = payLoad.username

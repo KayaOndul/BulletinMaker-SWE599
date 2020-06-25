@@ -32,16 +32,7 @@
                                 <v-text-field disabled outlined dense label="Add your json data array"
                                               v-model="jsonDataTyped"/>
                             </v-row>
-                            <v-row v-if="selection.search('html')!==-1">
-                                <v-text-field outlined label="Enter Html" v-model="html"></v-text-field>
-                            </v-row>
-                            <v-row v-if="selection.search('picture')!==-1">
-                                <v-text-field label="Enter image url" v-model="pictureURL"></v-text-field>
-                            </v-row>
-                            <v-row v-if="selection.search('Free')!==-1">
-                                <text-editor @modified="(value)=>this.content=value"
-                                />
-                            </v-row>
+
 
 
                         </v-col>
@@ -63,15 +54,13 @@
 
 <script>
     import Constants from '../assets/constants'
-    import TextEditor from "@/components/TextEditor";
-    import {XlsxRead} from 'vue-xlsx'
-    import {XlsxJson} from 'vue-xlsx'
+    import {XlsxJson, XlsxRead} from 'vue-xlsx'
 
     export default {
         components: {
             XlsxRead,
             XlsxJson,
-            TextEditor
+
 
 
         },
@@ -122,7 +111,7 @@
                     const index = this.index
                     this.$emit('selections', {componentName, chartData, chartLabels, index, title})
                 } else if (this.selection.search('Free Editor') !== -1) {
-                    const componentName = 'TextEditor'
+                    const componentName = 'VueEditor'
                     const title = this.title
                     const data = this.content
                     const index = this.index

@@ -68,6 +68,12 @@ import axios from 'axios'
 //
 // }
 
+const setLocalStorage = (payload) => {
+    localStorage.setItem('token', payload.access)
+    localStorage.setItem('refresh', payload.refresh)
+    localStorage.setItem('username', payload.username)
+    localStorage.setItem('image', payload.image)
+}
 const putToken = function () {
     let http=axios.create({})
     http.interceptors.request.use(config=>{
@@ -91,5 +97,6 @@ const putToken = function () {
 
 export default {
     putToken,
+    setLocalStorage
 
 }

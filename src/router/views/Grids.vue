@@ -12,7 +12,7 @@
                     :margin="[50, 50]"
                     :use-css-transforms="true"
                     :autoSize="true"
-                    :responsive="true"
+
             >
 
 
@@ -30,7 +30,7 @@
                         <v-btn icon @click="()=>addPane(item.i)">
                             <v-icon>mdi-plus</v-icon>
                         </v-btn>
-                        <SelectChartButton :index="item.i"
+                        <SelectChartButton v-if="item.component=='EmptyPane'" :index="item.i"
                                            @selections="changeChartHandler"
                                            @toEditor="editorHandler"
 
@@ -47,9 +47,8 @@
                                    :is="item.component"
                                    :chartLabels="item.chartLabels" :chartData="item.chartData"
                         ></component>
-                        <component class="wrapper chartComponent " v-else-if="item.isComponent===true"
+                        <component class="wrapper px-3 py-12 " v-else-if="item.isComponent===true"
                                    :is="item.component"
-                                   :displayForm="true" :insertContent="item.data"
 
                         ></component>
 
@@ -75,7 +74,7 @@
     import {GridLayout, GridItem} from 'vue-grid-layout'
     import LineComponent from "@/components/LineComponent";
     import BarComponent from "@/components/BarComponent";
-    import TextEditor from "@/components/TextEditor";
+    import {VueEditor} from 'vue2-editor'
     import EmptyPane from "@/components/EmptyPane"
     import mockLayout from "@/mocks/mockLayout";
     import SelectChartButton from "@/components/SelectChartButton";
@@ -84,7 +83,7 @@
     export default {
         name: 'Grids',
         components: {
-            GridLayout, GridItem, LineComponent, BarComponent, EmptyPane, SelectChartButton, Layout, TextEditor
+            GridLayout, GridItem, LineComponent, BarComponent, EmptyPane, SelectChartButton, Layout,VueEditor
         }
         ,
         data() {
@@ -163,9 +162,9 @@
                 lay = lay.map(e => {
                     if (e.i === payload.index) {
                         var retVal = Object.assign({}, e)
-                        retVal.data = payload.data ? payload.data : "..."
+                        retVal.data = payload.data ? payload.data : "<h1>waiting for new content</h1>"
                         retVal.isComponent = true
-                        retVal.component = 'TextEditor'
+                        retVal.component = 'VueEditor'
                         retVal.title = payload.title
                         return retVal
                     }

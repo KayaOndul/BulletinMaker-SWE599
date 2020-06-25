@@ -19,7 +19,7 @@
                                     :route="{name:'Login'}"/>
                         <click-icon v-else :note="'Log Out'"
                                     :icon="'mdi-logout'"
-                                    :route="{name:'Logout'}"/>
+                                    :route="{name:'Home'}"/>
                     </v-list-item>
                     <v-list-item>
                         <click-icon :note="'Register'" :icon="'mdi-account-plus'" :route="{name:'Register'}"/>
