@@ -12,10 +12,11 @@
                     :margin="[50, 50]"
                     :use-css-transforms="true"
                     :autoSize="true"
+                    :responsive="true"
             >
 
 
-                <grid-item  v-for="item in layout" :key="item.i"
+                <grid-item v-for="item in layout" :key="item.i"
                            :x="item.x"
                            :y="item.y"
                            :w="item.w"
@@ -31,8 +32,6 @@
                         </v-btn>
                         <SelectChartButton :index="item.i"
                                            @selections="changeChartHandler"
-                                           @toHtml="putHtmlHandler"
-                                           @toPicture="pictureHandler"
                                            @toEditor="editorHandler"
 
 
@@ -44,16 +43,16 @@
                     </div>
                     <h3 class="pl-3" v-show="item.title!==''">{{item.title}}</h3>
                     <template>
-                        <component class="wrapper chartComponent" v-if="item.isComponent===true"
+                        <component class="wrapper chartComponent" v-if="!item.data&&item.isComponent===true"
                                    :is="item.component"
                                    :chartLabels="item.chartLabels" :chartData="item.chartData"
                         ></component>
-                        <v-img contain max-height="100%" v-else-if="item.URL&&item.isComponent===false"
-                               :src="item.URL"/>
-                        <div style="width: 1000px"
-                                     class="ma-3" v-else-if="item.data&&item.isComponent===false"
-                             v-html="item.data"/>
-                        <div style="margin: 2vh ;font-size: 12px" v-else v-html="item.component"></div>
+                        <component class="wrapper chartComponent " v-else-if="item.isComponent===true"
+                                   :is="item.component"
+                                   :displayForm="true" :insertContent="item.data"
+
+                        ></component>
+
                     </template>
 
 
@@ -76,15 +75,16 @@
     import {GridLayout, GridItem} from 'vue-grid-layout'
     import LineComponent from "@/components/LineComponent";
     import BarComponent from "@/components/BarComponent";
+    import TextEditor from "@/components/TextEditor";
     import EmptyPane from "@/components/EmptyPane"
     import mockLayout from "@/mocks/mockLayout";
     import SelectChartButton from "@/components/SelectChartButton";
     import Constants from '../../assets/constants'
 
     export default {
-        name:'Grids',
+        name: 'Grids',
         components: {
-            GridLayout, GridItem, LineComponent, BarComponent, EmptyPane, SelectChartButton, Layout
+            GridLayout, GridItem, LineComponent, BarComponent, EmptyPane, SelectChartButton, Layout, TextEditor
         }
         ,
         data() {
@@ -141,7 +141,7 @@
 
             changeChartHandler(payload) {
                 console.log(payload)
-                var lay = Object.assign([], this.layout)
+                let lay = Object.assign([], this.layout);
                 lay = lay.map(e => {
                     if (e.i === payload.index) {
                         var retVal = Object.assign({}, e)
@@ -156,44 +156,16 @@
                 })
                 this.layout = lay
             },
-            putHtmlHandler(payload) {
-                console.log(payload)
-                var lay = Object.assign([], this.layout)
-                lay = lay.map(e => {
-                    if (e.i === payload.index) {
-                        var retVal = Object.assign({}, e)
-                        retVal.component = payload.component
-                        retVal.isComponent = false
-                        retVal.title = payload.title
-                        return retVal
-                    }
-                    return e
-                })
-                this.layout = lay
-            },
-            pictureHandler(payload) {
-                console.log(payload)
-                var lay = Object.assign([], this.layout)
-                lay = lay.map(e => {
-                    if (e.i === payload.index) {
-                        var retVal = Object.assign({}, e)
-                        retVal.URL = payload.URL
-                        retVal.isComponent = false
-                        retVal.title = payload.title
-                        return retVal
-                    }
-                    return e
-                })
-                this.layout = lay
-            },
+
             editorHandler(payload) {
                 console.log(payload)
-                var lay = Object.assign([], this.layout)
+                let lay = Object.assign([], this.layout);
                 lay = lay.map(e => {
                     if (e.i === payload.index) {
                         var retVal = Object.assign({}, e)
                         retVal.data = payload.data ? payload.data : "..."
-                        retVal.isComponent = false
+                        retVal.isComponent = true
+                        retVal.component = 'TextEditor'
                         retVal.title = payload.title
                         return retVal
                     }
@@ -201,7 +173,6 @@
                 })
                 this.layout = lay
             },
-
 
 
         }

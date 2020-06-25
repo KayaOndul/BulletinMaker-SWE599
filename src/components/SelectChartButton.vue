@@ -121,27 +121,15 @@
                     const componentName = this.selection
                     const index = this.index
                     this.$emit('selections', {componentName, chartData, chartLabels, index, title})
-                } else if (this.selection.search('html') !== -1) {
-                    const component = this.html
-                    const index = this.index
-                    this.$emit('toHtml', {component, index, title})
-                } else if (this.selection.search('picture') !== -1) {
-
-                    const URL = this.pictureURL
-                    const index = this.index
-                    this.$emit('toPicture', {URL, index, title})
                 } else if (this.selection.search('Free Editor') !== -1) {
+                    const componentName = 'TextEditor'
+                    const title = this.title
                     const data = this.content
                     const index = this.index
-                    this.$emit('toEditor', {data, index, title})
+                    console.log({data, index, title, componentName})
+                    this.$emit('toEditor', {data, index, title, componentName})
 
                 }
-                // else if (this.selection === 'text') {
-                //
-                //     const textData = this.textData
-                //     const index = this.index
-                //     this.$emit('toText', {textData, index, title})
-                // }
 
 
                 this.getInitialState()

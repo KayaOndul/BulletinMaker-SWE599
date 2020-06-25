@@ -47,8 +47,6 @@ export default {
     chartTypes:[
         'LineChart',
         'BarChart',
-        'html',
-        'picture',
         'Free Editor'
     ],
     template:{
