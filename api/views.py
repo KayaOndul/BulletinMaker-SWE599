@@ -4,6 +4,7 @@ from rest_framework import status, permissions, response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework_simplejwt.tokens import RefreshToken
 
+from api.models import User
 from api.serializers import UserSerializer, UserCreateSerializer, ReportSerializer, CreateReportSerializer
 from api.service.services import UserService, ReportService
 
@@ -98,19 +99,23 @@ class ReportViews:
 
     @api_view(['GET', "POST"])
     def report_list(self, username):
-        serializer = CreateReportSerializer(data=self.data)
 
-        if serializer.is_valid() is False:
-            return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         if self.method == "POST":
-            if self.user.username != username:
-                raise PermissionError('Only domain owner  can save a report on its behalf')
+            serializer = CreateReportSerializer(data=self.data)
 
-            report = ReportService.create_report(serializer,user=self.user)
-            return JsonResponse(report.data,status= status.HTTP_201_CREATED, safe=False)
+            if serializer.is_valid() is False:
+                return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            if self.user != User.objects.get(username=username):
+                res = {"error": "Only domain owner  can save a report on its domain"}
+                return response.Response(res, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+            report = ReportService.create_report(serializer, user=self.user)
+            return JsonResponse(report.data, status=status.HTTP_201_CREATED, safe=False)
         else:
-            pass
-        # todo
+            serializer = ReportSerializer(data=self.data)
+            user = User.objects.get(username=username)
+            reports = ReportService.get_reports(serializer, user=user)
+            return JsonResponse(reports.data, status=status.HTTP_200_OK, safe=False)
 
 
 class PaneViews:

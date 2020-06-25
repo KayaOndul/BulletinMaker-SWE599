@@ -25,3 +25,7 @@ class ReportService:
     def create_report(self, user):
         report = Report.objects.create(title=self.data['title'], owner=user)
         return ReportSerializer(report, many=False)
+
+    def get_reports(self, user):
+        reports = Report.objects.filter(owner=user)
+        return ReportSerializer(reports, many=True)

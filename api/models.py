@@ -24,7 +24,8 @@ class Report(models.Model):
     subscribers = models.ManyToManyField(
         User,
         through="ReportSubscription",
-        related_name='report_members'
+        related_name='report_members',
+
 
     )
 
@@ -34,13 +35,14 @@ class Report(models.Model):
 
 class Pane(models.Model):
     title = models.CharField(max_length=50, unique=True, blank=False)
-    report = models.ForeignKey(Report, on_delete=models.CASCADE, related_name='parent_report')
+    parent_report = models.ForeignKey(Report, on_delete=models.CASCADE, related_name='report')
     subscribers = models.ManyToManyField(
         User,
         through='PaneSubscription',
         related_name='pane_members'
     )
     savedData = JSONField(blank=True, null=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

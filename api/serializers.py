@@ -12,11 +12,21 @@ class CreateReportSerializer(serializers.ModelSerializer):
         fields = ('title',)
 
 
-class ReportSerializer(serializers.ModelSerializer):
-    owner=serializers.StringRelatedField()
+class PaneSerializer(serializers.ModelSerializer):
+    subscribers = serializers.StringRelatedField(many=True)
+
     class Meta:
         model = Report
-        fields = ('title', 'owner', 'subscribers')
+        fields = ('title', 'report', 'subscribers', 'id', 'owner')
+
+
+class ReportSerializer(serializers.ModelSerializer):
+    owner = serializers.StringRelatedField()
+    panes = serializers.ModelSerializer(read_only=True, many=True, default=[])
+
+    class Meta:
+        model = Report
+        fields = ('title', 'owner', 'subscribers', 'id', 'panes',)
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -25,6 +35,9 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'email', 'is_staff', 'bio', 'friends', 'user_reports')
+
+    def __str__(self):
+        return self.username
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
