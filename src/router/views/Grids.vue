@@ -39,15 +39,16 @@
                         <v-btn icon @click="()=>removePane(item.i)">
                             <v-icon>mdi-trash-can-outline</v-icon>
                         </v-btn>
+                        <h3 class=" accent--text pl-3" v-show="item.title!==''">{{item.title}}</h3>
 
                     </div>
-                    <h3 class="pl-3" v-show="item.title!==''">{{item.title}}</h3>
+
                     <template>
                         <component class="wrapper chartComponent" v-if="!item.data&&item.isComponent===true"
                                    :is="item.component"
                                    :chartLabels="item.chartLabels" :chartData="item.chartData"
                         ></component>
-                        <component class="wrapper px-3 py-12 " v-else-if="item.isComponent===true"
+                        <component class="wrapper chartComponent px-3 py-12 " v-else-if="item.isComponent===true"
                                    :is="item.component"
 
                         ></component>
@@ -72,12 +73,12 @@
 
     import Layout from '../layouts/layout'
     import {GridLayout, GridItem} from 'vue-grid-layout'
-    import LineComponent from "@/components/LineComponent";
-    import BarComponent from "@/components/BarComponent";
+    import LineComponent from "@/components/panes/LineComponent";
+    import BarComponent from "@/components/panes/BarComponent";
     import {VueEditor} from 'vue2-editor'
-    import EmptyPane from "@/components/EmptyPane"
+    import EmptyPane from "@/components/panes/EmptyPane"
     import mockLayout from "@/mocks/mockLayout";
-    import SelectChartButton from "@/components/SelectChartButton";
+    import SelectChartButton from "@/components/panes/SelectChartButton";
     import Constants from '../../assets/constants'
 
     export default {

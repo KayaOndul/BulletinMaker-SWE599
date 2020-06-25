@@ -1,6 +1,6 @@
 <script>
     import {Line} from 'vue-chartjs'
-    import Constants from '../assets/constants'
+    import Constants from '../../assets/constants'
     export default {
         extends: Line,
         props: {

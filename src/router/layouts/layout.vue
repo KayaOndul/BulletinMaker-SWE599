@@ -5,13 +5,52 @@
                 flat
 
         >
-            <v-toolbar>
-
-                <v-toolbar-title @click="()=>this.$router.push({name:'Home'})"><strong
-                        class="teal--text display-1 font-weight-bold">Bulletin Maker</strong></v-toolbar-title>
+            <v-toolbar >
 
 
-                <div class="d-flex flex-row justify-content-end ">
+                <v-toolbar-title style="cursor: pointer" @click="()=>this.$router.push({name:'Welcome'}) "
+                                 class="teal--text display-1  mr-3 font-weight-bold">Bulletin Maker
+                </v-toolbar-title>
+                <v-list-item style="max-width: 50%">
+                    <v-text-field
+                            label="Search in Site For Users and Reports "
+                            class=" mt-6"
+                            @keypress.enter.prevent="searchItem"
+                            v-model="model"
+                            outlined
+                            rounded
+                            :color="'teal darken-4'"
+                            :background-color="'grey lighten-5'"
+                            flat
+                            clearable
+                            dense
+                            light
+                    ></v-text-field>
+                </v-list-item>
+                <v-spacer />
+
+                <v-spacer/>
+                <v-list-item-group class="d-flex flex-row justify-end">
+
+
+                    <v-list-item v-if="isLoggedIn===true">
+
+                        <v-tooltip bottom light class="teal primary--text">
+                            <template v-slot:activator="{ on }">
+                                <v-btn icon v-on="on" class="display-2 teal--text">
+                                    <v-icon>
+                                        mdi-plus
+                                    </v-icon>
+                                </v-btn>
+                            </template>
+                            <span class=" white--text">{{'Save Layout'}}</span>
+                        </v-tooltip>
+
+                    </v-list-item>
+
+
+
+
 
                     <v-list-item>
                         <click-icon v-if="isLoggedIn===false" :note="'Login'"
@@ -19,30 +58,41 @@
                                     :route="{name:'Login'}"/>
                         <click-icon v-else :note="'Log Out'"
                                     :icon="'mdi-logout'"
-                                    :route="{name:'Home'}"/>
+                                    :route="{name:'Welcome'}"/>
+
                     </v-list-item>
                     <v-list-item>
                         <click-icon :note="'Register'" :icon="'mdi-account-plus'" :route="{name:'Register'}"/>
+
+                    </v-list-item>
+
+
+                    <v-list-item v-if="isLoggedIn===true">
+                        <click-icon :note="'Dashboard'"
+                                    :icon="'mdi-home'"
+                                    :route="{name:'Welcome'}"/>
+
                     </v-list-item>
                     <v-list-item v-if="isLoggedIn===true">
 
-                        <v-tooltip bottom light class="white primary--text">
+                        <v-tooltip bottom light class=" white primary--text">
                             <template v-slot:activator="{ on }">
                                 <v-list-item-avatar v-on="on">
-                                    <v-img :src="'https://picsum.photos/303'"/>
+                                    <v-img class="clickable" :src="'https://picsum.photos/303'"/>
                                 </v-list-item-avatar>
                             </template>
                             <span class=" white--text">{{username}}</span>
                         </v-tooltip>
 
                     </v-list-item>
-                </div>
+                </v-list-item-group>
+
 
 
             </v-toolbar>
-
-
         </v-card>
+
+
         <notifications-alert/>
         <v-overlay :value="this.loading">
             <v-progress-circular
@@ -129,7 +179,8 @@
                 this.isBackTopFooter = diff < (this.scrollIndentBackTop - 40 - 15);
             }
         },
-        components: {BackToTop, ClickIcon,NotificationsAlert}
+        components: {BackToTop, ClickIcon, NotificationsAlert}
     }
 
 </script>
+

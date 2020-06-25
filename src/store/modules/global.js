@@ -3,6 +3,7 @@ const getDefaultState = () => {
         showAlertNotifications: true,
         alerts: [],
         loading: false,
+        searchResponse: []
 
     }
 }
@@ -11,11 +12,6 @@ const getDefaultState = () => {
 const state = getDefaultState()
 
 const actions = {
-    resetState({commit}) {
-        commit('resetState')
-    },
-
-
     alertUser({commit}, payload) {
         commit('set_alert', payload)
 
@@ -23,7 +19,6 @@ const actions = {
     removeAlert({commit}) {
         commit('remove_alert')
     },
-
 
 }
 
@@ -44,7 +39,12 @@ const mutations = {
 
         state.alerts = alert
     },
+    setSearchResponse(state, payload) {
 
+        state.searchResponse = payload
+
+
+    },
 
     setAlert(state) {
         state.showAlertNotifications = false

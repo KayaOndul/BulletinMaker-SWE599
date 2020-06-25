@@ -1,0 +1,17 @@
+[
+  {
+    "name": "kaya",
+    "category": "users",
+    "component": "Profile"
+  },
+  {
+    "category": "reports",
+    "name": "kayareport",
+    "component": "Grids"
+  },
+  {
+    "category": "pane",
+    "name": "kayareport"
+  }
+
+]

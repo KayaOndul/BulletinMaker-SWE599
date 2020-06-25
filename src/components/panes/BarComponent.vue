@@ -1,6 +1,6 @@
 <script>
     import {Bar} from 'vue-chartjs'
-    import Constants from '../assets/constants'
+    import Constants from '../../assets/constants'
     export default {
         extends: Bar,
         props: {

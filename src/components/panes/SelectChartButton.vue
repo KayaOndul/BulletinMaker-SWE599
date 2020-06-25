@@ -53,7 +53,7 @@
 </template>
 
 <script>
-    import Constants from '../assets/constants'
+    import Constants from '../../assets/constants'
     import {XlsxJson, XlsxRead} from 'vue-xlsx'
 
     export default {

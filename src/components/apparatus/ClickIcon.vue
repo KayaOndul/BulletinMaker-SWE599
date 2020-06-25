@@ -1,5 +1,5 @@
 <template>
-    <v-tooltip top light class="white primary--text">
+    <v-tooltip top light class="white primary--text clickable">
         <template v-slot:activator="{ on }">
             <v-btn icon v-on="on" @click="routeHandler">
                 <v-icon class="primary--text">{{icono}}</v-icon>
@@ -43,6 +43,9 @@
                 if (this.notto === 'Log Out') {
                     authService.LOGOUT()
                     this.$store.commit('global/set_alert', 'Logged Out')
+                    if (this.$route.path.name === this.routeo.name) {
+                        return;
+                    }
                     router.push(this.routeo)
                     return
                 }
@@ -69,3 +72,7 @@
 
     }
 </script>
+
+<style>
+
+</style>
