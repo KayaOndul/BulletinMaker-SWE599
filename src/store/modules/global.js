@@ -49,6 +49,7 @@ const mutations = {
     setAlert(state) {
         state.showAlertNotifications = false
     },
+
     resetState(state) {
         // Merge rather than replace so we don't lose observers
         // https://github.com/vuejs/vuex/issues/1118

@@ -26,22 +26,31 @@
                     </v-list-item>
                     <v-list-item v-if="isLoggedIn===true">
 
-                            <v-tooltip bottom light class="white primary--text">
-                                <template v-slot:activator="{ on }">
-                                    <v-list-item-avatar v-on="on">
-                                        <v-img :src="'https://picsum.photos/303'"/>
-                                    </v-list-item-avatar>
-                                </template>
-                                <span class=" white--text">{{username}}</span>
-                            </v-tooltip>
+                        <v-tooltip bottom light class="white primary--text">
+                            <template v-slot:activator="{ on }">
+                                <v-list-item-avatar v-on="on">
+                                    <v-img :src="'https://picsum.photos/303'"/>
+                                </v-list-item-avatar>
+                            </template>
+                            <span class=" white--text">{{username}}</span>
+                        </v-tooltip>
 
                     </v-list-item>
                 </div>
 
 
             </v-toolbar>
-        </v-card>
 
+
+        </v-card>
+        <notifications-alert/>
+        <v-overlay :value="this.loading">
+            <v-progress-circular
+                    :size="100"
+                    color="blue"
+                    indeterminate
+            ></v-progress-circular>
+        </v-overlay>
         <slot/>
         <back-to-top style="display: inline-block"
                      :visibleoffset="visibleoffset"
@@ -57,8 +66,10 @@
 
 <script>
     import ClickIcon from "@/components/apparatus/ClickIcon";
+    import NotificationsAlert from "@/components/apparatus/NotificationsAlert";
     import BackToTop from 'vue-backtotop'
     import router from "../router";
+    import store from "@/store/store";
     import {mapGetters} from "vuex"
 
     export default {
@@ -80,7 +91,11 @@
             ...mapGetters({
                 isLoggedIn: 'auth/isLoggedIn',
                 username: 'auth/username'
-            })
+            }),
+
+            loading() {
+                return store.state.global.loading
+            },
         },
         created() {
             // private
@@ -114,7 +129,7 @@
                 this.isBackTopFooter = diff < (this.scrollIndentBackTop - 40 - 15);
             }
         },
-        components: {BackToTop, ClickIcon}
+        components: {BackToTop, ClickIcon,NotificationsAlert}
     }
 
 </script>
