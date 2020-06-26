@@ -8,12 +8,13 @@
                 <v-list-item v-if="this.layout.length<1">
                     <v-tooltip bottom light class="teal primary--text">
                         <template v-slot:activator="{ on }">
-                            <v-btn @click="addEmptyPane" icon v-on="on" >
+                            <v-btn @click="addEmptyPane(0)" icon v-on="on">
                                 <v-icon>mdi-plus</v-icon>
                             </v-btn>
                         </template>
                         <span>Add Pane</span>
                     </v-tooltip>
+
 
                 </v-list-item>
             </v-list-item-group>
@@ -93,16 +94,16 @@
     import {GridItem, GridLayout} from 'vue-grid-layout'
     import LineComponent from "@/components/panes/LineComponent";
     import BarComponent from "@/components/panes/BarComponent";
-    import {VueEditor} from 'vue2-editor'
     import EmptyPane from "@/components/panes/EmptyPane"
     import mockLayout from "@/mocks/mockLayout";
+    import Editor from "../../components/panes/Editor"
     import SelectChartButton from "@/components/panes/SelectChartButton";
     import Constants from '../../assets/constants'
 
     export default {
         name: 'Grids',
         components: {
-            GridLayout, GridItem, LineComponent, BarComponent, EmptyPane, SelectChartButton, VueEditor
+            GridLayout, GridItem, LineComponent, BarComponent, EmptyPane, SelectChartButton, Editor
         }
         ,
         data() {
@@ -124,7 +125,7 @@
             addPane(index) {
 
                 //Find the referenced pane
-                var refPane=this.layout.filter(e => index === parseInt(e.i))[0]
+                var refPane = this.layout.filter(e => index === parseInt(e.i))[0]
 
                 //Calculate index form the pane to be inserted
                 var iMax = this.layout.map(a => a.i).reduce((a, b) => {
@@ -190,7 +191,7 @@
                         var retVal = Object.assign({}, e)
                         retVal.data = payload.data ? payload.data : "<h1>waiting for new content</h1>"
                         retVal.isComponent = true
-                        retVal.component = 'VueEditor'
+                        retVal.component = 'Editor'
                         retVal.title = payload.title
                         return retVal
                     }

@@ -20,14 +20,6 @@ class CreateReportSerializer(serializers.ModelSerializer):
         fields = ('title', 'panes')
 
 
-class PaneSerializer(serializers.ModelSerializer):
-    subscribers = serializers.StringRelatedField(many=True)
-
-    class Meta:
-        model = Report
-        fields = ('title', 'report', 'subscribers', 'id', 'owner')
-
-
 class ReportSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField()
     panes = serializers.ModelSerializer(read_only=True, many=True, default=[])
