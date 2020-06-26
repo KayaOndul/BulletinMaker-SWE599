@@ -5,6 +5,7 @@ import Home from "@/router/views/Home";
 import Welcome from "@/router/views/Welcome";
 import Search from "@/router/views/Search";
 import Profile from "@/router/views/Profile";
+
 export default [
     {
         path: '/',
@@ -16,8 +17,8 @@ export default [
                 path: ''
             },
             {
-                name: 'ReportDetail',
-                path: 'ReportDetail/:id',
+                name: 'report',
+                path: 'report/:id',
                 component: Grids,
             },
             {

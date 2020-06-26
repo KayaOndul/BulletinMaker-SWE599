@@ -28,9 +28,7 @@
                                 <xlsx-read :file="file">
                                     <xlsx-json @parsed="getCollection"/>
                                 </xlsx-read>
-                                <h1 class="pb-6 px-6">-OR-</h1>
-                                <v-text-field disabled outlined dense label="Add your json data array"
-                                              v-model="jsonDataTyped"/>
+
                             </v-row>
 
 
@@ -111,7 +109,7 @@
                     const index = this.index
                     this.$emit('selections', {componentName, chartData, chartLabels, index, title})
                 } else if (this.selection.search('Free Editor') !== -1) {
-                    const componentName = 'VueEditor'
+                    const componentName = 'Editor'
                     const title = this.title
                     const data = this.content
                     const index = this.index
