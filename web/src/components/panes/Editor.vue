@@ -23,9 +23,23 @@
 
         data: () => ({
             content: "",
+            iAm:"",
 
 
         }),
+            props: ['GridIndex','ReceivedContent'],
+        mounted() {
+            this.iAm=this.GridIndex
+            this.content=this.ReceivedContent
+        },
+
+
+        watch: {
+            content(newVal) {
+                const iAm=this.iAm
+                this.$emit('changed', {newVal,iAm})
+            }
+        },
         methods: {
             handleImageAdded: function (file, Editor, cursorLocation, resetUploader) {
                 console.log('here')

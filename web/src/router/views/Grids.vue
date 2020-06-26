@@ -46,7 +46,7 @@
         >
 
 
-            <grid-item v-for="item in layout" :key="item.i"
+            <grid-item v-for="(item) in layout" :key="item.i"
                        :x="item.x"
                        :y="item.y"
                        :w="item.w"
@@ -79,9 +79,12 @@
                                :chartLabels="item.chartLabels" :chartData="item.chartData"
                     ></component>
                     <component class="wrapper chartComponent px-3 " style="padding-bottom: 1vh"
-                               v-else-if="item.isComponent===true"
+                               v-else
+                               :grid-index="item.i"
+                               :received-content="item.data"
+                               @changed="changeHandler"
                                :is="item.component"
-                               v-model="layout.filter(e=>e.i===item.i)[0].value"
+
 
                     ></component>
 
@@ -106,6 +109,7 @@
     import BarComponent from "@/components/panes/BarComponent";
     import EmptyPane from "@/components/panes/EmptyPane"
     import mockLayout from "@/mocks/mockLayout";
+    import mockLayoutSaved from '../../mocks/mockLayoutSaved.json'
     import Editor from "../../components/panes/Editor"
     import SelectChartButton from "@/components/panes/SelectChartButton";
     import Constants from '../../assets/constants'
@@ -118,7 +122,7 @@
         ,
         data() {
             return {
-                title:'',
+                title: '',
                 layout: [],
                 checkBoxLineChart: false,
                 checkBoxBarChart: false,
@@ -127,7 +131,8 @@
 
         },
         mounted() {
-            this.layout = mockLayout.slice(0)
+            this.layout=mockLayoutSaved
+            // this.layout = mockLayout.slice(0)
         },
 
 
@@ -209,6 +214,13 @@
                     return e
                 })
                 this.layout = lay
+            },
+            saveLayout() {
+                return
+            },
+            changeHandler(val) {
+                this.layout.filter(e => e.i === val.iAm)[0].data = val.newVal
+
             },
 
 
