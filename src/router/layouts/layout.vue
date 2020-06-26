@@ -5,7 +5,7 @@
                 flat
 
         >
-            <v-toolbar >
+            <v-toolbar>
 
 
                 <v-toolbar-title style="cursor: pointer" @click="()=>this.$router.push({name:'Welcome'}) "
@@ -27,13 +27,26 @@
                             light
                     ></v-text-field>
                 </v-list-item>
-                <v-spacer />
+                <v-spacer/>
 
                 <v-spacer/>
-                <v-list-item-group class="d-flex flex-row justify-end">
+                <v-list-item-group v-if="this.isLoggedIn===false" class="d-flex flex-row">
+                    <v-list-item>
+                        <click-icon :note="'Register'" :icon="'mdi-account-plus'" :route="{name:'Register'}"/>
+
+                    </v-list-item>
+                    <v-list-item>
+                        <click-icon :note="'Login'"
+                                    :icon="'mdi-login'"
+                                    :route="{name:'Login'}"/>
+
+                    </v-list-item>
+
+                </v-list-item-group>
+                <v-list-item-group v-if="isLoggedIn===true" class="d-flex flex-row justify-end">
 
 
-                    <v-list-item v-if="isLoggedIn===true">
+                    <v-list-item>
 
                         <v-tooltip bottom light class="teal primary--text">
                             <template v-slot:activator="{ on }">
@@ -49,36 +62,27 @@
                     </v-list-item>
 
 
+                    <v-list-item>
+                        <click-icon :note="'Dashboard'"
+                                    :icon="'mdi-home'"
+                                    :route="{name:'Profile'}"/>
 
-
+                    </v-list-item>
 
                     <v-list-item>
-                        <click-icon v-if="isLoggedIn===false" :note="'Login'"
-                                    :icon="'mdi-login'"
-                                    :route="{name:'Login'}"/>
-                        <click-icon v-else :note="'Log Out'"
+
+                        <click-icon :note="'Log Out'"
                                     :icon="'mdi-logout'"
                                     :route="{name:'Welcome'}"/>
 
                     </v-list-item>
                     <v-list-item>
-                        <click-icon :note="'Register'" :icon="'mdi-account-plus'" :route="{name:'Register'}"/>
-
-                    </v-list-item>
-
-
-                    <v-list-item v-if="isLoggedIn===true">
-                        <click-icon :note="'Dashboard'"
-                                    :icon="'mdi-home'"
-                                    :route="{name:'Welcome'}"/>
-
-                    </v-list-item>
-                    <v-list-item v-if="isLoggedIn===true">
 
                         <v-tooltip bottom light class=" white primary--text">
                             <template v-slot:activator="{ on }">
-                                <v-list-item-avatar v-on="on">
-                                    <v-img class="clickable" :src="'https://picsum.photos/303'"/>
+                                <v-list-item-avatar
+                                        v-on="on">
+                                    <v-img @click="routeHandler" class="clickable" :src="'https://picsum.photos/303'"/>
                                 </v-list-item-avatar>
                             </template>
                             <span class=" white--text">{{username}}</span>
@@ -86,7 +90,6 @@
 
                     </v-list-item>
                 </v-list-item-group>
-
 
 
             </v-toolbar>
@@ -167,7 +170,9 @@
             }
         },
         methods: {
-
+            routeHandler() {
+                router.push({name: 'Profile'})
+            },
             searchItem: function () {
                 router.push({path: '/Search', name: 'Search', props: true, params: {searchField: this.model}})
             },

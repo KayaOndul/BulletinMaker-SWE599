@@ -1,67 +1,85 @@
 <template>
     <div id="app">
-        <Layout>
-            <grid-layout
-                    :layout="layout"
-                    :col-num="12"
-                    :row-height="30"
-                    :is-draggable="true"
-                    :is-resizable="true"
-                    :is-mirrored="false"
-                    :vertical-compact="true"
-                    :margin="[50, 50]"
-                    :use-css-transforms="true"
-                    :autoSize="true"
+        <v-spacer class="ma-12"/>
+        <v-toolbar class="ma-auto" style="width: 50%">
+            <v-toolbar-title class="accent--text title  mr-3 font-weight-bold">Report Menu</v-toolbar-title>
+            <v-spacer/>
+            <v-list-item-group>
+                <v-list-item v-if="this.layout.length<1">
+                    <v-tooltip bottom light class="teal primary--text">
+                        <template v-slot:activator="{ on }">
+                            <v-btn icon v-on="on" @click="()=>addRandomPane()">
+                                <v-icon>mdi-plus</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>Add Pane</span>
+                    </v-tooltip>
+
+                </v-list-item>
+            </v-list-item-group>
+
+        </v-toolbar>
+
+        <grid-layout
+                :layout="layout"
+                :col-num="12"
+                :row-height="30"
+                :is-draggable="true"
+                :is-resizable="true"
+                :is-mirrored="false"
+                :vertical-compact="true"
+                :margin="[50, 50]"
+                :use-css-transforms="true"
+                :autoSize="true"
+
+        >
+
+
+            <grid-item v-for="item in layout" :key="item.i"
+                       :x="item.x"
+                       :y="item.y"
+                       :w="item.w"
+                       :h="item.h"
+                       :i="item.i"
+
 
             >
 
-
-                <grid-item v-for="item in layout" :key="item.i"
-                           :x="item.x"
-                           :y="item.y"
-                           :w="item.w"
-                           :h="item.h"
-                           :i="item.i"
-
-
-                >
-
-                    <div class="d-flex justify-content-end align-content-end">
-                        <v-btn icon @click="()=>addPane(item.i)">
-                            <v-icon>mdi-plus</v-icon>
-                        </v-btn>
-                        <SelectChartButton v-if="item.component=='EmptyPane'" :index="item.i"
-                                           @selections="changeChartHandler"
-                                           @toEditor="editorHandler"
+                <div class="d-flex justify-content-end align-content-end">
+                    <v-btn icon @click="()=>addPane(item.i)">
+                        <v-icon>mdi-plus</v-icon>
+                    </v-btn>
+                    <SelectChartButton v-if="item.component=='EmptyPane'" :index="item.i"
+                                       @selections="changeChartHandler"
+                                       @toEditor="editorHandler"
 
 
-                        />
-                        <v-btn icon @click="()=>removePane(item.i)">
-                            <v-icon>mdi-trash-can-outline</v-icon>
-                        </v-btn>
-                        <h3 class=" accent--text pl-3" v-show="item.title!==''">{{item.title}}</h3>
+                    />
+                    <v-btn icon @click="()=>removePane(item.i)">
+                        <v-icon>mdi-trash-can-outline</v-icon>
+                    </v-btn>
+                    <h3 class=" accent--text pl-3" v-show="item.title!==''">{{item.title}}</h3>
 
-                    </div>
+                </div>
 
-                    <template>
-                        <component class="wrapper chartComponent" v-if="!item.data&&item.isComponent===true"
-                                   :is="item.component"
-                                   :chartLabels="item.chartLabels" :chartData="item.chartData"
-                        ></component>
-                        <component class="wrapper chartComponent px-3 py-12 " v-else-if="item.isComponent===true"
-                                   :is="item.component"
+                <template>
+                    <component class="wrapper chartComponent" v-if="!item.data&&item.isComponent===true"
+                               :is="item.component"
+                               :chartLabels="item.chartLabels" :chartData="item.chartData"
+                    ></component>
+                    <component class="wrapper chartComponent px-3 " style="padding-bottom: 1vh"
+                               v-else-if="item.isComponent===true"
+                               :is="item.component"
 
-                        ></component>
+                    ></component>
 
-                    </template>
-
-
-                </grid-item>
-
-            </grid-layout>
+                </template>
 
 
-        </Layout>
+            </grid-item>
+
+        </grid-layout>
+
 
     </div>
 
@@ -71,8 +89,7 @@
 
 <script>
 
-    import Layout from '../layouts/layout'
-    import {GridLayout, GridItem} from 'vue-grid-layout'
+    import {GridItem, GridLayout} from 'vue-grid-layout'
     import LineComponent from "@/components/panes/LineComponent";
     import BarComponent from "@/components/panes/BarComponent";
     import {VueEditor} from 'vue2-editor'
@@ -84,7 +101,7 @@
     export default {
         name: 'Grids',
         components: {
-            GridLayout, GridItem, LineComponent, BarComponent, EmptyPane, SelectChartButton, Layout,VueEditor
+            GridLayout, GridItem, LineComponent, BarComponent, EmptyPane, SelectChartButton, VueEditor
         }
         ,
         data() {
@@ -106,10 +123,18 @@
             addPane(index) {
 
 
-                var refPane = this.layout.filter(e => index === parseInt(e.i))[0]
+                var refPane;
+                if (this.layout.length < 2 ) {
+                    refPane = ''
+                } else {
+                    refPane = this.layout.filter(e => index === parseInt(e.i))[0]
+
+                }
+
                 var iMax = this.layout.map(a => a.i).reduce((a, b) => {
                     return Math.max(a, b)
                 }) + 1
+
                 var lay = this.layout.map(e => {
                     if (e["x"] === refPane.x && e["i"] !== index) {
                         return {
@@ -123,8 +148,8 @@
                 var dummy = Constants.template
                 dummy = {
                     ...dummy,
-                    "x": refPane.x,
-                    "y": refPane.y + 5,
+                    "x": refPane ? refPane.x : 0,
+                    "y": refPane ? refPane.y + 5 : 0,
                     "w": 5,
                     "h": 5,
                     "i": iMax,
@@ -134,7 +159,13 @@
                 lay.push(dummy)
                 this.layout = lay
             },
+            addRandomPane() {
+                this.addPane(2)
+            },
             removePane(index) {
+                if (this.layout.length < 2) {
+                    this.addPane(1)
+                }
                 this.layout = this.layout.filter(e => e.i !== index)
             },
 
@@ -152,6 +183,7 @@
                         retVal.title = payload.title
                         return retVal
                     }
+
                     return e
                 })
                 this.layout = lay
