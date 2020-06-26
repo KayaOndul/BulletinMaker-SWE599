@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <v-spacer class="ma-12"/>
+
         <v-toolbar class="ma-auto" style="width: 50%">
             <v-toolbar-title class="accent--text title  mr-3 font-weight-bold">Report Menu</v-toolbar-title>
             <v-spacer/>
@@ -14,12 +15,21 @@
                         </template>
                         <span>Add Pane</span>
                     </v-tooltip>
-
-
+                </v-list-item>
+                <v-list-item>
+                    <v-tooltip bottom light class="teal primary--text">
+                        <template v-slot:activator="{ on }">
+                            <v-btn @click="saveLayout" icon v-on="on">
+                                <v-icon>mdi-content-save</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>Save Layout</span>
+                    </v-tooltip>
                 </v-list-item>
             </v-list-item-group>
 
         </v-toolbar>
+
 
         <grid-layout
                 :layout="layout"
@@ -108,6 +118,7 @@
         ,
         data() {
             return {
+                title:'',
                 layout: [],
                 checkBoxLineChart: false,
                 checkBoxBarChart: false,
@@ -159,7 +170,7 @@
             removePane(index) {
                 this.layout = this.layout.filter(e => e.i !== index)
             },
-            addEmptyPane(){
+            addEmptyPane() {
                 this.layout.push(mockLayout[0])
             },
 
