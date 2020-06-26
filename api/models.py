@@ -26,7 +26,6 @@ class Report(models.Model):
         through="ReportSubscription",
         related_name='report_members',
 
-
     )
 
     def __str__(self):
@@ -36,25 +35,12 @@ class Report(models.Model):
 class Pane(models.Model):
     title = models.CharField(max_length=50, unique=True, blank=False)
     parent_report = models.ForeignKey(Report, on_delete=models.CASCADE, related_name='report')
-    subscribers = models.ManyToManyField(
-        User,
-        through='PaneSubscription',
-        related_name='pane_members'
-    )
     savedData = JSONField(blank=True, null=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    excluded_from = models.ForeignKey(User, on_delete=models.PROTECT, related_name='excluded_users')
 
     def __str__(self):
         return self.title
-
-
-class PaneSubscription(models.Model):
-    pane = models.ForeignKey(Pane, on_delete=models.CASCADE, null=True)
-    person = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_joined = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.pane.title + ' / ' + self.person.username
 
 
 class ReportSubscription(models.Model):

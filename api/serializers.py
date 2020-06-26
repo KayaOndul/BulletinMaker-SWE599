@@ -2,14 +2,22 @@ from django.contrib.auth.hashers import make_password
 from django.forms import CharField
 from rest_framework import serializers
 
-from api.models import User, Report
+from api.models import User, Report, Pane
+
+
+class CreatePaneSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pane
+        fields = ('title', 'savedData')
 
 
 class CreateReportSerializer(serializers.ModelSerializer):
+    panes = CreatePaneSerializer(many=True)
+
     class Meta:
         model = Report
 
-        fields = ('title',)
+        fields = ('title', 'panes')
 
 
 class PaneSerializer(serializers.ModelSerializer):

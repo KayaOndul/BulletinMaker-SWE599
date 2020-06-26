@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c0aabf98-86c5-4ac6-a70c-c58ed13c7bad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/service/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/service/services.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +136,8 @@
       <workItem from="1592651986580" duration="7137000" />
       <workItem from="1592899456142" duration="1568000" />
       <workItem from="1592915997818" duration="39036000" />
-      <workItem from="1593039771455" duration="11349000" />
+      <workItem from="1593039771455" duration="14286000" />
+      <workItem from="1593171000660" duration="995000" />
     </task>
     <servers />
   </component>
@@ -160,22 +161,22 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="690" y="301" width="530" height="605" key="FileChooserDialogImpl/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592916019647" />
-    <state width="1864" height="310" key="GridCell.Tab.0.bottom" timestamp="1593052432107">
+    <state width="1864" height="310" key="GridCell.Tab.0.bottom" timestamp="1593052706087">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="310" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052432107" />
-    <state width="1864" height="310" key="GridCell.Tab.0.center" timestamp="1593052432107">
+    <state width="1864" height="310" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052706087" />
+    <state width="1864" height="310" key="GridCell.Tab.0.center" timestamp="1593052706087">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="310" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052432107" />
-    <state width="1864" height="310" key="GridCell.Tab.0.left" timestamp="1593052432107">
+    <state width="1864" height="310" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052706087" />
+    <state width="1864" height="310" key="GridCell.Tab.0.left" timestamp="1593052706087">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="310" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052432107" />
-    <state width="1864" height="310" key="GridCell.Tab.0.right" timestamp="1593052432107">
+    <state width="1864" height="310" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052706087" />
+    <state width="1864" height="310" key="GridCell.Tab.0.right" timestamp="1593052706087">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="310" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052432107" />
+    <state width="1864" height="310" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052706087" />
     <state width="1864" height="383" key="GridCell.Tab.1.bottom" timestamp="1593052246790">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
@@ -204,14 +205,18 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="324" y="147" width="1271" height="912" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593039747919" />
-    <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1593050449490">
+    <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1593079115247">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593050449490" />
+    <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593079115247" />
     <state x="2090" y="127" width="1650" height="853" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1593008519762">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2090" y="127" width="1650" height="853" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593008519762" />
+    <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup" timestamp="1593079062321">
+      <screen x="0" y="27" width="1920" height="1173" />
+    </state>
+    <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593079062321" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -243,8 +248,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/serializers.py</url>
-          <line>24</line>
+          <line>32</line>
           <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/views.py</url>
+          <line>103</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
