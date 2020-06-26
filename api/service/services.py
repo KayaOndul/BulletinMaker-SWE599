@@ -1,5 +1,5 @@
-from api.models import User
-from api.serializers import UserSerializer
+from api.models import User, Report
+from api.serializers import UserSerializer, ReportSerializer
 
 
 class UserService:
@@ -12,9 +12,20 @@ class UserService:
         return UserSerializer(users, many=True).data
 
     def change_password(self, request):
-        if request.data.password2 is not request.data.password:
-            raise ValueError("Passwords doesn't match")
-        user = User.objects.filter(username=request.data.username, many=False)
-        user.set_password(request.data.password)
-        return UserSerializer(user)
+        pass
+        # todo
+        # if request.data.password2 is not request.data.password:
+        #     raise ValueError("Passwords doesn't match")
+        # user = User.objects.filter(username=request.data.username, many=False)
+        # user.set_password(request.data.password)
+        # return UserSerializer(user)
 
+
+class ReportService:
+    def create_report(self, user):
+        report = Report.objects.create(title=self.data['title'], owner=user)
+        return ReportSerializer(report, many=False)
+
+    def get_reports(self, user):
+        reports = Report.objects.filter(owner=user)
+        return ReportSerializer(reports, many=True)

@@ -19,3 +19,18 @@ C
 api/__init__.py,4/a/4a6406639b54c66f60832033746cf3ac6c6007bc
 ;
 api/urls.py,f/9/f985d341cfba538595ff50168ae02fceca8bc0b1
+H
+bulletin599/variables.py,b/f/bf3cd84f9c1fe76477f74f2aacda1fe1fd9db639
+J
+api/migrations/__init__.py,7/8/78db5e935d8352b3194116332a39f029f4f53b90
+G
+api/service/__init__.py,2/7/2774a015d995c11a593aa943ecbf2752fcde4640
+G
+api/tests/test_views.py,7/e/7e2fd4f9aec273d8729907f57a2e7099e96f5caa
+<
+api/tests.py,9/9/994f4e4447555648891e91af99ba04f94944e3c2
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+G
+api/service/services.py,4/5/45204b0e9548ce8d2b1f9edf7649a1feb08048f6
