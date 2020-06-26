@@ -2,7 +2,7 @@ from django.contrib.auth.hashers import make_password
 from django.forms import CharField
 from rest_framework import serializers
 
-from api.models import User, Report, Pane
+from api.models import User, Report, Pane, File
 
 
 class CreatePaneSerializer(serializers.ModelSerializer):
@@ -82,3 +82,9 @@ class UserCreateSerializer(serializers.ModelSerializer):
         instance.password = validated_data.get('password', make_password(instance.password, hasher='pbkdf2_sha256'))
         instance.save()
         return instance
+
+
+class FileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = File
+        fields = "__all__"

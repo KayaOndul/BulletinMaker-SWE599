@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from drf_yasg import openapi
@@ -24,8 +25,7 @@ from rest_framework_swagger.views import get_swagger_view
 
 import api
 from api import views
-
-
+from bulletin599 import settings
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -49,3 +49,5 @@ urlpatterns = [
 
 
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

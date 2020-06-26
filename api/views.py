@@ -2,10 +2,14 @@ from django.contrib.auth import logout, authenticate
 from django.http import JsonResponse
 from rest_framework import status, permissions, response
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.parsers import FileUploadParser
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from api.models import User
-from api.serializers import UserSerializer, UserCreateSerializer, ReportSerializer, CreateReportSerializer
+from api.serializers import UserSerializer, UserCreateSerializer, ReportSerializer, CreateReportSerializer, \
+    FileSerializer
 from api.service.services import UserService, ReportService
 
 
@@ -118,27 +122,15 @@ class ReportViews:
             return JsonResponse(reports.data, status=status.HTTP_200_OK, safe=False)
 
 
-class PaneViews:
+class FileUploadView(APIView):
+    parser_class = (FileUploadParser,)
 
-    @api_view(["GET", "PATCH", "DELETE"])
-    def pane_detail(self, request):
-        pass
-        # todo
+    def post(self, request, *args, **kwargs):
 
-    @api_view(['GET'])
-    def pane_list(self, request):
-        pass
-        # todo
+        file_serializer = FileSerializer(data=request.data)
 
-
-class SubscriptionViews:
-
-    @api_view(["GET", "PATCH", "DELETE"])
-    def subscription_detail(self, request):
-        pass
-        # todo
-
-    @api_view(["GET"])
-    def subscription_list(self, request):
-        pass
-        # todo
+        if file_serializer.is_valid():
+            file_serializer.save()
+            return Response(file_serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
