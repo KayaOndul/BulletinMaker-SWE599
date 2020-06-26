@@ -1,0 +1,31 @@
+
+
+body {
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.wrapper {
+  position: relative;
+  height: 80%;
+  width: 100%;
+}
+.vue-grid-item {
+  background-color: whitesmoke;
+}
+.vue-resizable-handle{
+  transform: scale(3);
+  bottom: 0!important;
+  right: 0!important;
+}
+.chartComponent{
+  padding: 1vh;
+}
+
+.clickable{
+  cursor: pointer;
+}
