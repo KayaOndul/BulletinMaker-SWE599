@@ -14,39 +14,46 @@ class User(AbstractUser):
     username = models.CharField(max_length=30, unique=True, blank=False)
     email = models.CharField(max_length=50, unique=True, blank=False)
 
-    # created_reports=models.ForeignKey('Report',on_delete=models.PROTECT,related_name='created_reports')
-
     def __str__(self):
         return self.username
 
 
 class Report(models.Model):
+    title = models.CharField(max_length=50, unique=True, blank=False)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_reports')
     subscribers = models.ManyToManyField(
         User,
         through="ReportSubscription",
-        related_name='report_members'
+        related_name='report_members',
 
     )
+
+    def __str__(self):
+        return self.title
 
 
 class Pane(models.Model):
-    report = models.ForeignKey(Report, on_delete=models.CASCADE, related_name='parent_report')
-    subscribers = models.ManyToManyField(
-        User,
-        through='PaneSubscription',
-        related_name='pane_members'
-    )
+    title = models.CharField(max_length=50, unique=True, blank=False)
+    parent_report = models.ForeignKey(Report, on_delete=models.CASCADE, related_name='report')
     savedData = JSONField(blank=True, null=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    excluded_from = models.ForeignKey(User, on_delete=models.PROTECT, related_name='excluded_users')
 
-
-class PaneSubscription(models.Model):
-    pane = models.ForeignKey(Pane, on_delete=models.CASCADE, null=True)
-    person = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_joined = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.title
 
 
 class ReportSubscription(models.Model):
     report = models.ForeignKey(Report, on_delete=models.CASCADE)
     person = models.ForeignKey(User, on_delete=models.CASCADE)
     date_joined = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.report.title + ' / ' + self.person.username
+
+
+class File(models.Model):
+    file = models.FileField(blank=False, null=False)
+
+    def __str__(self):
+        return self.file.name

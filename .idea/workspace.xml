@@ -3,16 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="c0aabf98-86c5-4ac6-a70c-c58ed13c7bad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/service/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/service/services.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bulletin599/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bulletin599/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bulletin599/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bulletin599/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -22,6 +27,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="newFileUpload" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1da8jjcEqVBA4WVHXnBkRu4a0Lu" />
@@ -34,14 +44,15 @@
     <property name="DatabaseDriversLRU" value="sqlite&#10;postgresql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../swe574" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -132,7 +143,9 @@
       <updated>1592651980166</updated>
       <workItem from="1592651986580" duration="7137000" />
       <workItem from="1592899456142" duration="1568000" />
-      <workItem from="1592915997818" duration="31402000" />
+      <workItem from="1592915997818" duration="39036000" />
+      <workItem from="1593039771455" duration="14286000" />
+      <workItem from="1593171000660" duration="995000" />
     </task>
     <servers />
   </component>
@@ -156,38 +169,38 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="690" y="301" width="530" height="605" key="FileChooserDialogImpl/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592916019647" />
-    <state width="1864" height="383" key="GridCell.Tab.0.bottom" timestamp="1592965167226">
+    <state width="1864" height="310" key="GridCell.Tab.0.bottom" timestamp="1593052706087">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
-    <state width="1864" height="383" key="GridCell.Tab.0.center" timestamp="1592965167226">
+    <state width="1864" height="310" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052706087" />
+    <state width="1864" height="310" key="GridCell.Tab.0.center" timestamp="1593052706087">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
-    <state width="1864" height="383" key="GridCell.Tab.0.left" timestamp="1592965167226">
+    <state width="1864" height="310" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052706087" />
+    <state width="1864" height="310" key="GridCell.Tab.0.left" timestamp="1593052706087">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
-    <state width="1864" height="383" key="GridCell.Tab.0.right" timestamp="1592965167226">
+    <state width="1864" height="310" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052706087" />
+    <state width="1864" height="310" key="GridCell.Tab.0.right" timestamp="1593052706087">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
-    <state width="1864" height="383" key="GridCell.Tab.1.bottom" timestamp="1592965167226">
+    <state width="1864" height="310" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052706087" />
+    <state width="1864" height="383" key="GridCell.Tab.1.bottom" timestamp="1593052246790">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
-    <state width="1864" height="383" key="GridCell.Tab.1.center" timestamp="1592965167226">
+    <state width="1864" height="383" key="GridCell.Tab.1.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052246790" />
+    <state width="1864" height="383" key="GridCell.Tab.1.center" timestamp="1593052246789">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
-    <state width="1864" height="383" key="GridCell.Tab.1.left" timestamp="1592965167226">
+    <state width="1864" height="383" key="GridCell.Tab.1.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052246789" />
+    <state width="1864" height="383" key="GridCell.Tab.1.left" timestamp="1593052246789">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
-    <state width="1864" height="383" key="GridCell.Tab.1.right" timestamp="1592965167226">
+    <state width="1864" height="383" key="GridCell.Tab.1.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052246789" />
+    <state width="1864" height="383" key="GridCell.Tab.1.right" timestamp="1593052246790">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592965167226" />
+    <state width="1864" height="383" key="GridCell.Tab.1.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052246790" />
     <state width="318" height="572" key="HiddenNamespacesPopup" timestamp="1592653180930">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
@@ -196,21 +209,29 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="675" y="236" width="560" height="734" key="RollbackChangesDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592924503899" />
-    <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1593008966363">
+    <state x="324" y="147" width="1271" height="912" key="SettingsEditor" timestamp="1593039747919">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593008966363" />
+    <state x="324" y="147" width="1271" height="912" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593039747919" />
+    <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1593079115247">
+      <screen x="0" y="27" width="1920" height="1173" />
+    </state>
+    <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593079115247" />
     <state x="2090" y="127" width="1650" height="853" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1593008519762">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2090" y="127" width="1650" height="853" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593008519762" />
+    <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup" timestamp="1593079062321">
+      <screen x="0" y="27" width="1920" height="1173" />
+    </state>
+    <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593079062321" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>30</line>
+          <line>33</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -220,8 +241,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>69</line>
+          <line>72</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/service/services.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/views.py</url>
+          <line>118</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/serializers.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/views.py</url>
+          <line>107</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
