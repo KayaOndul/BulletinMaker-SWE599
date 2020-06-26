@@ -16,8 +16,8 @@ export default [
                 path: ''
             },
             {
-                name: 'ReportDetail',
-                path: 'ReportDetail/:id',
+                name: 'report',
+                path: 'report/:id',
                 component: Grids,
             },
             {
