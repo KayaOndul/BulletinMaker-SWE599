@@ -8,7 +8,7 @@
                 <v-list-item v-if="this.layout.length<1">
                     <v-tooltip bottom light class="teal primary--text">
                         <template v-slot:activator="{ on }">
-                            <v-btn icon v-on="on" @click="()=>addRandomPane()">
+                            <v-btn icon v-on="on" >
                                 <v-icon>mdi-plus</v-icon>
                             </v-btn>
                         </template>
@@ -70,6 +70,7 @@
                     <component class="wrapper chartComponent px-3 " style="padding-bottom: 1vh"
                                v-else-if="item.isComponent===true"
                                :is="item.component"
+                               v-model="layout[item.i].value"
 
                     ></component>
 
@@ -124,7 +125,7 @@
 
 
                 var refPane;
-                if (this.layout.length < 2 ) {
+                if (this.layout.length < 2) {
                     refPane = ''
                 } else {
                     refPane = this.layout.filter(e => index === parseInt(e.i))[0]
@@ -151,16 +152,13 @@
                     "x": refPane ? refPane.x : 0,
                     "y": refPane ? refPane.y + 5 : 0,
                     "w": 5,
-                    "h": 5,
+                    "h": 8,
                     "i": iMax,
                     component: 'EmptyPane',
                     show: true
                 }
                 lay.push(dummy)
                 this.layout = lay
-            },
-            addRandomPane() {
-                this.addPane(2)
             },
             removePane(index) {
                 if (this.layout.length < 2) {
@@ -181,6 +179,7 @@
                         retVal.chartLabels = payload.chartLabels
                         retVal.chartData.data = payload.chartData
                         retVal.title = payload.title
+
                         return retVal
                     }
 
