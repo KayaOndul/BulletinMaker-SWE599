@@ -8,7 +8,7 @@
                 <v-list-item v-if="this.layout.length<1">
                     <v-tooltip bottom light class="teal primary--text">
                         <template v-slot:activator="{ on }">
-                            <v-btn icon v-on="on" >
+                            <v-btn @click="addEmptyPane" icon v-on="on" >
                                 <v-icon>mdi-plus</v-icon>
                             </v-btn>
                         </template>
@@ -70,7 +70,7 @@
                     <component class="wrapper chartComponent px-3 " style="padding-bottom: 1vh"
                                v-else-if="item.isComponent===true"
                                :is="item.component"
-                               v-model="layout[item.i].value"
+                               v-model="layout.filter(e=>e.i===item.i)[0].value"
 
                     ></component>
 
@@ -115,7 +115,7 @@
 
         },
         mounted() {
-            this.layout = mockLayout
+            this.layout = mockLayout.slice(0)
         },
 
 
@@ -123,15 +123,10 @@
 
             addPane(index) {
 
+                //Find the referenced pane
+                var refPane=this.layout.filter(e => index === parseInt(e.i))[0]
 
-                var refPane;
-                if (this.layout.length < 2) {
-                    refPane = ''
-                } else {
-                    refPane = this.layout.filter(e => index === parseInt(e.i))[0]
-
-                }
-
+                //Calculate index form the pane to be inserted
                 var iMax = this.layout.map(a => a.i).reduce((a, b) => {
                     return Math.max(a, b)
                 }) + 1
@@ -161,12 +156,11 @@
                 this.layout = lay
             },
             removePane(index) {
-                if (this.layout.length < 2) {
-                    this.addPane(1)
-                }
                 this.layout = this.layout.filter(e => e.i !== index)
             },
-
+            addEmptyPane(){
+                this.layout.push(mockLayout[0])
+            },
 
             changeChartHandler(payload) {
                 console.log(payload)
