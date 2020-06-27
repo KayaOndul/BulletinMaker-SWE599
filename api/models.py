@@ -17,7 +17,7 @@ class User(AbstractUser):
 
 
 class Report(models.Model):
-    title = models.CharField(max_length=50, blank=False)
+    title = models.CharField(max_length=50, blank=True, null=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_reports')
     layout = JSONField(blank=True, null=True)
     subscribers = models.ManyToManyField(

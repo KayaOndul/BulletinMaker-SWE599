@@ -3,29 +3,28 @@ from django.http import JsonResponse
 from rest_framework import status, permissions, response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.parsers import FileUploadParser, JSONParser
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from api.models import Report
+from api.models import Report, User
 from api.serializers import UserSerializer, UserCreateSerializer, CreateReportSerializer, \
-    FileSerializer, PatchReportSerializer
+    FileSerializer, PatchReportSerializer, ReportSerializer
 from api.service.services import UserService, ReportService
 
 
 class UserViews:
 
     @api_view(["GET", "PATCH"])
-    def user(self, request, username):
-        if request.method is "GET":
-            serializer = UserSerializer(data=request.data)
-            if not serializer.is_valid():
-                return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def user(self, username):
+        if self.method == "GET":
+            serializer = UserSerializer(data=self.data)
 
-            data = UserService.get_user_by_username(username)
-            return JsonResponse(data, safe=False, status=status.HTTP_200_OK)
-
-        if request.method is "PATCH":
+            user = User.objects.get(username=username)
+            serializer = UserSerializer(user)
+            return JsonResponse(serializer.data, safe=False, status=status.HTTP_200_OK)
+        if self.method == "PATCH":
             pass
 
     @api_view(["GET"])
@@ -83,6 +82,7 @@ class AuthViews:
 class ReportViews:
 
     @api_view(["GET", "PATCH", "DELETE"])
+    @permission_classes([AllowAny])
     def report_detail(self, id):
         try:
             report = Report.objects.get(id=id)
@@ -94,14 +94,11 @@ class ReportViews:
                     "error": "Only owner of the report can patch it"
                 }
                 return response.Response(res, status.HTTP_406_NOT_ACCEPTABLE)
-            data = JSONParser().parse(self)
-            serializer = PatchReportSerializer(report, data=data)
+
+            serializer = PatchReportSerializer(data=self.data)
             if serializer.is_valid():
-                report = ReportService.patch_report(data, id)
-                if serializer.is_valid():
-                    return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
-                else:
-                    return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+                report = ReportService.patch_report(serializer, id)
+                return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
             return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
         if self.method == "GET":
 
@@ -126,11 +123,18 @@ class ReportViews:
             report = ReportService.create_report(serializer, user=self.user)
             return JsonResponse(report.data, status=status.HTTP_201_CREATED, safe=False)
         else:
-            pass
-            # serializer = ReportSerializer(data=self.data)
-            # user = User.objects.get(username=username)
-            # reports = ReportService.get_reports(serializer, user=user)
-            # return JsonResponse(reports.data, status=status.HTTP_200_OK, safe=False)
+
+            reports = Report.objects.all()
+            serializer = ReportSerializer(reports)
+            return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
+            # res = {
+            #     "error": "Server error"
+            # }
+            # return response.Response(res, status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    @api_view(["GET"])
+    def report_list_via_username(self, username):
+        pass
 
 
 class SearchViews:

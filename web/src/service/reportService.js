@@ -16,11 +16,13 @@ export default {
         }).then(
             res => {
                 store.commit('report/setReportNumber', res.data)
+                  store.commit('global/set_alert', `${res.status} ${res.statusText}`)
             }
         )
 
             .catch(err => {
-                store.commit('global/set_alert', err)
+                const error = err.response.data.error
+                store.commit('global/set_alert', `${err.response.status} ${error}`)
             }).finally(() => {
                 store.commit('global/set_loading', false)
             })
@@ -39,7 +41,8 @@ export default {
             }
         )
             .catch(err => {
-                store.commit('global/set_alert', err)
+                const error = err.response.data.error
+                store.commit('global/set_alert', `${err.response.status} ${error}`)
             }).finally(() => {
                 store.commit('global/set_loading', false)
             })
@@ -56,7 +59,8 @@ export default {
             }
         )
             .catch(err => {
-                store.commit('global/set_alert', err)
+                const error = err.response.data.error
+                store.commit('global/set_alert', `${err.response.status} ${error}`)
             }).finally(() => {
                 store.commit('global/set_loading', false)
             })
@@ -74,7 +78,8 @@ export default {
             }
         )
             .catch(err => {
-                store.commit('global/set_alert', err)
+                const error = err.response.data.error
+                store.commit('global/set_alert', `${err.response.status} ${error}`)
             }).finally(() => {
                 store.commit('global/set_loading', false)
             })

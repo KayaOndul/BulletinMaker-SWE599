@@ -3,9 +3,7 @@ from api.serializers import UserSerializer, ReportSerializer, CreateReportSerial
 
 
 class UserService:
-    def get_user_by_username(self, username):
-        user = User.objects.filter(username=username)
-        return UserSerializer(user, many=False)
+
 
     def get_all_users(self):
         users = User.objects.all()
@@ -27,7 +25,10 @@ class ReportService:
         return CreateReportSerializer(report, many=False)
 
     def patch_report(self, id):
-        Report.objects.filter(id=id).update(layout=self['layout'], title=self['title'])
+        if self.data['title'] is '':
+            Report.objects.filter(id=id).update(layout=self.data['layout'])
+        else:
+            Report.objects.filter(id=id).update(layout=self.data['layout'], title=self.data['title'])
         return Report.objects.get(id=id)
 
     def get_reports(self, user):

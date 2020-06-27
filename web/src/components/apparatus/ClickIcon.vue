@@ -45,11 +45,7 @@
                 if (this.notto === 'Log Out') {
                     authService.LOGOUT()
                     this.$store.commit('global/set_alert', 'Logged Out')
-                    if (this.$route.path.name === this.routeo.name) {
-                        return;
-                    }
-                    router.push(this.routeo)
-                    return
+                    router.push({name: 'Welcome'})
                 }
 
                 if (this.notto === 'Go To Your Profile') {
@@ -59,11 +55,11 @@
                 }
                 if (this.notto === 'Create New Report') {
                     reportService.CREATE_REPORT()
-                        .then(()=>
+                        .then(() =>
                             router.push({
                                 name: 'report',
                                 params:
-                                    {id:store.state.report.reportNumber}
+                                    {id: store.state.report.reportNumber}
                             })
                         )
 

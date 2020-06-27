@@ -8,7 +8,7 @@
             <v-toolbar>
 
 
-                <v-toolbar-title style="cursor: pointer" @click="()=>this.$router.push({name:'Welcome'}) "
+                <v-toolbar-title style="cursor: pointer" @click="goHome"
                                  class="teal--text display-1  mr-3 font-weight-bold">Bulletin Maker
                 </v-toolbar-title>
                 <v-list-item style="max-width: 50%">
@@ -51,7 +51,7 @@
 
                         <click-icon :note="'Create New Report'"
                                     :icon="'mdi-plus'"
-                                    />
+                        />
                     </v-list-item>
 
 
@@ -175,6 +175,9 @@
             scrollFn: function () {
                 let diff = this.scrollHeight - window.pageYOffset;
                 this.isBackTopFooter = diff < (this.scrollIndentBackTop - 40 - 15);
+            },
+            goHome() {
+                router.push({name: 'Welcome'})
             }
         },
         components: {BackToTop, ClickIcon, NotificationsAlert}

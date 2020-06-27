@@ -10,8 +10,7 @@
                 <v-list-item>
                     <v-text-field v-model="title"
 
-
-
+                                  :disabled="()=>{return this.isOwner===true}"
                                   dense
                                   class=" mt-2"
                                   label="Report Title">
@@ -20,7 +19,7 @@
                 </v-list-item>
             </v-list-item-group>
             <v-spacer/>
-            <v-list-item-group class="d-flex text-no-wrap">
+            <v-list-item-group v-if="isOwner===true" class="d-flex text-no-wrap">
                 <v-spacer/>
 
                 <v-list-item v-if="this.layout.length<1">
@@ -33,7 +32,7 @@
                         <span>Add Pane</span>
                     </v-tooltip>
                 </v-list-item>
-                 <v-list-item>
+                <v-list-item>
                     <v-tooltip bottom light>
                         <template v-slot:activator="{ on }">
                             <v-btn @click="deleteLayout" icon v-on="on"
@@ -89,7 +88,7 @@
 
             >
 
-                <div class="d-flex justify-content-end align-content-end">
+                <div v-if="isOwner==true" class="d-flex justify-content-end align-content-end">
                     <v-btn icon @click="()=>addPane(item.i)">
                         <v-icon>mdi-plus</v-icon>
                     </v-btn>
@@ -170,6 +169,12 @@
             this.layout = mockLayout.slice(0)
         },
         computed: {
+            isOwner() {
+                return store.state.auth.username === store.state.report.report.owner
+            },
+            report() {
+                return store.state.report.report ? store.state.report.report : []
+            },
             savedReport() {
                 const storedReport = store.state.report.report ? store.state.report.report : []
                 const layout = this.layout
@@ -177,7 +182,15 @@
                 return _.isEqual(layout, storedReport.layout) && _.isEqual(title, storedReport.title)
             }
         },
+        watch: {
+            report(newVal) {
+                if (newVal) {
+                    this.layout = newVal.layout
+                    this.title = newVal.title
+                }
 
+            }
+        },
 
         methods: {
             colorHandler() {
@@ -266,19 +279,26 @@
             },
             saveLayout() {
                 const layout = this.layout
-                const title = this.title?this.title:store.state.report.report.title ? store.state.report.report.title : []
+                const title = this.title ? this.title : store.state.report.report.title ? store.state.report.report.title : ''
 
                 const id = this.$route.params.id
                 const payload = {layout, title, id}
                 reportService.PATCH_REPORT(payload)
             },
-            deleteLayout(){
+            deleteLayout() {
                 const id = this.$route.params.id
 
                 reportService.DELETE_REPORT({id})
-            }
-
-
+            },
+        },
+        beforeRouteEnter(to, from, next) {
+            const id = to.params.id
+            reportService.GET_REPORT({id})
+            next()
+        },
+        beforeRouteLeave(to, from, next) {
+            store.commit('report/resetState')
+            next()
         }
     }
 

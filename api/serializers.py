@@ -5,32 +5,51 @@ from api.models import User, Report, File
 
 
 class CreateReportSerializer(serializers.ModelSerializer):
+    owner = serializers.StringRelatedField()
+
     class Meta:
         model = Report
 
-        fields = ('id',)
+        fields = ('id', 'owner')
 
 
 class PatchReportSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField(required=False)
 
-
     class Meta:
         model = Report
         fields = ('id', 'title', 'layout', 'owner')
 
+    def get_validation_exclusions(self):
+        exclusions = super(PatchReportSerializer, self).get_validation_exclusions()
+        return exclusions + ['title']
+
+
+class UserSerializerForSubsciberList(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username',)
+
 
 class ReportSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField()
-    panes = serializers.ModelSerializer(read_only=True, many=True, default=[])
+    subscribers = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Report
-        fields = ('title', 'owner', 'subscribers', 'id', 'panes',)
+        fields = ('title', 'owner', 'subscribers', 'id', 'layout')
+
+
+class ReportSerializerEssential(serializers.ModelSerializer):
+    subscribers = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = Report
+        fields = ('title', 'subscribers', 'id',)
 
 
 class UserSerializer(serializers.ModelSerializer):
-    user_reports = ReportSerializer(many=True)
+    user_reports = ReportSerializerEssential(many=True)
 
     class Meta:
         model = User

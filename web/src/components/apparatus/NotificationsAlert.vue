@@ -1,16 +1,16 @@
 <template>
     <v-container style="z-index: 3; position:absolute;right:0px">
         <v-alert class="d-flex flex-column " v-for="(alert,index) in alerts" :key="index"
-                 :type="'error'"
+                 :type="alert.includes('4')?'error':'success'"
                  mode="out-in"
                  transition="slide-x-reverse-transition"
                  dismissible
                  border="left"
                  elevation="2"
                  colored-border
-                 :icon="!alert.status?'mdi-close':'mdi-check'"
+                 :icon="alert.includes('4')?'mdi-close':'mdi-check'"
         >
-            {{alert.detail?alert.detail:alert}}
+            {{alert}}
 
         </v-alert>
 
