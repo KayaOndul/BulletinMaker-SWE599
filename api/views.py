@@ -87,7 +87,7 @@ class ReportViews:
         try:
             report = Report.objects.get(id=id)
         except Report.DoesNotExist as e:
-            return response.Response({"error":e.args[0]}, status.HTTP_400_BAD_REQUEST)
+            return response.Response({"error": e.args[0]}, status.HTTP_400_BAD_REQUEST)
         if self.method == "PATCH":
             if report.owner.username != self.user.username:
                 res = {
@@ -102,6 +102,7 @@ class ReportViews:
                     return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
                 else:
                     return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+            return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
         if self.method == "GET":
 
             serializer = PatchReportSerializer(report)
@@ -130,6 +131,12 @@ class ReportViews:
             # user = User.objects.get(username=username)
             # reports = ReportService.get_reports(serializer, user=user)
             # return JsonResponse(reports.data, status=status.HTTP_200_OK, safe=False)
+
+
+class SearchViews:
+    @api_view(['GET', ])
+    def search(self, user, keyword):
+        print(user, keyword)
 
 
 class FileUploadView(APIView):

@@ -2,10 +2,27 @@
     <div id="app">
         <v-spacer class="ma-12"/>
 
-        <v-toolbar class="ma-auto" style="width: 50%">
+        <v-toolbar class="ma-auto" style="width: 70%">
             <v-toolbar-title class="accent--text title  mr-3 font-weight-bold">Report Menu</v-toolbar-title>
-            <v-spacer/>
+
+
             <v-list-item-group>
+                <v-list-item>
+                    <v-text-field v-model="title"
+
+
+
+                                  dense
+                                  class=" mt-2"
+                                  label="Report Title">
+
+                    </v-text-field>
+                </v-list-item>
+            </v-list-item-group>
+            <v-spacer/>
+            <v-list-item-group class="d-flex text-no-wrap">
+                <v-spacer/>
+
                 <v-list-item v-if="this.layout.length<1">
                     <v-tooltip bottom light class="teal primary--text">
                         <template v-slot:activator="{ on }">
@@ -16,11 +33,27 @@
                         <span>Add Pane</span>
                     </v-tooltip>
                 </v-list-item>
-                <v-list-item>
-                    <v-tooltip bottom light class="teal primary--text">
+                 <v-list-item>
+                    <v-tooltip bottom light>
                         <template v-slot:activator="{ on }">
-                            <v-btn @click="saveLayout" icon v-on="on">
-                                <v-icon>mdi-content-save</v-icon>
+                            <v-btn @click="deleteLayout" icon v-on="on"
+                                   class="colorHandler">
+                                <v-icon>
+                                    mdi-trash-can-outline
+                                </v-icon>
+                            </v-btn>
+                        </template>
+                        <span>Delete Layout</span>
+                    </v-tooltip>
+                </v-list-item>
+                <v-list-item>
+                    <v-tooltip bottom light>
+                        <template v-slot:activator="{ on }">
+                            <v-btn @click="saveLayout" icon v-on="on"
+                                   class="colorHandler">
+                                <v-icon>
+                                    mdi-content-save
+                                </v-icon>
                             </v-btn>
                         </template>
                         <span>Save Layout</span>
@@ -105,6 +138,7 @@
 <script>
 
     import {GridItem, GridLayout} from 'vue-grid-layout'
+    import _ from 'lodash'
     import LineComponent from "@/components/panes/LineComponent";
     import BarComponent from "@/components/panes/BarComponent";
     import EmptyPane from "@/components/panes/EmptyPane"
@@ -112,6 +146,8 @@
     import Editor from "../../components/panes/Editor"
     import SelectChartButton from "@/components/panes/SelectChartButton";
     import Constants from '../../assets/constants'
+    import reportService from "../../service/reportService";
+    import store from "../../store/store";
 
     export default {
         name: 'Grids',
@@ -133,10 +169,20 @@
             // this.layout=mockLayoutSaved
             this.layout = mockLayout.slice(0)
         },
+        computed: {
+            savedReport() {
+                const storedReport = store.state.report.report ? store.state.report.report : []
+                const layout = this.layout
+                const title = this.title
+                return _.isEqual(layout, storedReport.layout) && _.isEqual(title, storedReport.title)
+            }
+        },
 
 
         methods: {
-
+            colorHandler() {
+                return this.savedReport === false ? 'teal red--text' : 'red red--text'
+            },
             addPane(index) {
 
                 //Find the referenced pane
@@ -177,7 +223,6 @@
             addEmptyPane() {
                 this.layout.push(mockLayout[0])
             },
-
             changeChartHandler(payload) {
                 console.log(payload)
                 let lay = Object.assign([], this.layout);
@@ -220,7 +265,17 @@
 
             },
             saveLayout() {
+                const layout = this.layout
+                const title = this.title?this.title:store.state.report.report.title ? store.state.report.report.title : []
 
+                const id = this.$route.params.id
+                const payload = {layout, title, id}
+                reportService.PATCH_REPORT(payload)
+            },
+            deleteLayout(){
+                const id = this.$route.params.id
+
+                reportService.DELETE_REPORT({id})
             }
 
 

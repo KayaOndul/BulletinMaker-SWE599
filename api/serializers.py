@@ -14,6 +14,7 @@ class CreateReportSerializer(serializers.ModelSerializer):
 class PatchReportSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField(required=False)
 
+
     class Meta:
         model = Report
         fields = ('id', 'title', 'layout', 'owner')

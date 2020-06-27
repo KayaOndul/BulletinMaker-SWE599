@@ -1,6 +1,7 @@
 const getDefaultState = () => {
     return {
-        reportNumber: []
+        reportNumber: [],
+        report:[],
 
     }
 }
@@ -10,6 +11,9 @@ const state = getDefaultState()
 
 
 const mutations = {
+    setReport(state, payload) {
+        state.report = payload
+    },
     setReportNumber(state, payload) {
         state.reportNumber = payload.id
     },
@@ -31,6 +35,6 @@ export default {
     namespaced: true,
     state,
     getters,
-    actions:{},
+    actions: {},
     mutations
 }
