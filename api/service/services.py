@@ -1,5 +1,5 @@
 from api.models import User, Report
-from api.serializers import UserSerializer, ReportSerializer
+from api.serializers import UserSerializer, ReportSerializer, CreateReportSerializer, PatchReportSerializer
 
 
 class UserService:
@@ -23,9 +23,12 @@ class UserService:
 
 class ReportService:
     def create_report(self, user):
-        pass
-        # report = Report.objects.create(title=self.data['title'], owner=user)
-        # return ReportSerializer(report, many=False)
+        report = Report.objects.create(owner=user)
+        return CreateReportSerializer(report, many=False)
+
+    def patch_report(self, id):
+        Report.objects.filter(id=id).update(layout=self['layout'], title=self['title'])
+        return Report.objects.get(id=id)
 
     def get_reports(self, user):
         pass

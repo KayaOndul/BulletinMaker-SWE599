@@ -48,17 +48,10 @@
 
                     <v-list-item>
 
-                        <v-tooltip bottom light class="teal primary--text">
-                            <template v-slot:activator="{ on }">
-                                <v-btn icon v-on="on" class="display-2 teal--text">
-                                    <v-icon>
-                                        mdi-plus
-                                    </v-icon>
-                                </v-btn>
-                            </template>
-                            <span class=" white--text">{{'Save Layout'}}</span>
-                        </v-tooltip>
 
+                        <click-icon :note="'Create New Report'"
+                                    :icon="'mdi-plus'"
+                                    />
                     </v-list-item>
 
 
@@ -78,7 +71,7 @@
                     </v-list-item>
                     <v-list-item>
 
-                        <v-tooltip bottom light class=" white primary--text">
+                        <v-tooltip top light class="  primary--text">
                             <template v-slot:activator="{ on }">
                                 <v-list-item-avatar
                                         v-on="on">

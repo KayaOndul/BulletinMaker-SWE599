@@ -2,20 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0aabf98-86c5-4ac6-a70c-c58ed13c7bad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/src/mocks/mockLayoutSaved.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/service/reportService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/5/45204b0e9548ce8d2b1f9edf7649a1feb08048f6" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/5/45204b0e9548ce8d2b1f9edf7649a1feb08048f6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/a/9ab87a77761fd3f04ce69b2b053acd030b39d3a5" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/a/9ab87a77761fd3f04ce69b2b053acd030b39d3a5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/src/store/modules/report.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bulletin599/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bulletin599/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/components/panes/Editor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/panes/Editor.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/components/panes/EmptyPane.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/panes/EmptyPane.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/plugins/vuetify.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/plugins/vuetify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/service/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/service/services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/apparatus/ClickIcon.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/apparatus/ClickIcon.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/router/layouts/layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router/layouts/layout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/router/views/Grids.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router/views/Grids.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/service/Constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/service/Constants.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/service/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/service/helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/service/reportService.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/service/reportService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/store/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +68,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/src/store/modules" />
       <recent name="$PROJECT_DIR$/api/service" />
     </key>
   </component>
@@ -160,7 +161,7 @@
       <workItem from="1593171000660" duration="995000" />
       <workItem from="1593177269558" duration="10526000" />
       <workItem from="1593200955379" duration="2058000" />
-      <workItem from="1593209088820" duration="3443000" />
+      <workItem from="1593209088820" duration="14217000" />
     </task>
     <servers />
   </component>
@@ -184,46 +185,46 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="690" y="301" width="530" height="605" key="FileChooserDialogImpl/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592916019647" />
-    <state width="1864" height="310" key="GridCell.Tab.0.bottom" timestamp="1593052706087">
+    <state width="1864" height="383" key="GridCell.Tab.0.bottom" timestamp="1593226586637">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="310" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052706087" />
-    <state width="1864" height="310" key="GridCell.Tab.0.center" timestamp="1593052706087">
+    <state width="1864" height="383" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593226586637" />
+    <state width="1864" height="383" key="GridCell.Tab.0.center" timestamp="1593226586637">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="310" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052706087" />
-    <state width="1864" height="310" key="GridCell.Tab.0.left" timestamp="1593052706087">
+    <state width="1864" height="383" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593226586637" />
+    <state width="1864" height="383" key="GridCell.Tab.0.left" timestamp="1593226586637">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="310" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052706087" />
-    <state width="1864" height="310" key="GridCell.Tab.0.right" timestamp="1593052706087">
+    <state width="1864" height="383" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593226586637" />
+    <state width="1864" height="383" key="GridCell.Tab.0.right" timestamp="1593226586637">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="310" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052706087" />
-    <state width="1864" height="383" key="GridCell.Tab.1.bottom" timestamp="1593052246790">
+    <state width="1864" height="383" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593226586637" />
+    <state width="1864" height="383" key="GridCell.Tab.1.bottom" timestamp="1593226576088">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052246790" />
-    <state width="1864" height="383" key="GridCell.Tab.1.center" timestamp="1593052246789">
+    <state width="1864" height="383" key="GridCell.Tab.1.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593226576088" />
+    <state width="1864" height="383" key="GridCell.Tab.1.center" timestamp="1593226576087">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052246789" />
-    <state width="1864" height="383" key="GridCell.Tab.1.left" timestamp="1593052246789">
+    <state width="1864" height="383" key="GridCell.Tab.1.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593226576087" />
+    <state width="1864" height="383" key="GridCell.Tab.1.left" timestamp="1593226576087">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052246789" />
-    <state width="1864" height="383" key="GridCell.Tab.1.right" timestamp="1593052246790">
+    <state width="1864" height="383" key="GridCell.Tab.1.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593226576087" />
+    <state width="1864" height="383" key="GridCell.Tab.1.right" timestamp="1593226576088">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593052246790" />
+    <state width="1864" height="383" key="GridCell.Tab.1.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593226576088" />
     <state width="318" height="572" key="HiddenNamespacesPopup" timestamp="1592653180930">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state width="318" height="572" key="HiddenNamespacesPopup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592653180930" />
-    <state x="675" y="236" width="560" height="734" key="RollbackChangesDialog" timestamp="1593194497573">
+    <state x="675" y="236" width="560" height="734" key="RollbackChangesDialog" timestamp="1593216088021">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="675" y="236" width="560" height="734" key="RollbackChangesDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593194497573" />
+    <state x="675" y="236" width="560" height="734" key="RollbackChangesDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593216088021" />
     <state x="324" y="147" width="1271" height="912" key="SettingsEditor" timestamp="1593039747919">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
@@ -232,6 +233,10 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="ShowDiffWithBranchDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593189918285" />
+    <state width="960" height="600" key="XDebugger.FullValuePopup" timestamp="1593226536510">
+      <screen x="0" y="27" width="1920" height="1173" />
+    </state>
+    <state width="960" height="600" key="XDebugger.FullValuePopup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593226536510" />
     <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1593201051542">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
@@ -240,10 +245,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2090" y="127" width="1650" height="853" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593008519762" />
-    <state x="580" y="283" width="759" height="634" key="find.popup" timestamp="1593193910031">
+    <state x="580" y="283" width="759" height="634" key="find.popup" timestamp="1593222117302">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="580" y="283" width="759" height="634" key="find.popup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593193910031" />
+    <state x="580" y="283" width="759" height="634" key="find.popup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593222117302" />
     <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup" timestamp="1593191220540">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
@@ -263,29 +268,34 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>72</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/service/services.py</url>
-          <line>26</line>
+          <line>25</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>118</line>
+          <line>113</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/api/serializers.py</url>
-          <line>24</line>
-          <option name="timeStamp" value="15" />
+          <url>file://$PROJECT_DIR$/api/service/services.py</url>
+          <line>29</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>107</line>
-          <option name="timeStamp" value="16" />
+          <line>99</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/views.py</url>
+          <line>98</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/views.py</url>
+          <line>96</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

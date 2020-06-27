@@ -2,14 +2,14 @@ from django.contrib.auth import logout, authenticate
 from django.http import JsonResponse
 from rest_framework import status, permissions, response
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.parsers import FileUploadParser
+from rest_framework.parsers import FileUploadParser, JSONParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from api.models import User
-from api.serializers import UserSerializer, UserCreateSerializer, ReportSerializer, CreateReportSerializer, \
-    FileSerializer
+from api.models import Report
+from api.serializers import UserSerializer, UserCreateSerializer, CreateReportSerializer, \
+    FileSerializer, PatchReportSerializer
 from api.service.services import UserService, ReportService
 
 
@@ -33,20 +33,6 @@ class UserViews:
 
         data = list(UserService.get_all_users(self))
         return JsonResponse(data, safe=False, status=status.HTTP_200_OK)
-
-    @api_view(["POST"])
-    def addUser(self, request):
-        serializer = UserSerializer(data=request.data)
-        if not serializer.is_valid():
-            return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-        data = UserService.save_user(request.data)
-        return JsonResponse(data, safe=False, status=status.HTTP_201_CREATED)
-
-    @api_view(["PATCH"])
-    def change_password(self, request):
-        data = UserService.change_password(request.data)
-        return JsonResponse(data, safe=False, status=status.HTTP_202_ACCEPTED)
 
 
 class AuthViews:
@@ -97,29 +83,38 @@ class AuthViews:
 class ReportViews:
 
     @api_view(["GET", "PATCH", "DELETE"])
-    def report_detail(self, request):
-        pass
-        # todo
+    def report_detail(self, id):
+        if self.method == "PATCH":
+            report = Report.objects.get(id=id)
+
+            if report.owner.username != self.user.username:
+                res = {
+                    "error": "Only owner of the report can patch it"
+                }
+                return response.Response(res, status.HTTP_406_NOT_ACCEPTABLE)
+            data = JSONParser().parse(self)
+            serializer = PatchReportSerializer(report, data=data)
+            if serializer.is_valid():
+                report = ReportService.patch_report(data, id)
+                if serializer.is_valid():
+                    return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
+                else:
+                    return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
 
     @api_view(['GET', "POST"])
-    def report_list(self, username):
-
+    def report_list(self):
         if self.method == "POST":
-            serializer = CreateReportSerializer(data=self.data)
 
-            if serializer.is_valid() is False:
-                return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            if self.user != User.objects.get(username=username):
-                res = {"error": "Only domain owner  can save a report on its domain"}
-                return response.Response(res, status=status.HTTP_406_NOT_ACCEPTABLE)
+            serializer = CreateReportSerializer(data=self.data)
 
             report = ReportService.create_report(serializer, user=self.user)
             return JsonResponse(report.data, status=status.HTTP_201_CREATED, safe=False)
         else:
-            serializer = ReportSerializer(data=self.data)
-            user = User.objects.get(username=username)
-            reports = ReportService.get_reports(serializer, user=user)
-            return JsonResponse(reports.data, status=status.HTTP_200_OK, safe=False)
+            pass
+            # serializer = ReportSerializer(data=self.data)
+            # user = User.objects.get(username=username)
+            # reports = ReportService.get_reports(serializer, user=user)
+            # return JsonResponse(reports.data, status=status.HTTP_200_OK, safe=False)
 
 
 class FileUploadView(APIView):

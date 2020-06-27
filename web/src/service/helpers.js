@@ -1,26 +1,5 @@
 import axios from 'axios'
-import store from "../store/store";
 
-const setFallBack = (http) => {
-    http.interceptors.response.use((response) => {
-        // Return a successful response back to the calling service
-        return response;
-    }, (error) => {
-        // Return any error which is not due to authentication back to the calling service
-        if (error.response.status !== 403) {
-            store.commit('global/alert_user', error)
-            store.commit('global/set_loading', false)
-            return new Promise((resolve, reject) => {
-                reject(error);
-            });
-        }
-
-
-    });
-
-    return http
-
-}
 
 const setLocalStorage = (payload) => {
     localStorage.setItem('token', payload.access)
@@ -41,7 +20,7 @@ const putToken = function () {
     })
 
 
-    return setFallBack(http);
+    return http
 
 }
 

@@ -6,17 +6,20 @@ let http = helpers.putToken()
 
 
 export default {
-    SAVE_REPORT(payload) {
+    CREATE_REPORT() {
         store.commit('global/set_loading', true)
 
-        return http.post({
-            url: `${Constants.API}${Constants.BACKEND_REPORT}`,
-            data: payload,
-        })
-            .then(res => {
-                store.commit('global/alertUser', res.status)
-            }).catch(err => {
-                store.dispatch('global/alertUser', err)
+        return http({
+            url: `${Constants.API}${Constants.BACKEND_REPORT_POST}`,
+            method: "POST",
+        }).then(
+            res => {
+                store.commit('report/setReportNumber', res.data)
+            }
+        )
+
+            .catch(err => {
+                store.commit('global/set_alert', err)
             }).finally(() => {
                 store.commit('global/set_loading', false)
             })

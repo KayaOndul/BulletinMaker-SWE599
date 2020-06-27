@@ -109,7 +109,6 @@
     import BarComponent from "@/components/panes/BarComponent";
     import EmptyPane from "@/components/panes/EmptyPane"
     import mockLayout from "@/mocks/mockLayout";
-    import mockLayoutSaved from '../../mocks/mockLayoutSaved.json'
     import Editor from "../../components/panes/Editor"
     import SelectChartButton from "@/components/panes/SelectChartButton";
     import Constants from '../../assets/constants'
@@ -131,8 +130,8 @@
 
         },
         mounted() {
-            this.layout=mockLayoutSaved
-            // this.layout = mockLayout.slice(0)
+            // this.layout=mockLayoutSaved
+            this.layout = mockLayout.slice(0)
         },
 
 
@@ -215,13 +214,14 @@
                 })
                 this.layout = lay
             },
-            saveLayout() {
-                return
-            },
+
             changeHandler(val) {
                 this.layout.filter(e => e.i === val.iAm)[0].data = val.newVal
 
             },
+            saveLayout() {
+
+            }
 
 
         }

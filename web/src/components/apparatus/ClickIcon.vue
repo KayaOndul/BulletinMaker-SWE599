@@ -12,6 +12,8 @@
 <script>
     import router from "../../router/router";
     import authService from "../../service/authService";
+    import reportService from "../../service/reportService";
+    import store from "../../store/store";
 
     export default {
         name: 'clickIcon',
@@ -54,6 +56,17 @@
                     let route = {...this.routeo, params: {username: localStorage.getItem('username')}}
                     router.push(route)
                     return
+                }
+                if (this.notto === 'Create New Report') {
+                    reportService.CREATE_REPORT()
+                        .then(()=>
+                            router.push({
+                                name: 'report',
+                                params:
+                                    {id:store.state.report.reportNumber}
+                            })
+                        )
+
                 }
 
 
