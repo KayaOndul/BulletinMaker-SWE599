@@ -84,9 +84,11 @@ class ReportViews:
 
     @api_view(["GET", "PATCH", "DELETE"])
     def report_detail(self, id):
-        if self.method == "PATCH":
+        try:
             report = Report.objects.get(id=id)
-
+        except Report.DoesNotExist as e:
+            return response.Response({"error":e.args[0]}, status.HTTP_400_BAD_REQUEST)
+        if self.method == "PATCH":
             if report.owner.username != self.user.username:
                 res = {
                     "error": "Only owner of the report can patch it"
@@ -100,6 +102,19 @@ class ReportViews:
                     return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
                 else:
                     return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+        if self.method == "GET":
+
+            serializer = PatchReportSerializer(report)
+            return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
+
+        elif self.method == "DELETE":
+            if report.owner.username != self.user.username:
+                res = {
+                    "error": "Only owner of the report can patch it"
+                }
+                return response.Response(res, status.HTTP_406_NOT_ACCEPTABLE)
+            report.delete()
+            return response.Response({"detail": 'deleted'}, status.HTTP_200_OK)
 
     @api_view(['GET', "POST"])
     def report_list(self):

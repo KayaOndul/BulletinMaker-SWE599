@@ -1,4 +1,8 @@
 
-jpython:S100"NRename method "addUser" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ç÷Üİ8ÜíÚš®.
-Epython:S108")Either remove or fill this block of code.(ã‘Û¾8ÂÀ¶®.
-ipython:S100"MRename method "getAll" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(àÎİÚ8æµº›®.
+kpython:S100 "MRename method "getAll" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(àÎİÚ8æµº›®.
+^python:S5720)"?Rename "request" to "self" or add the missing "self" parameter.(¢¥º¨8­Á¨˜¯.
+Gpython:S108")Either remove or fill this block of code.(ã‘Û¾8ÂÀ¶®.
+Bpython:S125r"Remove this commented out code.(ÑºŠÒùÿÿÿÿ8†Ù£š¯.
+cpython:S57208"?Rename "request" to "self" or add the missing "self" parameter.(ññ™Ùøÿÿÿÿ8­Á¨˜¯.
+Gpython:S108q")Either remove or fill this block of code.(ã‘Û¾8†Ù£š¯.
+opython:S1854b"KRemove this assignment to local variable 'report'; the value is never used.(Æ¤©¬üÿÿÿÿ8×ÂÌ¯.
