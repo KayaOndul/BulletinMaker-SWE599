@@ -40,7 +40,7 @@
         methods: {
             debounceRemove: _.debounce(function () {
                 store.dispatch('global/removeAlert')
-            }, 5000)
+            }, 1500)
         },
         watch: {
             alerts(newVal) {

@@ -10,7 +10,7 @@
                 <v-list-item>
                     <v-text-field v-model="title"
 
-                                  :disabled="()=>{return this.isOwner===true}"
+                                  :disabled="!this.isOwner"
                                   dense
                                   class=" mt-2"
                                   label="Report Title">
@@ -19,10 +19,10 @@
                 </v-list-item>
             </v-list-item-group>
             <v-spacer/>
-            <v-list-item-group v-if="isOwner===true" class="d-flex text-no-wrap">
+            <v-list-item-group v-if="isOwner" class="d-flex text-no-wrap">
                 <v-spacer/>
 
-                <v-list-item v-if="this.layout.length<1">
+                <v-list-item v-if="this.layout?this.layout.length<1:false">
                     <v-tooltip bottom light class="teal primary--text">
                         <template v-slot:activator="{ on }">
                             <v-btn @click="addEmptyPane(0)" icon v-on="on">
@@ -64,7 +64,7 @@
 
 
         <grid-layout
-                :layout="layout"
+                :layout="layout?layout:[]"
                 :col-num="12"
                 :row-height="30"
                 :is-draggable="true"
@@ -170,7 +170,7 @@
         },
         computed: {
             isOwner() {
-                return store.state.auth.username === store.state.report.report.owner
+                return  store.state.auth.username === store.state.report.report.owner
             },
             report() {
                 return store.state.report.report ? store.state.report.report : []
@@ -184,7 +184,7 @@
         },
         watch: {
             report(newVal) {
-                if (newVal) {
+                if (newVal.layout) {
                     this.layout = newVal.layout
                     this.title = newVal.title
                 }

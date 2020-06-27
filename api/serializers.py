@@ -1,7 +1,7 @@
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 
-from api.models import User, Report, File
+from api.models import User, Report, File, ReportSubscription
 
 
 class CreateReportSerializer(serializers.ModelSerializer):
@@ -31,9 +31,18 @@ class UserSerializerForSubsciberList(serializers.ModelSerializer):
         fields = ('username',)
 
 
+class ReportSubscriptionSerializer(serializers.ModelSerializer):
+    report = serializers.StringRelatedField()
+    person = serializers.StringRelatedField()
+
+    class Meta:
+        model = ReportSubscription
+        fields = ('report', 'person',)
+
+
 class ReportSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField()
-    subscribers = serializers.StringRelatedField(many=True)
+    subscribers = serializers.StringRelatedField()
 
     class Meta:
         model = Report
