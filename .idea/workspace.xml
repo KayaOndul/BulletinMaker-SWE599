@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0aabf98-86c5-4ac6-a70c-c58ed13c7bad" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/web/src/router/views/MyFollow.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/src/router/views/MyFresh.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/src/router/views/MyReports.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/service/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/service/services.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/mocks/mockLayoutSaved.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/router/layouts/layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router/layouts/layout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/router/views/Grids.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router/views/Grids.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/router/views/Welcome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router/views/Welcome.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +158,7 @@
       <workItem from="1593200955379" duration="2058000" />
       <workItem from="1593209088820" duration="14256000" />
       <workItem from="1593233197709" duration="15624000" />
-      <workItem from="1593302982453" duration="9311000" />
+      <workItem from="1593302982453" duration="10491000" />
     </task>
     <servers />
   </component>
@@ -174,10 +174,10 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="591" y="386" width="727" height="434" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592954656697" />
-    <state x="100" y="100" width="1720" height="1000" key="DiffContextDialog" timestamp="1593189918285">
-      <screen x="0" y="27" width="1920" height="1173" />
+    <state x="1920" y="27" width="1720" height="1000" maximized="true" key="DiffContextDialog" timestamp="1593313563265">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="100" y="100" width="1720" height="1000" key="DiffContextDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593189918285" />
+    <state x="1920" y="27" width="1720" height="1000" maximized="true" key="DiffContextDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593313563265" />
     <state x="690" y="301" width="530" height="605" key="FileChooserDialogImpl" timestamp="1592916019647">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
@@ -226,10 +226,10 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="324" y="147" width="1271" height="912" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593039747919" />
-    <state x="100" y="100" width="1720" height="1000" key="ShowDiffWithBranchDialog" timestamp="1593189918285">
+    <state x="100" y="100" width="1720" height="1000" key="ShowDiffWithBranchDialog" timestamp="1593313563265">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="100" y="100" width="1720" height="1000" key="ShowDiffWithBranchDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593189918285" />
+    <state x="100" y="100" width="1720" height="1000" key="ShowDiffWithBranchDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593313563265" />
     <state width="960" height="600" key="XDebugger.FullValuePopup" timestamp="1593296142077">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>

@@ -4,13 +4,35 @@ import Register from "@/router/views/Register";
 import Welcome from "@/router/views/Welcome";
 import Search from "@/router/views/Search";
 import Profile from "@/router/views/Profile";
+import MyFollow from "./views/MyFollow";
+import MyFresh from "./views/MyFresh"
+import MyReports from "./views/MyReports"
 
 export default [
 
     {
-        name: 'Welcome',
         component: Welcome,
-        path: '/'
+        path: '/',
+        children:[
+            {
+                name:'Welcome',
+                path:'',
+                component:MyReports
+
+            },
+             {
+                name:'MyFollow',
+                path:'subscriptions',
+                component:MyFollow,
+
+            },
+            {
+                name:'MyFresh',
+                path:'fresh',
+                component:MyFresh,
+
+            }
+        ]
     },
     {
         name: 'report',
