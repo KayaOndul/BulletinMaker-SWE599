@@ -1,9 +1,11 @@
 import json
+from itertools import chain
 
 from django.contrib.auth import logout, authenticate
 from django.http import JsonResponse
 from rest_framework import status, permissions, response
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.generics import RetrieveAPIView
 from rest_framework.parsers import FileUploadParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -12,7 +14,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from api.models import Report, User
 from api.serializers import UserSerializer, UserCreateSerializer, CreateReportSerializer, \
-    FileSerializer, PatchReportSerializer, ReportSerializer
+    FileSerializer, PatchReportSerializer, ReportSerializer, UserSerializerForSubsciberList, SearchSerializer
 from api.service.services import UserService, ReportService
 
 
@@ -154,10 +156,16 @@ class ReportViews:
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
 
-class SearchViews:
+class SearchViews(RetrieveAPIView):
     @api_view(['GET', ])
-    def search(self, user, keyword):
-        print(user, keyword)
+    @permission_classes([AllowAny])
+    def search(self):
+        keyword = self.data['keyword']
+        users = User.objects.filter(username=keyword)
+        reports = Report.objects.filter(title__icontains=keyword)
+        data = {'users': users, 'reports': reports}
+        serializer = SearchSerializer(data)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
 
 class FileUploadView(APIView):

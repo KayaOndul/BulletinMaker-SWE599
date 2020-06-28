@@ -21,11 +21,11 @@ class PatchReportSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Report
-        fields = ('id', 'title', 'layout', 'owner','subscribers')
+        fields = ('id', 'title', 'layout', 'owner', 'subscribers')
 
     def get_validation_exclusions(self):
         exclusions = super(PatchReportSerializer, self).get_validation_exclusions()
-        return exclusions + ['title'] +['subscribers']
+        return exclusions + ['title'] + ['subscribers']
 
 
 class UserSerializerForSubsciberList(serializers.ModelSerializer):
@@ -60,6 +60,11 @@ class UserSerializer(serializers.ModelSerializer):
 
     def __str__(self):
         return self.username
+
+
+class SearchSerializer(serializers.Serializer):
+    users = UserSerializer(many=True)
+    reports = ReportSerializer(many=True)
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
