@@ -54,7 +54,9 @@
                     router.push(route)
                 }
                 if (this.notto === 'Create New Report') {
+
                     reportService.CREATE_REPORT()
+
                         .then(() =>
                             router.push({
                                 name: 'report',

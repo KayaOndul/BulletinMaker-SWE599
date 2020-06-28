@@ -1,7 +1,6 @@
 import Constants from "./Constants";
 import helpers from "./helpers";
 import store from "../store/store";
-import router from "../router/router";
 
 let http = helpers.putToken()
 
@@ -9,14 +8,20 @@ let http = helpers.putToken()
 export default {
     CREATE_REPORT() {
         store.commit('global/set_loading', true)
-
+        const idStored = store.state.report.report.id
+        store.commit('report/resetState',)
         return http({
             url: `${Constants.API}${Constants.BACKEND_REPORT_POST}`,
             method: "POST",
         }).then(
             res => {
+                const id = idStored
+                if (id&&!store.state.report.report.layout) {
+                    this.DELETE_REPORT({id})
+                }
                 store.commit('report/setReportNumber', res.data)
-                  store.commit('global/set_alert', `${res.status} ${res.statusText}`)
+                store.commit('report/setReport', res.data)
+                store.commit('global/set_alert', `${res.status} ${res.statusText}`)
             }
         )
 
@@ -47,8 +52,8 @@ export default {
                 store.commit('global/set_loading', false)
             })
     },
-    GET_ALL_REPORTS(){
-            store.commit('global/set_loading', true)
+    GET_ALL_REPORTS() {
+        store.commit('global/set_loading', true)
         return http({
             url: `${Constants.API}${Constants.BACKEND_ALL_REPORTS}`,
             method: "GET",
@@ -65,9 +70,9 @@ export default {
                 store.commit('global/set_loading', false)
             })
     },
-    GET_ALL_REPORTS_VIA_USERNAME(payload){
+    GET_ALL_REPORTS_VIA_USERNAME(payload) {
 
-            store.commit('global/set_loading', true)
+        store.commit('global/set_loading', true)
         return http({
             url: `${Constants.API}${Constants.BACKEND_ALL_REPORTS_VIA_USERNAME}${payload.user}/`,
             method: "GET",
@@ -84,8 +89,8 @@ export default {
                 store.commit('global/set_loading', false)
             })
     },
-    GET_SUBSCRIBED_REPORTS(payload){
-              store.commit('global/set_loading', true)
+    GET_SUBSCRIBED_REPORTS(payload) {
+        store.commit('global/set_loading', true)
         return http({
             url: `${Constants.API}${Constants.BACKEND_SUBSCRIBED_REPORTS}${payload.user}`,
             method: "GET",
@@ -130,7 +135,7 @@ export default {
         }).then(
             res => {
                 store.commit('global/set_alert', `${res.status}  ${res.statusText}`)
-                router.push({name: 'Welcome'})
+
             }
         )
             .catch(err => {

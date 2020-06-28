@@ -22,7 +22,7 @@ class UserService:
 class ReportService:
     def create_report(self, user):
         report = Report.objects.create(owner=user)
-        return CreateReportSerializer(report, many=False)
+        return ReportSerializer(report, many=False)
 
     def patch_report(self, id,user):
         if self.data['title'] is '':

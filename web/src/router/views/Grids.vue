@@ -148,6 +148,7 @@
     import Constants from '../../assets/constants'
     import reportService from "../../service/reportService";
     import store from "../../store/store";
+    import router from "../router";
 
     const initState = () => {
         return {
@@ -289,6 +290,7 @@
                 const id = this.$route.params.id
 
                 reportService.DELETE_REPORT({id})
+                    .then(() => router.push({name: 'Welcome'}))
             },
         },
         beforeRouteEnter(to, from, next) {
@@ -297,6 +299,11 @@
             next()
         },
         beforeRouteLeave(to, from, next) {
+            const id = store.state.report.report.id
+
+            if (id && !store.state.report.report.layout) {
+                reportService.DELETE_REPORT({id})
+            }
             store.commit('report/resetState')
             next()
         }

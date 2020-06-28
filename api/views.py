@@ -121,7 +121,7 @@ class ReportViews:
     @api_view(["POST"])
     def create_report(self):
         if self.method == "POST":
-            serializer = CreateReportSerializer(data=self.data)
+            serializer = ReportSerializer(data=self.data)
 
             report = ReportService.create_report(serializer, user=self.user)
             return JsonResponse(report.data, status=status.HTTP_201_CREATED, safe=False)
