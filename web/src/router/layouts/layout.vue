@@ -73,9 +73,10 @@
 
                         <v-tooltip top light class="  primary--text">
                             <template v-slot:activator="{ on }">
-                                <v-list-item-avatar
-                                        v-on="on">
-                                    <v-img @click="routeHandler" class="clickable" :src="'https://picsum.photos/303'"/>
+
+                                <v-list-item-avatar v-on="on" @click="routeHandler()"
+                                              size="5vh"  class="clickable  primary mx-1">
+                                   <span class="white--text headline">{{username.toUpperCase()[0]}}</span>
                                 </v-list-item-avatar>
                             </template>
                             <span class=" white--text">{{username}}</span>
@@ -164,7 +165,8 @@
         },
         methods: {
             routeHandler() {
-                router.push({name: 'Profile'})
+                const username=store.state.auth.username
+                router.push({name: 'Profile',params:{username:username}})
             },
             searchItem: function () {
                 router.push({path: '/Search', name: 'Search', props: true, params: {searchField: this.model}})

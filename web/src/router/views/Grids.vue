@@ -149,6 +149,13 @@
     import reportService from "../../service/reportService";
     import store from "../../store/store";
 
+    const initState = () => {
+        return {
+            title: '',
+            layout: [],
+        }
+    }
+
     export default {
         name: 'Grids',
         components: {
@@ -156,17 +163,9 @@
         }
         ,
         data() {
-            return {
-                title: '',
-                layout: [],
-                checkBoxLineChart: false,
-                checkBoxBarChart: false,
-
-            }
-
+            return initState()
         },
         mounted() {
-            // this.layout=mockLayoutSaved
             this.layout = mockLayout.slice(0)
         },
         computed: {

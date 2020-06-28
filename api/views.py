@@ -97,7 +97,9 @@ class ReportViews:
 
             serializer = PatchReportSerializer(data=self.data)
             if serializer.is_valid():
-                report = ReportService.patch_report(serializer, id)
+                ReportService.patch_report(serializer, id,report.owner)
+                report=Report.objects.get(id=id)
+                serializer=CreateReportSerializer(report)
                 return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
             return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
         if self.method == "GET":
@@ -128,8 +130,12 @@ class ReportViews:
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
     @api_view(["GET"])
-    def report_list_via_username(self, username):
-        pass
+    @permission_classes([AllowAny])
+    def report_list_via_username(self, user):
+        key = User.objects.get(username=user)
+        reports = Report.objects.filter(owner=key,layout__isnull=False)
+        serializer = ReportSerializer(reports, many=True)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
 
 class SearchViews:

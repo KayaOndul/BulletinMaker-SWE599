@@ -24,7 +24,7 @@ class ReportService:
         report = Report.objects.create(owner=user)
         return CreateReportSerializer(report, many=False)
 
-    def patch_report(self, id):
+    def patch_report(self, id,user):
         if self.data['title'] is '':
             Report.objects.filter(id=id).update(layout=self.data['layout'])
         else:
