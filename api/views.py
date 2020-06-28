@@ -1,8 +1,12 @@
+import json
+from itertools import chain
+
 from django.contrib.auth import logout, authenticate
 from django.http import JsonResponse
 from rest_framework import status, permissions, response
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.parsers import FileUploadParser, JSONParser
+from rest_framework.generics import RetrieveAPIView
+from rest_framework.parsers import FileUploadParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -10,7 +14,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from api.models import Report, User
 from api.serializers import UserSerializer, UserCreateSerializer, CreateReportSerializer, \
-    FileSerializer, PatchReportSerializer, ReportSerializer
+    FileSerializer, PatchReportSerializer, ReportSerializer, UserSerializerForSubsciberList, SearchSerializer
 from api.service.services import UserService, ReportService
 
 
@@ -95,11 +99,10 @@ class ReportViews:
                 }
                 return response.Response(res, status.HTTP_406_NOT_ACCEPTABLE)
 
-            serializer = PatchReportSerializer(data=self.data)
-            if serializer.is_valid():
-                report = ReportService.patch_report(serializer, id)
-                return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
-            return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+            Report.objects.filter(id=id).update(layout=self.data['layout'], title=self.data['title'])
+            report = Report.objects.get(id=id)
+            serializer = ReportSerializer(report)
+            return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
         if self.method == "GET":
 
             serializer = PatchReportSerializer(report)
@@ -117,25 +120,49 @@ class ReportViews:
     @api_view(["POST"])
     def create_report(self):
         if self.method == "POST":
-            serializer = CreateReportSerializer(data=self.data)
+            serializer = ReportSerializer(data=self.data)
 
             report = ReportService.create_report(serializer, user=self.user)
             return JsonResponse(report.data, status=status.HTTP_201_CREATED, safe=False)
 
+    @api_view(["GET"])
+    @permission_classes([AllowAny])
     def get_reports(self):
-        reports = Report.objects.filter(layout__isnull=False)
+        user = self.user
+        reports = []
+        if user.username == '':
+            reports = Report.objects.filter(layout__isnull=False)
+        else:
+            reports = Report.objects.exclude(owner=user).filter(layout__isnull=False)
         serializer = ReportSerializer(reports, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
     @api_view(["GET"])
-    def report_list_via_username(self, username):
-        pass
+    @permission_classes([AllowAny])
+    def report_list_via_username(self, user):
+        key = User.objects.get(username=user)
+        reports = Report.objects.filter(owner=key, layout__isnull=False)
+        serializer = ReportSerializer(reports, many=True)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
+
+    @api_view(["GET"])
+    @permission_classes([AllowAny])
+    def get_subscriptions_via_username(self, user):
+        reports = Report.objects.filter(subscribers__username=user)
+        serializer = ReportSerializer(reports, many=True)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
 
-class SearchViews:
-    @api_view(['GET', ])
-    def search(self, user, keyword):
-        print(user, keyword)
+class SearchViews(RetrieveAPIView):
+    @api_view(['POST', ])
+    @permission_classes([AllowAny])
+    def search(self):
+        keyword = self.data['keyword']
+        users = User.objects.filter(username__icontains=keyword)
+        reports = Report.objects.filter(title__icontains=keyword)
+        data = {'users': users, 'reports': reports}
+        serializer = SearchSerializer(data)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
 
 class FileUploadView(APIView):

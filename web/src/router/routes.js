@@ -4,13 +4,35 @@ import Register from "@/router/views/Register";
 import Welcome from "@/router/views/Welcome";
 import Search from "@/router/views/Search";
 import Profile from "@/router/views/Profile";
-
+import MyFollow from "./views/MyFollow";
+import MyFresh from "./views/MyFresh"
+import MyReports from "./views/MyReports"
+import ChangePass from "./views/ChangePass"
 export default [
 
     {
-        name: 'Welcome',
         component: Welcome,
-        path: '/'
+        path: '/',
+        children:[
+            {
+                name:'MyReport',
+                path:'myreport',
+                component:MyReports
+
+            },
+             {
+                name:'MyFollow',
+                path:'subscriptions',
+                component:MyFollow,
+
+            },
+            {
+                name:'MyFresh',
+                path:'',
+                component:MyFresh,
+
+            }
+        ]
     },
     {
         name: 'report',
@@ -19,7 +41,7 @@ export default [
     },
     {
         name: 'Search',
-        path: '/search',
+        path: '/search/:searchparam',
         component: Search
     },
     {
@@ -39,8 +61,13 @@ export default [
         path: '/Register',
         component: Register
     },
+    {
+        name: 'ChangePassword',
+        path: '/passwordChange',
+        component: ChangePass
+    },
 
 
-    {path: '*', redirect: "/"}
+    {path: '*', component: Welcome}
 
 ]

@@ -22,7 +22,7 @@ class UserService:
 class ReportService:
     def create_report(self, user):
         report = Report.objects.create(owner=user)
-        return CreateReportSerializer(report, many=False)
+        return ReportSerializer(report, many=False)
 
     def patch_report(self, id):
         if self.data['title'] is '':
@@ -31,7 +31,4 @@ class ReportService:
             Report.objects.filter(id=id).update(layout=self.data['layout'], title=self.data['title'])
         return Report.objects.get(id=id)
 
-    def get_reports(self, user):
-        pass
-        # reports = Report.objects.filter(owner=user)
-        # return ReportSerializer(reports, many=True)
+

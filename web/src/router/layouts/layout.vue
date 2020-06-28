@@ -66,16 +66,24 @@
 
                         <click-icon :note="'Log Out'"
                                     :icon="'mdi-logout'"
-                                    :route="{name:'Welcome'}"/>
+                                    :route="{name:'MyFresh'}"/>
+
+                    </v-list-item>
+                    <v-list-item>
+
+                        <click-icon :note="'Change Password'"
+                                    :icon="'mdi-key-outline'"
+                                    :route="{name:'ChangePassword'}"/>
 
                     </v-list-item>
                     <v-list-item>
 
                         <v-tooltip top light class="  primary--text">
                             <template v-slot:activator="{ on }">
-                                <v-list-item-avatar
-                                        v-on="on">
-                                    <v-img @click="routeHandler" class="clickable" :src="'https://picsum.photos/303'"/>
+
+                                <v-list-item-avatar v-on="on" @click="routeHandler()"
+                                                    size="5vh" class="clickable  primary mx-1">
+                                    <span class="white--text headline">{{username.toUpperCase()[0]}}</span>
                                 </v-list-item-avatar>
                             </template>
                             <span class=" white--text">{{username}}</span>
@@ -98,13 +106,7 @@
             ></v-progress-circular>
         </v-overlay>
         <slot/>
-        <back-to-top style="display: inline-block"
-                     :visibleoffset="visibleoffset"
-                     :text="text"
-                     :bottom="bottom"
-                     :right="right"
-                     :scrollFn="scrollFn"
-                     @scrolled="scrolled"/>
+        <go-top class="primary accent-text"/>
 
 
     </div>
@@ -112,8 +114,10 @@
 
 <script>
     import ClickIcon from "@/components/apparatus/ClickIcon";
+
+
     import NotificationsAlert from "@/components/apparatus/NotificationsAlert";
-    import BackToTop from 'vue-backtotop'
+    import GoTop from '@inotom/vue-go-top'
     import router from "../router";
     import store from "@/store/store";
     import {mapGetters} from "vuex"
@@ -122,14 +126,9 @@
 
         data() {
             return {
-                showNotifications: true,
+
                 model: '',
-                isBackTopFooter: false,
-                visibleoffset: 100,
-                text: 'Back to top',
-                bottom: '40px',
-                right: '40px',
-                display: 'block'
+
             }
         },
 
@@ -144,43 +143,32 @@
             },
         },
         created() {
-            // private
-            this.scrollIndentBackTop = 0;
-            this.scrollHeight = 0;
+
         },
         mounted() {
 
-            this.scrollHeight = Math.max(
-                document.body.scrollHeight, document.documentElement.scrollHeight,
-                document.body.offsetHeight, document.documentElement.offsetHeight,
-                document.body.clientHeight, document.documentElement.clientHeight
-            ) - window.innerHeight;
-            this.scrollIndentBackTop = document.body.clientHeight / 2;
         },
-        watch: {
-            visibleoffset(newVal) {
-                document.body.style.height = (parseInt(newVal) + 2000) + 'px';
-            }
-        },
+        watch: {},
         methods: {
             routeHandler() {
-                router.push({name: 'Profile'})
+                const username = store.state.auth.username
+                router.push({name: 'Profile', params: {username: username}})
             },
             searchItem: function () {
-                router.push({path: '/Search', name: 'Search', props: true, params: {searchField: this.model}})
+                router.push({
+                    path: '/Search',
+                    name: 'Search',
+                    props: true,
+                    params: {searchparam: this.model}
+                })
+
             },
-            scrolled() {
-                console.log('Scrolled !')
-            },
-            scrollFn: function () {
-                let diff = this.scrollHeight - window.pageYOffset;
-                this.isBackTopFooter = diff < (this.scrollIndentBackTop - 40 - 15);
-            },
+
             goHome() {
-                router.push({name: 'Welcome'})
+                router.push({name: 'MyFresh'})
             }
         },
-        components: {BackToTop, ClickIcon, NotificationsAlert}
+        components: {ClickIcon, NotificationsAlert, GoTop}
     }
 
 </script>

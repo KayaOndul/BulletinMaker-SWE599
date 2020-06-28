@@ -45,15 +45,18 @@
                 if (this.notto === 'Log Out') {
                     authService.LOGOUT()
                     this.$store.commit('global/set_alert', 'Logged Out')
-                    router.push({name: 'Welcome'})
+                    this.$store.commit('report/resetState')
+                    router.push({name: 'MyFresh'})
                 }
 
-                if (this.notto === 'Go To Your Profile'||this.notto==='Dashboard') {
+                if (this.notto === 'Go To Your Profile' || this.notto === 'Dashboard') {
                     let route = {...this.routeo, params: {username: localStorage.getItem('username')}}
                     router.push(route)
                 }
                 if (this.notto === 'Create New Report') {
+
                     reportService.CREATE_REPORT()
+
                         .then(() =>
                             router.push({
                                 name: 'report',

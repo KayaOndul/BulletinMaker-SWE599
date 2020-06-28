@@ -148,6 +148,14 @@
     import Constants from '../../assets/constants'
     import reportService from "../../service/reportService";
     import store from "../../store/store";
+    import router from "../router";
+
+    const initState = () => {
+        return {
+            title: '',
+            layout: [],
+        }
+    }
 
     export default {
         name: 'Grids',
@@ -156,17 +164,9 @@
         }
         ,
         data() {
-            return {
-                title: '',
-                layout: [],
-                checkBoxLineChart: false,
-                checkBoxBarChart: false,
-
-            }
-
+            return initState()
         },
         mounted() {
-            // this.layout=mockLayoutSaved
             this.layout = mockLayout.slice(0)
         },
         computed: {
@@ -184,18 +184,27 @@
             }
         },
         watch: {
+
             report(newVal) {
+
+                if (newVal.length < 1) {
+                    this.clean()
+                }
                 if (newVal.layout) {
+                    this.clean()
                     this.layout = newVal.layout
                     this.title = newVal.title
                 }
 
             }
+
+
         },
 
         methods: {
-            colorHandler() {
-                return this.savedReport === false ? 'teal red--text' : 'red red--text'
+            clean() {
+                this.layout = mockLayout.slice(0)
+                this.title = []
             },
             addPane(index) {
 
@@ -281,7 +290,6 @@
             saveLayout() {
                 const layout = this.layout
                 const title = this.title ? this.title : store.state.report.report.title ? store.state.report.report.title : ''
-
                 const id = this.$route.params.id
                 const payload = {layout, title, id}
                 reportService.PATCH_REPORT(payload)
@@ -290,6 +298,7 @@
                 const id = this.$route.params.id
 
                 reportService.DELETE_REPORT({id})
+                    .then(() => router.push({name: 'MyReport'}))
             },
         },
         beforeRouteEnter(to, from, next) {
@@ -298,6 +307,11 @@
             next()
         },
         beforeRouteLeave(to, from, next) {
+            const id = store.state.report.report.id
+
+            if (id && !store.state.report.report.layout) {
+                reportService.DELETE_REPORT({id})
+            }
             store.commit('report/resetState')
             next()
         }

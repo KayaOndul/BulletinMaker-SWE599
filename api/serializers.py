@@ -4,6 +4,7 @@ from rest_framework import serializers
 from api.models import User, Report, File, ReportSubscription
 
 
+# used when report created
 class CreateReportSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField()
 
@@ -13,31 +14,24 @@ class CreateReportSerializer(serializers.ModelSerializer):
         fields = ('id', 'owner')
 
 
-class PatchReportSerializer(serializers.ModelSerializer):
-    owner = serializers.StringRelatedField(required=False)
-
-    class Meta:
-        model = Report
-        fields = ('id', 'title', 'layout', 'owner')
-
-    def get_validation_exclusions(self):
-        exclusions = super(PatchReportSerializer, self).get_validation_exclusions()
-        return exclusions + ['title']
-
-
 class UserSerializerForSubsciberList(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username',)
 
 
-class ReportSubscriptionSerializer(serializers.ModelSerializer):
-    report = serializers.StringRelatedField()
-    person = serializers.StringRelatedField()
+# used for to save report on frontend
+class PatchReportSerializer(serializers.ModelSerializer):
+    owner = serializers.StringRelatedField(required=False)
+    subscribers = UserSerializerForSubsciberList(many=True)
 
     class Meta:
-        model = ReportSubscription
-        fields = ('report', 'person',)
+        model = Report
+        fields = ('id', 'title', 'layout', 'owner', 'subscribers')
+
+    def get_validation_exclusions(self):
+        exclusions = super(PatchReportSerializer, self).get_validation_exclusions()
+        return exclusions + ['title']
 
 
 class ReportSerializer(serializers.ModelSerializer):
@@ -62,10 +56,15 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'is_staff', 'bio', 'friends', 'user_reports')
+        fields = ('username', 'email', 'is_staff', 'bio', 'friends', 'user_reports','id')
 
     def __str__(self):
         return self.username
+
+
+class SearchSerializer(serializers.Serializer):
+    users = UserSerializer(many=True)
+    reports = ReportSerializer(many=True)
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
