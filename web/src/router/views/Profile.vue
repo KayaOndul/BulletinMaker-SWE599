@@ -2,6 +2,9 @@
 
 
             <div >
+                <layout>
+
+
                 <v-card class="my-4"
 
                         color="primary"
@@ -32,7 +35,7 @@
                 <div class="d-flex justify-space-between">
                 </div>
                 <v-spacer class="pa-3"/>
-
+        </layout>
 
             </div>
 
@@ -41,7 +44,7 @@
 </template>
 
 <script>
-
+    import layout from "../layouts/layout";
     import store from "../../store/store";
     import UserCard from "@/components/User/UserCard";
     import UserFollowedUsers from "@/components/User/UserFollowedUsers";
@@ -52,7 +55,7 @@
 
             }
         },
-        components: { UserCard, UserFollowedUsers},
+        components: { UserCard, UserFollowedUsers,layout},
         computed: {},
 
         watch: {

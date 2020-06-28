@@ -48,10 +48,9 @@
                     router.push({name: 'Welcome'})
                 }
 
-                if (this.notto === 'Go To Your Profile') {
+                if (this.notto === 'Go To Your Profile'||this.notto==='Dashboard') {
                     let route = {...this.routeo, params: {username: localStorage.getItem('username')}}
                     router.push(route)
-                    return
                 }
                 if (this.notto === 'Create New Report') {
                     reportService.CREATE_REPORT()

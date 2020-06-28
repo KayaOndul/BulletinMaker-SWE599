@@ -114,23 +114,18 @@ class ReportViews:
             report.delete()
             return response.Response({"detail": 'deleted'}, status.HTTP_200_OK)
 
-    @api_view(['GET', "POST"])
-    def report_list(self):
+    @api_view(["POST"])
+    def create_report(self):
         if self.method == "POST":
-
             serializer = CreateReportSerializer(data=self.data)
 
             report = ReportService.create_report(serializer, user=self.user)
             return JsonResponse(report.data, status=status.HTTP_201_CREATED, safe=False)
-        else:
 
-            reports = Report.objects.all()
-            serializer = ReportSerializer(reports)
-            return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
-            # res = {
-            #     "error": "Server error"
-            # }
-            # return response.Response(res, status.HTTP_500_INTERNAL_SERVER_ERROR)
+    def get_reports(self):
+        reports = Report.objects.filter(layout__isnull=False)
+        serializer = ReportSerializer(reports, many=True)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
     @api_view(["GET"])
     def report_list_via_username(self, username):

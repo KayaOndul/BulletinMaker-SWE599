@@ -1,6 +1,7 @@
 <template>
-    <Layout>
-        <v-container>
+
+    <div>
+        <Layout>
             <v-card class="my-4"
 
                     color="primary"
@@ -41,8 +42,9 @@
                     </form>
                 </v-card-text>
             </v-card>
-        </v-container>
-    </Layout>
+        </Layout>
+    </div>
+
 
 </template>
 <script>
