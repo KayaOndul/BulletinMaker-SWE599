@@ -1,6 +1,7 @@
 <template>
-    <Layout>
-        <v-container>
+
+    <div>
+        <Layout>
             <v-card class="my-4"
 
                     color="primary"
@@ -53,15 +54,13 @@
                         ></v-text-field>
 
 
-
-
                         <v-btn class="mr-4 primary" @click="submit">Register</v-btn>
                         <v-btn @click="clear" class="error white--text">Close</v-btn>
                     </form>
                 </v-card-text>
             </v-card>
-        </v-container>
-    </Layout>
+        </Layout>
+    </div>
 
 
 </template>
@@ -76,7 +75,7 @@
         name: 'RegisterForm',
         mixins: [validationMixin],
 
-        components:{Layout},
+        components: {Layout},
         validations: {
             password: {required, minLength: minLength(4)},
             email: {required, email},

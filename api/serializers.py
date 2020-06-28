@@ -42,7 +42,7 @@ class ReportSubscriptionSerializer(serializers.ModelSerializer):
 
 class ReportSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField()
-    subscribers = serializers.StringRelatedField()
+    subscribers = UserSerializerForSubsciberList(many=True)
 
     class Meta:
         model = Report
