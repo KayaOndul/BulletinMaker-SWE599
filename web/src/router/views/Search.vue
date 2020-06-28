@@ -1,33 +1,33 @@
 <template>
 
     <div>
+        <layout>
+            <v-card class="my-4"
 
-        <v-card class="my-4"
-
-                color="primary"
-                dark
-        >
-            <div class="d-flex flex-no-wrap justify-space-between ">
-                <v-card-title class="headline">Searching for : <strong>{{' '+replacehyphen(queryParam)}}</strong>
-                </v-card-title>
+                    color="primary"
+                    dark
+            >
+                <div class="d-flex flex-no-wrap justify-space-between ">
+                    <v-card-title class="headline">Searching for : <strong> {{` ${queryParam}`}} </strong>
+                    </v-card-title>
 
 
-            </div>
+                </div>
 
-        </v-card>
-        <v-data-table
-                :headers="headers"
-                :items="searchResponse"
-                item-key="id+name+category"
-                class="elevation-1"
-                disable-pagination
-                @click:row="clickHandler"
-                style="cursor: pointer"
+            </v-card>
+            <v-data-table
+                    :headers="headers"
+                    :items="searchFeed"
+                    item-key="id+name+category"
+                    class="elevation-1"
+                    disable-pagination
+                    @click:row="clickHandler"
+                    style="cursor: pointer"
 
-        >
+            >
 
-        </v-data-table>
-
+            </v-data-table>
+        </layout>
     </div>
 
 
@@ -35,11 +35,12 @@
 
 <script>
 
-    import store from "../../store/store";
+    import layout from '../layouts/layout'
+    import {mapGetters} from 'vuex'
     import searchService from "../../service/searchService";
-    import mockSearch from "../../mocks/mockSearch"
 
     export default {
+        components: {layout},
         name: 'Search',
         data() {
             return {
@@ -51,48 +52,45 @@
                     },
                     {text: 'Category', value: 'category'},
                 ],
-                items: []
+
 
             }
         },
 
         computed: {
+            ...mapGetters({
+                searchFeed: 'search/searchFeed',
+            }),
+
             queryParam() {
-                return this.$route.query.searchField ? this.$route.query.searchField : []
+                return this.$route.params.searchparam ? this.$route.params.searchparam : ''
             },
 
-            searchResponse() {
-                let retVal = store.state.global.searchResponse ? store.state.global.searchResponse : []
-                console.log(retVal)
-                return mockSearch
 
-
-            }
         },
 
         watch: {
-
             queryParam: {
                 immediate: true,
                 handler(newVal) {
                     if (newVal) {
-                        console.log(newVal)
-                        searchService.SEARCH(newVal)
+                        const payload = {'keyword': newVal}
+                        searchService.SEARCH(payload)
                     }
                 }
-            }
+            },
 
         },
 
+        beforeRouteEnter(to, from, next) {
+            // const keyword = this.$route.params.searchparam
+            const keyword = to.params.searchparam
+            searchService.SEARCH({keyword})
+                .then(() => next())
+        },
 
         methods: {
-            replacehyphen(val) {
-                if (val && val.includes('-')) {
-                    return val.replaceAll('-', ' ')
-                }
-                return val
 
-            },
 
             clickHandler(item) {
                 console.log(item)

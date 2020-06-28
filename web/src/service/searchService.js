@@ -1,21 +1,20 @@
-import CONSTANTS from "./Constants";
 import helpers from "./helpers";
 import store from "../store/store";
+import Constants from "./Constants";
 
 let http = helpers.putToken()
 
 
 export default {
     SEARCH(payload) {
-        if(!payload){
-            return
-        }
+
         store.commit('global/set_loading', true)
-        return http.get(`${CONSTANTS.API}${CONSTANTS.BACKEND_SEARCH}${payload}`)
+        return http.post(Constants.API + Constants.SEARCH_ENDPOINT, payload)
             .then(res => {
-                store.commit('global/setSearchResponse', res.data)
+                store.commit('search/setSearchResponse', res.data)
             }).catch(err => {
-                store.dispatch('global/alertUser', err)
+                const error = err.response.data.error
+                store.commit('global/set_alert', `${err.response.status} ${error}`)
             })
             .finally(() => {
                 store.commit('global/set_loading', false)

@@ -34,7 +34,7 @@
 
             </v-img>
             <div class="d-flex justify-end">
-                  <v-card-text class=" black--text text-left  "
+                <v-card-text class=" black--text text-left  "
                 >by <span @click="goToProfile(card.owner)" class="clickable">{{card.owner}}</span></v-card-text>
 
                 <v-tooltip bottom light class=" teal primary--text">
@@ -67,7 +67,7 @@
 
 
         </v-card>
-        <div v-if="!reports===true">
+        <div v-if="reports&&reports.length<1">
             <v-card-title class="red--text display-2">Nothing Here!</v-card-title>
         </div>
 

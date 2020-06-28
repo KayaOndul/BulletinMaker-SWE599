@@ -99,13 +99,10 @@ class ReportViews:
                 }
                 return response.Response(res, status.HTTP_406_NOT_ACCEPTABLE)
 
-            serializer = PatchReportSerializer(data=self.data)
-            if serializer.is_valid():
-                ReportService.patch_report(serializer, id, report.owner)
-                report = Report.objects.get(id=id)
-                serializer = CreateReportSerializer(report)
-                return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
-            return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+            Report.objects.filter(id=id).update(layout=self.data['layout'], title=self.data['title'])
+            report = Report.objects.get(id=id)
+            serializer = ReportSerializer(report)
+            return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
         if self.method == "GET":
 
             serializer = PatchReportSerializer(report)
@@ -157,7 +154,7 @@ class ReportViews:
 
 
 class SearchViews(RetrieveAPIView):
-    @api_view(['GET', ])
+    @api_view(['POST', ])
     @permission_classes([AllowAny])
     def search(self):
         keyword = self.data['keyword']

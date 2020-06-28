@@ -41,7 +41,7 @@ export default [
     },
     {
         name: 'Search',
-        path: '/search',
+        path: '/search/:searchparam',
         component: Search
     },
     {

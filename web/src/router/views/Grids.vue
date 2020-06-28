@@ -281,7 +281,6 @@
             saveLayout() {
                 const layout = this.layout
                 const title = this.title ? this.title : store.state.report.report.title ? store.state.report.report.title : ''
-
                 const id = this.$route.params.id
                 const payload = {layout, title, id}
                 reportService.PATCH_REPORT(payload)

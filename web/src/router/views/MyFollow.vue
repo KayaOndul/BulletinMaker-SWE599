@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <v-container class="d-flex flex-wrap mt-12">
+    <div class="d-flex flex-wrap mt-12">
             <v-card v-for="(card,index) in reports" :key="index" width="30vh" class=" mx-auto my-6"
 
 
@@ -60,7 +59,7 @@
             <div v-if="reports&&reports.length<1">
                 <v-card-title class="red--text display-2">Nothing Here!</v-card-title>
             </div>
-        </v-container>
+
     </div>
 </template>
 <script>

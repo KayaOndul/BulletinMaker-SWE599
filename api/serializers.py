@@ -14,10 +14,16 @@ class CreateReportSerializer(serializers.ModelSerializer):
         fields = ('id', 'owner')
 
 
+class UserSerializerForSubsciberList(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username',)
+
+
 # used for to save report on frontend
 class PatchReportSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField(required=False)
-    subscribers = serializers.StringRelatedField(many=True, required=False)
+    subscribers = UserSerializerForSubsciberList(many=True)
 
     class Meta:
         model = Report
@@ -25,13 +31,7 @@ class PatchReportSerializer(serializers.ModelSerializer):
 
     def get_validation_exclusions(self):
         exclusions = super(PatchReportSerializer, self).get_validation_exclusions()
-        return exclusions + ['title'] + ['subscribers']
-
-
-class UserSerializerForSubsciberList(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('username',)
+        return exclusions + ['title']
 
 
 class ReportSerializer(serializers.ModelSerializer):

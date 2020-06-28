@@ -69,7 +69,7 @@
                                     :route="{name:'MyFresh'}"/>
 
                     </v-list-item>
-                       <v-list-item>
+                    <v-list-item>
 
                         <click-icon :note="'Change Password'"
                                     :icon="'mdi-key-outline'"
@@ -82,8 +82,8 @@
                             <template v-slot:activator="{ on }">
 
                                 <v-list-item-avatar v-on="on" @click="routeHandler()"
-                                              size="5vh"  class="clickable  primary mx-1">
-                                   <span class="white--text headline">{{username.toUpperCase()[0]}}</span>
+                                                    size="5vh" class="clickable  primary mx-1">
+                                    <span class="white--text headline">{{username.toUpperCase()[0]}}</span>
                                 </v-list-item-avatar>
                             </template>
                             <span class=" white--text">{{username}}</span>
@@ -106,8 +106,7 @@
             ></v-progress-circular>
         </v-overlay>
         <slot/>
-        <go-top class="primary accent-text"	/>
-
+        <go-top class="primary accent-text"/>
 
 
     </div>
@@ -149,23 +148,27 @@
         mounted() {
 
         },
-        watch: {
-
-        },
+        watch: {},
         methods: {
             routeHandler() {
-                const username=store.state.auth.username
-                router.push({name: 'Profile',params:{username:username}})
+                const username = store.state.auth.username
+                router.push({name: 'Profile', params: {username: username}})
             },
             searchItem: function () {
-                router.push({path: '/Search', name: 'Search', props: true, params: {searchField: this.model}})
+                router.push({
+                    path: '/Search',
+                    name: 'Search',
+                    props: true,
+                    params: {searchparam: this.model}
+                })
+
             },
 
             goHome() {
                 router.push({name: 'MyFresh'})
             }
         },
-        components: { ClickIcon, NotificationsAlert,GoTop}
+        components: {ClickIcon, NotificationsAlert, GoTop}
     }
 
 </script>
