@@ -70,9 +70,7 @@ O
 web/src/store/modules/report.js,9/f/9f27436b9f39da9862837b771f9534b0ddd6176a
 R
 "web/src/mocks/mockLayoutSaved.json,a/2/a2c1d8cef0c52af140c01f2f751591f7e3d14a14
-Q
-!web/src/router/views/Register.vue,6/a/6a7bd0020e755a6d5dc2682fa157c1a1458fce10
-N
-web/src/service/authService.js,d/2/d2f82c3704c2bd044a7b910f5790071fb94a6032
 c
 3web/src/components/apparatus/NotificationsAlert.vue,b/1/b17fd388da2f4e55925eaf26c9c5a47d7abdc0d4
+C
+bulletin599/asgi.py,9/0/909edd776d82c5e4abb8beeafa92647e40021e1f
