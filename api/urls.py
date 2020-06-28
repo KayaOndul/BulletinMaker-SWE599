@@ -16,6 +16,7 @@ urlpatterns = [
             path('', views.UserViews.getAll),
             path(r'<str:username>/', views.UserViews.user),
         ])),
+        path('like/',views.LikeViews.like_detail),
         path('reports/', include([
             path('', views.ReportViews.create_report),
             path('all/', views.ReportViews.get_reports),

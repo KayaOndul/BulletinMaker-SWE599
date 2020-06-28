@@ -56,7 +56,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'is_staff', 'bio', 'friends', 'user_reports','id')
+        fields = ('username', 'email', 'is_staff', 'bio', 'friends', 'user_reports', 'id')
 
     def __str__(self):
         return self.username
@@ -101,6 +101,12 @@ class UserCreateSerializer(serializers.ModelSerializer):
         instance.password = validated_data.get('password', make_password(instance.password, hasher='pbkdf2_sha256'))
         instance.save()
         return instance
+
+
+class LikeSerializer(serializers.Serializer):
+    model = serializers.CharField(required=True)
+    id = serializers.CharField(required=False)
+    name = serializers.CharField(required=False)
 
 
 class FileSerializer(serializers.ModelSerializer):

@@ -1,65 +1,49 @@
 <template>
 
 
-            <div >
-                <layout>
+    <div>
+        <layout>
 
 
-                <v-card class="my-4"
+            <v-card class="my-4"
 
-                        color="primary"
-                        dark
-                >
-                    <div class="d-flex flex-no-wrap justify-space-between ">
-                        <v-card-title class="headline">Profile</v-card-title>
+                    color="primary"
+                    dark
+            >
+                <div class="d-flex flex-no-wrap justify-space-between ">
+                    <v-card-title class="headline">Profile</v-card-title>
 
 
-                    </div>
-
-                </v-card>
-                <UserCard/>
-                <v-spacer class="pa-3"/>
-                <div class="d-flex justify-space-between mb-12">
                 </div>
-                <v-spacer class="pa-3"/>
-                <div class="d-flex justify-space-between">
-                    <UserFollowedUsers/>
-                </div>
-                <v-spacer class="pa-3"/>
-                <div class="d-flex justify-space-between">
-                </div>
-                <v-spacer class="pa-3"/>
-                <div class="d-flex justify-space-between">
-                </div>
-                <v-spacer class="pa-3"/>
-                <div class="d-flex justify-space-between">
-                </div>
-                <v-spacer class="pa-3"/>
+
+            </v-card>
+            <UserCard/>
+            <v-spacer class="pa-3"/>
+            <div class="d-flex justify-space-between mb-12">
+            </div>
+            <v-spacer class="pa-3"/>
+
         </layout>
 
-            </div>
-
+    </div>
 
 
 </template>
 
 <script>
     import layout from "../layouts/layout";
-    import store from "../../store/store";
     import UserCard from "@/components/User/UserCard";
-    import UserFollowedUsers from "@/components/User/UserFollowedUsers";
+
     export default {
         name: 'Profile',
         data() {
-            return {
-
-            }
+            return {}
         },
-        components: { UserCard, UserFollowedUsers,layout},
+        components: {UserCard, layout},
         computed: {},
 
         watch: {
-            $route(){
+            $route() {
                 this.getUserDetails()
             }
         },
@@ -73,16 +57,11 @@
             getUserDetails() {
 
 
-
-
             }
         }
         ,
         beforeDestroy() {
-            store.commit('wiki/reset')
-            store.commit('postStore/resetState')
-            store.commit('postTypeStore/resetState')
-            store.commit('communityStore/resetState')
+
         }
 
 

@@ -14,7 +14,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from api.models import Report, User
 from api.serializers import UserSerializer, UserCreateSerializer, CreateReportSerializer, \
-    FileSerializer, PatchReportSerializer, ReportSerializer, UserSerializerForSubsciberList, SearchSerializer
+    FileSerializer, PatchReportSerializer, ReportSerializer, UserSerializerForSubsciberList, SearchSerializer, \
+    LikeSerializer
 from api.service.services import UserService, ReportService
 
 
@@ -177,3 +178,28 @@ class FileUploadView(APIView):
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LikeViews:
+    @api_view(["POST"])
+    def like_detail(self):
+        user = self.user
+        serializer = LikeSerializer(data=self.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if serializer.data['model'] == 'report':
+            report = Report.objects.get(id=serializer.data['id'])
+            if user in report.subscribers:
+                report.subscribers.remove(user)
+            else:
+                report.subscribers.add(user)
+        elif serializer.data['model'] == 'user':
+            friended_user = User.objects.get(username=serializer.data['name'])
+            if User.objects.filter(friends__username__contains=friended_user.username):
+                self.user.friends.remove(friended_user)
+                res = {'detail': 'Removed ' + friended_user.username + ' from followed users'}
+                return response.Response(res, status=status.HTTP_200_OK)
+            else:
+                self.user.friends.add(friended_user)
+                res = {'detail': 'Added ' + friended_user.username + ' to followed users'}
+                return response.Response(res, status=status.HTTP_200_OK)

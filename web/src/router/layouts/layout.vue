@@ -58,7 +58,7 @@
                     <v-list-item>
                         <click-icon :note="'Dashboard'"
                                     :icon="'mdi-home'"
-                                    :route="{name:'Profile'}"/>
+                                    :route="{name:'MyReport'}"/>
 
                     </v-list-item>
 
