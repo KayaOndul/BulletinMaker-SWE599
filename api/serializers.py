@@ -4,6 +4,7 @@ from rest_framework import serializers
 from api.models import User, Report, File, ReportSubscription
 
 
+# used when report created
 class CreateReportSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField()
 
@@ -13,8 +14,10 @@ class CreateReportSerializer(serializers.ModelSerializer):
         fields = ('id', 'owner')
 
 
+# used for to save report on frontend
 class PatchReportSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField(required=False)
+    subscribers = serializers.StringRelatedField(many=True, required=False)
 
     class Meta:
         model = Report
@@ -29,15 +32,6 @@ class UserSerializerForSubsciberList(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username',)
-
-
-class ReportSubscriptionSerializer(serializers.ModelSerializer):
-    report = serializers.StringRelatedField()
-    person = serializers.StringRelatedField()
-
-    class Meta:
-        model = ReportSubscription
-        fields = ('report', 'person',)
 
 
 class ReportSerializer(serializers.ModelSerializer):

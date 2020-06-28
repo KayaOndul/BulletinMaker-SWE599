@@ -4,9 +4,10 @@
 
 
             <v-tabs class="mt-2">
-                <v-tab v-if="isLoggedIn" default :to="{name:'Welcome'}">My Reports</v-tab>
+                 <v-tab :to="{name:'MyFresh'}">Fresh from Site</v-tab>
+                <v-tab v-if="isLoggedIn" default :to="{name:'MyReport'}">My Reports</v-tab>
                 <v-tab v-if="isLoggedIn" :to="{name:'MyFollow'}">Followed Reports</v-tab>
-                <v-tab :to="{name:'MyFresh'}">Fresh from Site</v-tab>
+
             </v-tabs>
 
 
@@ -28,7 +29,9 @@
     export default {
         name: 'Welcome',
         components: {Layout},
-        data: () => ({}),
+        data: () => ({
+
+        }),
         created() {
 
         },

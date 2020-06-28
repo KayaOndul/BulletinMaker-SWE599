@@ -15,8 +15,8 @@ export default [
         path: '/',
         children:[
             {
-                name:'Welcome',
-                path:'',
+                name:'MyReport',
+                path:'myreport',
                 component:MyReports
 
             },
@@ -28,7 +28,7 @@ export default [
             },
             {
                 name:'MyFresh',
-                path:'fresh',
+                path:'',
                 component:MyFresh,
 
             }
@@ -63,6 +63,6 @@ export default [
     },
 
 
-    {path: '*', redirect: "/"}
+    {path: '*', component: Welcome}
 
 ]

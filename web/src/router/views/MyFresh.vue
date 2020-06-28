@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <v-container class="d-flex flex-wrap mt-12">
+    <div class="d-flex flex-wrap mt-12">
+
 
             <v-card v-for="(card,index) in reports" :key="index" width="30vh" class=" mx-auto my-6"
 
@@ -22,6 +22,7 @@
 
 
                 >
+
                     <template v-slot:placeholder>
                         <v-row
                                 class="fill-height ma-0"
@@ -34,10 +35,19 @@
                     </template>
 
                 </v-img>
-
+                <div v-if="isLoggedIn" class="d-flex justify-end">
+                    <v-tooltip bottom light class=" teal primary--text">
+                        <template v-slot:activator="{ on }">
+                            <v-btn @click="deleteItem(card.id)" icon v-on="on">
+                                <v-icon color="red">mdi-heart</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>Follow Report</span>
+                    </v-tooltip>
+                </div>
                 <v-card-actions class="d-flex flex-row  flex-wrap">
 
-                    <v-card-subtitle class="text-left">Subscribers:</v-card-subtitle>
+                    <v-card-subtitle v-if="card.subscribers.length>0" class="text-left">Subscribers:</v-card-subtitle>
                     <div v-for="(person,idx) in card.subscribers" :key="idx">
                         <v-tooltip bottom light class=" teal primary--text">
                             <template v-slot:activator="{ on }">
@@ -56,13 +66,17 @@
 
 
             </v-card>
-        </v-container>
+            <div v-if="reports&&reports.length<1">
+                <v-card-title class="red--text display-2">Nothing Here!</v-card-title>
+            </div>
+
     </div>
 </template>
 <script>
     import store from "../../store/store";
     import router from "../router";
     import reportService from "../../service/reportService";
+    import {mapGetters} from 'vuex'
 
     export default {
         name: 'MyFresh',
@@ -76,7 +90,7 @@
         },
         watch: {},
         computed: {
-
+            ...mapGetters('auth', ['isLoggedIn']),
             reports: function () {
                 return store.state.report.reports ? store.state.report.reports : []
             }

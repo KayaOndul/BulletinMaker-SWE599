@@ -1,8 +1,10 @@
+import json
+
 from django.contrib.auth import logout, authenticate
 from django.http import JsonResponse
 from rest_framework import status, permissions, response
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.parsers import FileUploadParser, JSONParser
+from rest_framework.parsers import FileUploadParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -97,9 +99,9 @@ class ReportViews:
 
             serializer = PatchReportSerializer(data=self.data)
             if serializer.is_valid():
-                ReportService.patch_report(serializer, id,report.owner)
-                report=Report.objects.get(id=id)
-                serializer=CreateReportSerializer(report)
+                ReportService.patch_report(serializer, id, report.owner)
+                report = Report.objects.get(id=id)
+                serializer = CreateReportSerializer(report)
                 return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
             return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
         if self.method == "GET":
@@ -125,7 +127,8 @@ class ReportViews:
             return JsonResponse(report.data, status=status.HTTP_201_CREATED, safe=False)
 
     def get_reports(self):
-        reports = Report.objects.filter(layout__isnull=False)
+        username=self.user
+        reports = Report.objects.exclude(layout__isnull=True,subscribers__username=username)
         serializer = ReportSerializer(reports, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
@@ -134,6 +137,13 @@ class ReportViews:
     def report_list_via_username(self, user):
         key = User.objects.get(username=user)
         reports = Report.objects.filter(owner=key,layout__isnull=False)
+        serializer = ReportSerializer(reports, many=True)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
+
+    @api_view(["GET"])
+    @permission_classes([AllowAny])
+    def get_subscriptions_via_username(self,user):
+        reports=Report.objects.filter(subscribers__username=user)
         serializer = ReportSerializer(reports, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 

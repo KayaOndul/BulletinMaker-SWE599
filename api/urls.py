@@ -19,6 +19,7 @@ urlpatterns = [
         path('reports/', include([
             path('', views.ReportViews.create_report),
             path('all/', views.ReportViews.get_reports),
+            path('subs/<user>', views.ReportViews.get_subscriptions_via_username),
             re_path(r'^(?P<user>.*)/$', views.ReportViews.report_list_via_username, name="get_with_params"),
             path('<id>', views.ReportViews.report_detail)
         ])),

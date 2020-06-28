@@ -55,6 +55,9 @@
 
 
             </v-card>
+            <div v-if="reports&&reports.length<1">
+                <v-card-title class="red--text display-2">Nothing Here!</v-card-title>
+            </div>
         </v-container>
     </div>
 </template>
@@ -91,8 +94,8 @@
 
             },
             getReports() {
-
-                reportService.GET_ALL_REPORTS()
+                const user = store.state.auth.username
+                reportService.GET_SUBSCRIBED_REPORTS({user})
             },
             pushHandlerCommunity(name) {
                 this.$router.push(`/Community/${name}`)

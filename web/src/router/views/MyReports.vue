@@ -1,8 +1,6 @@
 <template>
-    <div>
+   <div class="d-flex flex-wrap mt-12">
 
-
-        <v-container class="d-flex flex-wrap mt-12">
 
 
             <v-card v-for="(card,index) in reports" :key="index" width="30vh" class=" mx-auto my-6"
@@ -68,7 +66,10 @@
 
 
             </v-card>
-        </v-container>
+                <div v-if="!reports===true">
+                <v-card-title class="red--text display-2">Nothing Here!</v-card-title>
+            </div>
+
     </div>
 </template>
 <script>
@@ -104,8 +105,8 @@
 
             },
             getReports() {
-
-                reportService.GET_ALL_REPORTS()
+                const user=store.state.auth.username
+                reportService.GET_ALL_REPORTS_VIA_USERNAME({user})
             },
             deleteItem(id){
                 reportService.DELETE_REPORT({id})
