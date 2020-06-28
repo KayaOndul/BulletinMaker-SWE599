@@ -70,3 +70,7 @@ O
 web/src/store/modules/report.js,9/f/9f27436b9f39da9862837b771f9534b0ddd6176a
 R
 "web/src/mocks/mockLayoutSaved.json,a/2/a2c1d8cef0c52af140c01f2f751591f7e3d14a14
+c
+3web/src/components/apparatus/NotificationsAlert.vue,b/1/b17fd388da2f4e55925eaf26c9c5a47d7abdc0d4
+C
+bulletin599/asgi.py,9/0/909edd776d82c5e4abb8beeafa92647e40021e1f
