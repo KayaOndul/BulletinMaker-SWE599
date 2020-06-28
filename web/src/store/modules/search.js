@@ -30,6 +30,7 @@ const getters = {
                     name: e.username,
                     id: e.id,
                     category: 'User',
+                    component:'Profile'
 
                 }
             }) : []
@@ -38,6 +39,7 @@ const getters = {
                     name: e.title,
                     id: e.id,
                     category: 'Report',
+                    component:'Report'
 
                 }
             }) : []

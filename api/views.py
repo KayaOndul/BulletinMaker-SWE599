@@ -158,7 +158,7 @@ class SearchViews(RetrieveAPIView):
     @permission_classes([AllowAny])
     def search(self):
         keyword = self.data['keyword']
-        users = User.objects.filter(username=keyword)
+        users = User.objects.filter(username__icontains=keyword)
         reports = Report.objects.filter(title__icontains=keyword)
         data = {'users': users, 'reports': reports}
         serializer = SearchSerializer(data)

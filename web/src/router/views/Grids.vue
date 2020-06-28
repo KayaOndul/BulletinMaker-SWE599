@@ -184,18 +184,27 @@
             }
         },
         watch: {
+
             report(newVal) {
+
+                if (newVal.length < 1) {
+                    this.clean()
+                }
                 if (newVal.layout) {
+                    this.clean()
                     this.layout = newVal.layout
                     this.title = newVal.title
                 }
 
             }
+
+
         },
 
         methods: {
-            colorHandler() {
-                return this.savedReport === false ? 'teal red--text' : 'red red--text'
+            clean() {
+                this.layout = mockLayout.slice(0)
+                this.title = []
             },
             addPane(index) {
 
@@ -289,7 +298,7 @@
                 const id = this.$route.params.id
 
                 reportService.DELETE_REPORT({id})
-                    .then(() => router.push({name: 'Welcome'}))
+                    .then(() => router.push({name: 'MyReport'}))
             },
         },
         beforeRouteEnter(to, from, next) {

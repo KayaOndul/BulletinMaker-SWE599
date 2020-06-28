@@ -38,6 +38,7 @@
     import layout from '../layouts/layout'
     import {mapGetters} from 'vuex'
     import searchService from "../../service/searchService";
+    import router from "../router";
 
     export default {
         components: {layout},
@@ -93,9 +94,16 @@
 
 
             clickHandler(item) {
-                console.log(item)
-
-                this.$router.push({name: item.component, params: {name: item.name}})
+                if(item.component==='Profile'){
+                    router.push({name:'Profile',params:{
+                            username:item.name
+                        }})
+                }
+                else if (item.component==='Report'){
+                    router.push({name:'report',params:{
+                            id:item.id
+                        }})
+                }
             }
 
 

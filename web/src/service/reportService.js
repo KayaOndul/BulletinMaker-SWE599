@@ -1,6 +1,7 @@
 import Constants from "./Constants";
 import helpers from "./helpers";
 import store from "../store/store";
+import router from "../router/router";
 
 let http = helpers.putToken()
 
@@ -16,7 +17,7 @@ export default {
         }).then(
             res => {
                 const id = idStored
-                if (id&&!store.state.report.report.layout) {
+                if (id && !store.state.report.report.layout) {
                     this.DELETE_REPORT({id})
                 }
                 store.commit('report/setReportNumber', res.data)
@@ -123,6 +124,7 @@ export default {
             .catch(err => {
                 const error = err.response.data.error
                 store.commit('global/set_alert', `${err.response.status} ${error}`)
+                router.push({name: 'MyReport'})
             }).finally(() => {
                 store.commit('global/set_loading', false)
             })
