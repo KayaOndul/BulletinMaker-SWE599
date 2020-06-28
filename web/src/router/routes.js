@@ -7,7 +7,7 @@ import Profile from "@/router/views/Profile";
 import MyFollow from "./views/MyFollow";
 import MyFresh from "./views/MyFresh"
 import MyReports from "./views/MyReports"
-
+import ChangePass from "./views/ChangePass"
 export default [
 
     {
@@ -60,6 +60,11 @@ export default [
         name: 'Register',
         path: '/Register',
         component: Register
+    },
+    {
+        name: 'ChangePassword',
+        path: '/passwordChange',
+        component: ChangePass
     },
 
 

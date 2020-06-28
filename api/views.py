@@ -126,9 +126,15 @@ class ReportViews:
             report = ReportService.create_report(serializer, user=self.user)
             return JsonResponse(report.data, status=status.HTTP_201_CREATED, safe=False)
 
+    @api_view(["GET"])
+    @permission_classes([AllowAny])
     def get_reports(self):
-        username=self.user
-        reports = Report.objects.exclude(username=username).filter(layout__isnull=False)
+        user = self.user
+        reports = []
+        if user.username == '':
+            reports = Report.objects.filter(layout__isnull=False)
+        else:
+            reports = Report.objects.exclude(owner=user).filter(layout__isnull=False)
         serializer = ReportSerializer(reports, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
@@ -136,14 +142,14 @@ class ReportViews:
     @permission_classes([AllowAny])
     def report_list_via_username(self, user):
         key = User.objects.get(username=user)
-        reports = Report.objects.filter(owner=key,layout__isnull=False)
+        reports = Report.objects.filter(owner=key, layout__isnull=False)
         serializer = ReportSerializer(reports, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
     @api_view(["GET"])
     @permission_classes([AllowAny])
-    def get_subscriptions_via_username(self,user):
-        reports=Report.objects.filter(subscribers__username=user)
+    def get_subscriptions_via_username(self, user):
+        reports = Report.objects.filter(subscribers__username=user)
         serializer = ReportSerializer(reports, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
