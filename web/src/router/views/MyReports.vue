@@ -1,74 +1,75 @@
 <template>
-   <div class="d-flex flex-wrap mt-12">
+    <div class="d-flex flex-wrap mt-12">
 
 
+        <v-card v-for="(card,index) in reports" :key="index" width="30vh" class=" mx-auto my-6"
 
-            <v-card v-for="(card,index) in reports" :key="index" width="30vh" class=" mx-auto my-6"
+
+        >
+            <div @click="goToReport(card.id)"
+                 class="d-flex clickable justify-space-between elevation-9 primary pa-3">
+                <v-card-text class="d-inline-block text-wrap  white--text font-weight-bold "
+                             v-text="`${card.title?card.title:'Unnamed Report'} `"/>
+            </div>
+            <v-img
+                    @click="goToReport(card.id)"
+                    :src="'https://picsum.photos/201'"
+
+                    position="center"
+                    class="clickable white--text mx-auto"
+                    gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
 
 
             >
-                <div @click="goToReport(card.id)"
-                     class="d-flex clickable justify-space-between elevation-9 primary pa-3">
-                    <v-card-text class="d-inline-block text-wrap  white--text font-weight-bold "
-                                 v-text="`${card.title?card.title:'Unnamed Report'} by ${card.owner}`"/>
+                <template v-slot:placeholder>
+                    <v-row
+                            class="fill-height ma-0"
+                            align="center"
+                            justify="center"
+                    >
+                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                    </v-row>
 
-                </div>
-                <v-img
-                        @click="goToReport(card.id)"
-                        :src="'https://picsum.photos/201'"
+                </template>
 
-                        position="center"
-                        class="clickable white--text mx-auto"
-                        gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            </v-img>
+            <div class="d-flex justify-end">
+                  <v-card-text class=" black--text text-left  "
+                >by <span @click="goToProfile(card.owner)" class="clickable">{{card.owner}}</span></v-card-text>
 
-
-                >
-                    <template v-slot:placeholder>
-                        <v-row
-                                class="fill-height ma-0"
-                                align="center"
-                                justify="center"
-                        >
-                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                        </v-row>
-
+                <v-tooltip bottom light class=" teal primary--text">
+                    <template v-slot:activator="{ on }">
+                        <v-btn @click="deleteItem(card.id)" icon v-on="on">
+                            <v-icon>mdi-trash-can-outline</v-icon>
+                        </v-btn>
                     </template>
+                    <span>Delete Report</span>
+                </v-tooltip>
+            </div>
+            <v-card-actions class="d-flex flex-row  flex-wrap">
 
-                </v-img>
-                <div class="d-flex justify-end">
+                <v-card-subtitle class="text-left">Subscribers:</v-card-subtitle>
+                <div v-for="(person,idx) in card.subscribers" :key="idx">
                     <v-tooltip bottom light class=" teal primary--text">
                         <template v-slot:activator="{ on }">
-                            <v-btn @click="deleteItem(card.id)" icon v-on="on">
-                                <v-icon>mdi-trash-can-outline</v-icon>
-                            </v-btn>
+                            <v-avatar @click="goToProfile(person.username)"
+                                      size="3vh" v-on="on" class="clickable  primary mx-1">
+                                <span class="white--text caption">{{person.username[0].toUpperCase()}}</span>
+                            </v-avatar>
                         </template>
-                        <span>Delete Report</span>
+                        <span>{{person.username}}</span>
                     </v-tooltip>
+
                 </div>
-                <v-card-actions class="d-flex flex-row  flex-wrap">
 
 
-                    <div v-for="(person,idx) in card.subscribers" :key="idx">
-                        <v-tooltip bottom light class=" teal primary--text">
-                            <template v-slot:activator="{ on }">
-                                <v-avatar @click="goToProfile(person.username)"
-                                          size="3vh" v-on="on" class="clickable  primary mx-1">
-                                    <span class="white--text caption">{{person.username[0].toUpperCase()}}</span>
-                                </v-avatar>
-                            </template>
-                            <span>{{person.username}}</span>
-                        </v-tooltip>
-
-                    </div>
+            </v-card-actions>
 
 
-                </v-card-actions>
-
-
-            </v-card>
-                <div v-if="!reports===true">
-                <v-card-title class="red--text display-2">Nothing Here!</v-card-title>
-            </div>
+        </v-card>
+        <div v-if="!reports===true">
+            <v-card-title class="red--text display-2">Nothing Here!</v-card-title>
+        </div>
 
     </div>
 </template>
@@ -105,12 +106,12 @@
 
             },
             getReports() {
-                const user=store.state.auth.username
+                const user = store.state.auth.username
                 reportService.GET_ALL_REPORTS_VIA_USERNAME({user})
             },
-            deleteItem(id){
+            deleteItem(id) {
                 reportService.DELETE_REPORT({id})
-                .then(()=>this.getReports())
+                    .then(() => this.getReports())
 
 
             }

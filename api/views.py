@@ -128,7 +128,7 @@ class ReportViews:
 
     def get_reports(self):
         username=self.user
-        reports = Report.objects.exclude(layout__isnull=True,subscribers__username=username)
+        reports = Report.objects.exclude(username=username).filter(layout__isnull=False)
         serializer = ReportSerializer(reports, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 

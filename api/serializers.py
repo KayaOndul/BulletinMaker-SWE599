@@ -21,7 +21,7 @@ class PatchReportSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Report
-        fields = ('id', 'title', 'layout', 'owner')
+        fields = ('id', 'title', 'layout', 'owner','subscribers')
 
     def get_validation_exclusions(self):
         exclusions = super(PatchReportSerializer, self).get_validation_exclusions()

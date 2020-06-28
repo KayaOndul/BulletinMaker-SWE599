@@ -155,7 +155,7 @@
             },
 
             goHome() {
-                router.push({name: 'Welcome'})
+                router.push({name: 'MyFresh'})
             }
         },
         components: { ClickIcon, NotificationsAlert,GoTop}

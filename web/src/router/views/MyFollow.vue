@@ -8,7 +8,7 @@
                 <div @click="goToReport(card.id)"
                      class="d-flex clickable justify-space-between elevation-9 primary pa-3">
                     <v-card-text class="d-inline-block text-wrap  white--text font-weight-bold "
-                                 v-text="`${card.title?card.title:'Unnamed Report'} by ${card.owner}`"/>
+                                 v-text="`${card.title?card.title:'Unnamed Report'} `"/>
 
                 </div>
                 <v-img
@@ -35,6 +35,8 @@
                 </v-img>
 
                 <v-card-actions class="d-flex flex-row  flex-wrap">
+                    <v-card-text class=" black--text text-left  "
+                    >by <span @click="goToProfile(card.owner)" class="clickable">{{card.owner}}</span></v-card-text>
 
                     <v-card-subtitle class="text-left">Subscribers:</v-card-subtitle>
                     <div v-for="(person,idx) in card.subscribers" :key="idx">
