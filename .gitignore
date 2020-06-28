@@ -1,6 +1,9 @@
 /api/migrations/
 /venv/
+__pycache__/
+*.py[cod]
 **/__pycache__/**
+/__pycache__/
 /venv/
 
 /media/

@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0aabf98-86c5-4ac6-a70c-c58ed13c7bad" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bulletin599/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bulletin599/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/components/panes/Editor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/panes/Editor.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/components/panes/SelectChartButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/panes/SelectChartButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/mocks/mockLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/mocks/mockLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/router/views/Grids.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router/views/Grids.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/service/Constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/service/Constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/service/uploadService.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +27,12 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="ProjectId" id="1da8jjcEqVBA4WVHXnBkRu4a0Lu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -165,10 +162,10 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="591" y="386" width="727" height="434" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592954656697" />
-    <state x="100" y="100" width="1720" height="1000" key="DiffContextDialog" timestamp="1593189918285">
+    <state x="100" y="100" width="1720" height="1000" key="DiffContextDialog" timestamp="1593302401943">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="100" y="100" width="1720" height="1000" key="DiffContextDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593189918285" />
+    <state x="100" y="100" width="1720" height="1000" key="DiffContextDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593302401943" />
     <state x="690" y="301" width="530" height="605" key="FileChooserDialogImpl" timestamp="1592916019647">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
@@ -233,10 +230,10 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="580" y="283" width="759" height="634" key="find.popup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593193910031" />
-    <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup" timestamp="1593191220540">
+    <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup" timestamp="1593302439012">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593191220540" />
+    <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593302439012" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
