@@ -8,7 +8,7 @@
             <v-toolbar>
 
 
-                <v-toolbar-title style="cursor: pointer" @click="()=>this.$router.push({name:'Welcome'}) "
+                <v-toolbar-title style="cursor: pointer" @click="goHome"
                                  class="teal--text display-1  mr-3 font-weight-bold">Bulletin Maker
                 </v-toolbar-title>
                 <v-list-item style="max-width: 50%">
@@ -48,17 +48,10 @@
 
                     <v-list-item>
 
-                        <v-tooltip bottom light class="teal primary--text">
-                            <template v-slot:activator="{ on }">
-                                <v-btn icon v-on="on" class="display-2 teal--text">
-                                    <v-icon>
-                                        mdi-plus
-                                    </v-icon>
-                                </v-btn>
-                            </template>
-                            <span class=" white--text">{{'Save Layout'}}</span>
-                        </v-tooltip>
 
+                        <click-icon :note="'Create New Report'"
+                                    :icon="'mdi-plus'"
+                        />
                     </v-list-item>
 
 
@@ -78,7 +71,7 @@
                     </v-list-item>
                     <v-list-item>
 
-                        <v-tooltip bottom light class=" white primary--text">
+                        <v-tooltip top light class="  primary--text">
                             <template v-slot:activator="{ on }">
                                 <v-list-item-avatar
                                         v-on="on">
@@ -182,6 +175,9 @@
             scrollFn: function () {
                 let diff = this.scrollHeight - window.pageYOffset;
                 this.isBackTopFooter = diff < (this.scrollIndentBackTop - 40 - 15);
+            },
+            goHome() {
+                router.push({name: 'Welcome'})
             }
         },
         components: {BackToTop, ClickIcon, NotificationsAlert}

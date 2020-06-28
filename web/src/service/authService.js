@@ -13,9 +13,11 @@ export default {
         return http.post(CONSTANTS.API + CONSTANTS.BACKEND_REGISTER, payload)
             .then(resp => {
                 store.commit('auth/auth_success', resp.data)
+                store.commit('global/set_alert', `Registered SuccessFully`)
                 helpers.setLocalStorage(resp.data)
             }).catch(err => {
-                store.dispatch('global/alertUser', err).then(err => err)
+                 const error = err.response.data.error
+                store.commit('global/set_alert', `${err.response.status} ${error}`)
             })
             .finally(()=>{
                 store.commit('global/set_loading',false)
@@ -27,9 +29,12 @@ export default {
         return http.post(CONSTANTS.API + CONSTANTS.BACKEND_LOGIN, payload)
             .then(resp => {
                 store.commit('auth/auth_success', resp.data)
+                  store.commit('global/set_alert', `Logged In`)
                 helpers.setLocalStorage(resp.data)
+
             }).catch(err => {
-                store.dispatch('global/alertUser', err).then(err => err)
+                 const error = err.response.data.error
+                store.commit('global/set_alert', `${err.response.status} ${error}`)
             })  .finally(()=>{
                 store.commit('global/set_loading',false)
             })

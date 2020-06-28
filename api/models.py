@@ -1,5 +1,3 @@
-from enum import Enum
-
 from django.contrib.auth.models import AbstractUser
 from django.contrib.postgres.fields import JSONField
 from django.db import models
@@ -19,25 +17,15 @@ class User(AbstractUser):
 
 
 class Report(models.Model):
-    title = models.CharField(max_length=50, unique=True, blank=False)
+    title = models.CharField(max_length=50, blank=True, null=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_reports')
+    layout = JSONField(blank=True, null=True)
     subscribers = models.ManyToManyField(
         User,
         through="ReportSubscription",
         related_name='report_members',
 
     )
-
-    def __str__(self):
-        return self.title
-
-
-class Pane(models.Model):
-    title = models.CharField(max_length=50, unique=True, blank=False)
-    parent_report = models.ForeignKey(Report, on_delete=models.CASCADE, related_name='report')
-    savedData = JSONField(blank=True, null=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    excluded_from = models.ForeignKey(User, on_delete=models.PROTECT, related_name='excluded_users')
 
     def __str__(self):
         return self.title

@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
 
 from api import views
@@ -17,9 +17,11 @@ urlpatterns = [
             path(r'<str:username>/', views.UserViews.user),
         ])),
         path('reports/', include([
-            path('', views.ReportViews.report_list),
+            path('',views.ReportViews.report_list),
+            re_path(r'^(?P<user>.*)/$', views.ReportViews.report_list_via_username,name="get_with_params"),
             path('<id>', views.ReportViews.report_detail)
         ])),
+        re_path(r'^search/(?P<user>.*)&&(?P<keyword>.*)/$', views.SearchViews.search)
 
     ]))
 

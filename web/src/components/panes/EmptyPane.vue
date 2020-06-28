@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <h3 class="primary--text">this is emptypane</h3>
+        <h3 class="accent--text">this is emptypane</h3>
         <v-spacer class="mt-4"/>
         <ul>
             <li>You can change the inside component by clicking wrench</li>

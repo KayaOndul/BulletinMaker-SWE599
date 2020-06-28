@@ -1,10 +1,27 @@
 <template>
     <div id="app">
         <v-spacer class="ma-12"/>
-        <v-toolbar class="ma-auto" style="width: 50%">
+
+        <v-toolbar class="ma-auto" style="width: 70%">
             <v-toolbar-title class="accent--text title  mr-3 font-weight-bold">Report Menu</v-toolbar-title>
-            <v-spacer/>
+
+
             <v-list-item-group>
+                <v-list-item>
+                    <v-text-field v-model="title"
+
+                                  :disabled="()=>{return this.isOwner===true}"
+                                  dense
+                                  class=" mt-2"
+                                  label="Report Title">
+
+                    </v-text-field>
+                </v-list-item>
+            </v-list-item-group>
+            <v-spacer/>
+            <v-list-item-group v-if="isOwner===true" class="d-flex text-no-wrap">
+                <v-spacer/>
+
                 <v-list-item v-if="this.layout.length<1">
                     <v-tooltip bottom light class="teal primary--text">
                         <template v-slot:activator="{ on }">
@@ -14,12 +31,37 @@
                         </template>
                         <span>Add Pane</span>
                     </v-tooltip>
-
-
+                </v-list-item>
+                <v-list-item>
+                    <v-tooltip bottom light>
+                        <template v-slot:activator="{ on }">
+                            <v-btn @click="deleteLayout" icon v-on="on"
+                                   class="colorHandler">
+                                <v-icon>
+                                    mdi-trash-can-outline
+                                </v-icon>
+                            </v-btn>
+                        </template>
+                        <span>Delete Layout</span>
+                    </v-tooltip>
+                </v-list-item>
+                <v-list-item>
+                    <v-tooltip bottom light>
+                        <template v-slot:activator="{ on }">
+                            <v-btn @click="saveLayout" icon v-on="on"
+                                   class="colorHandler">
+                                <v-icon>
+                                    mdi-content-save
+                                </v-icon>
+                            </v-btn>
+                        </template>
+                        <span>Save Layout</span>
+                    </v-tooltip>
                 </v-list-item>
             </v-list-item-group>
 
         </v-toolbar>
+
 
         <grid-layout
                 :layout="layout"
@@ -36,7 +78,7 @@
         >
 
 
-            <grid-item v-for="item in layout" :key="item.i"
+            <grid-item v-for="(item) in layout" :key="item.i"
                        :x="item.x"
                        :y="item.y"
                        :w="item.w"
@@ -46,7 +88,7 @@
 
             >
 
-                <div class="d-flex justify-content-end align-content-end">
+                <div v-if="isOwner==true" class="d-flex justify-content-end align-content-end">
                     <v-btn icon @click="()=>addPane(item.i)">
                         <v-icon>mdi-plus</v-icon>
                     </v-btn>
@@ -69,9 +111,12 @@
                                :chartLabels="item.chartLabels" :chartData="item.chartData"
                     ></component>
                     <component class="wrapper chartComponent px-3 " style="padding-bottom: 1vh"
-                               v-else-if="item.isComponent===true"
+                               v-else
+                               :grid-index="item.i"
+                               :received-content="item.data"
+                               @changed="changeHandler"
                                :is="item.component"
-                               v-model="layout.filter(e=>e.i===item.i)[0].value"
+
 
                     ></component>
 
@@ -92,6 +137,7 @@
 <script>
 
     import {GridItem, GridLayout} from 'vue-grid-layout'
+    import _ from 'lodash'
     import LineComponent from "@/components/panes/LineComponent";
     import BarComponent from "@/components/panes/BarComponent";
     import EmptyPane from "@/components/panes/EmptyPane"
@@ -99,6 +145,8 @@
     import Editor from "../../components/panes/Editor"
     import SelectChartButton from "@/components/panes/SelectChartButton";
     import Constants from '../../assets/constants'
+    import reportService from "../../service/reportService";
+    import store from "../../store/store";
 
     export default {
         name: 'Grids',
@@ -108,6 +156,7 @@
         ,
         data() {
             return {
+                title: '',
                 layout: [],
                 checkBoxLineChart: false,
                 checkBoxBarChart: false,
@@ -116,12 +165,37 @@
 
         },
         mounted() {
+            // this.layout=mockLayoutSaved
             this.layout = mockLayout.slice(0)
         },
+        computed: {
+            isOwner() {
+                return store.state.auth.username === store.state.report.report.owner
+            },
+            report() {
+                return store.state.report.report ? store.state.report.report : []
+            },
+            savedReport() {
+                const storedReport = store.state.report.report ? store.state.report.report : []
+                const layout = this.layout
+                const title = this.title
+                return _.isEqual(layout, storedReport.layout) && _.isEqual(title, storedReport.title)
+            }
+        },
+        watch: {
+            report(newVal) {
+                if (newVal) {
+                    this.layout = newVal.layout
+                    this.title = newVal.title
+                }
 
+            }
+        },
 
         methods: {
-
+            colorHandler() {
+                return this.savedReport === false ? 'teal red--text' : 'red red--text'
+            },
             addPane(index) {
 
                 //Find the referenced pane
@@ -159,10 +233,9 @@
             removePane(index) {
                 this.layout = this.layout.filter(e => e.i !== index)
             },
-            addEmptyPane(){
+            addEmptyPane() {
                 this.layout.push(mockLayout[0])
             },
-
             changeChartHandler(payload) {
                 console.log(payload)
                 let lay = Object.assign([], this.layout);
@@ -200,7 +273,32 @@
                 this.layout = lay
             },
 
+            changeHandler(val) {
+                this.layout.filter(e => e.i === val.iAm)[0].data = val.newVal
 
+            },
+            saveLayout() {
+                const layout = this.layout
+                const title = this.title ? this.title : store.state.report.report.title ? store.state.report.report.title : ''
+
+                const id = this.$route.params.id
+                const payload = {layout, title, id}
+                reportService.PATCH_REPORT(payload)
+            },
+            deleteLayout() {
+                const id = this.$route.params.id
+
+                reportService.DELETE_REPORT({id})
+            },
+        },
+        beforeRouteEnter(to, from, next) {
+            const id = to.params.id
+            reportService.GET_REPORT({id})
+            next()
+        },
+        beforeRouteLeave(to, from, next) {
+            store.commit('report/resetState')
+            next()
         }
     }
 
