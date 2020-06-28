@@ -37,15 +37,24 @@
                     </template>
 
                 </v-img>
-
+                <div class="d-flex justify-end">
+                    <v-tooltip bottom light class=" teal primary--text">
+                        <template v-slot:activator="{ on }">
+                            <v-btn @click="deleteItem(card.id)" icon v-on="on">
+                                <v-icon>mdi-trash-can-outline</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>Delete Report</span>
+                    </v-tooltip>
+                </div>
                 <v-card-actions class="d-flex flex-row  flex-wrap">
 
-                    <v-card-subtitle class="text-left">Subscribers:</v-card-subtitle>
+
                     <div v-for="(person,idx) in card.subscribers" :key="idx">
                         <v-tooltip bottom light class=" teal primary--text">
                             <template v-slot:activator="{ on }">
                                 <v-avatar @click="goToProfile(person.username)"
-                                          size="3vh" v-on="on" class="clickable  accent mx-1">
+                                          size="3vh" v-on="on" class="clickable  primary mx-1">
                                     <span class="white--text caption">{{person.username[0].toUpperCase()}}</span>
                                 </v-avatar>
                             </template>
@@ -98,10 +107,10 @@
 
                 reportService.GET_ALL_REPORTS()
             },
-            pushHandlerCommunity(name) {
-                this.$router.push(`/Community/${name}`)
-            },
-            randomColor() {
+            deleteItem(id){
+                reportService.DELETE_REPORT({id})
+                .then(()=>this.getReports())
+
 
             }
 

@@ -93,7 +93,6 @@ export default {
         }).then(
             res => {
                 store.commit('global/set_alert', `${res.status}  ${res.statusText}`)
-                store.commit('report/setReport', res.data)
                 router.push({name: 'Welcome'})
             }
         )
