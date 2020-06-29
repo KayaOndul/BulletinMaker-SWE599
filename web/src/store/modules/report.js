@@ -16,7 +16,7 @@ const mutations = {
         state.reports = payload
     },
     setReport(state, payload) {
-        state.report = payload
+        state.report = {...payload, title: payload.title==='[]' ? '' : payload.title}
     },
     setReportNumber(state, payload) {
         state.reportNumber = payload.id

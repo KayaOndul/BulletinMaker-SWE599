@@ -150,7 +150,6 @@
 <script>
     import layout from "../layouts/layout";
     import {GridItem, GridLayout} from 'vue-grid-layout'
-    import _ from 'lodash'
     import LineComponent from "@/components/panes/LineComponent";
     import BarComponent from "@/components/panes/BarComponent";
     import EmptyPane from "@/components/panes/EmptyPane"
@@ -196,12 +195,7 @@
             report() {
                 return store.state.report.report ? store.state.report.report : []
             },
-            savedReport() {
-                const storedReport = store.state.report.report ? store.state.report.report : []
-                const layout = this.layout
-                const title = this.title
-                return _.isEqual(layout, storedReport.layout) && _.isEqual(title, storedReport.title)
-            }
+
         },
         watch: {
 

@@ -42,7 +42,7 @@ export default {
             data: payload
         }).then(
             res => {
-                store.commit('global/set_alert', `${res.status}  ${res.statusText}`)
+                store.commit('global/set_alert', `Report ${payload.id} saved to database`)
                 store.commit('report/setReport', res.data)
             }
         )
@@ -60,7 +60,6 @@ export default {
             method: "GET",
         }).then(
             res => {
-                store.commit('global/set_alert', `${res.status}  ${res.statusText}`)
                 store.commit('report/setReports', res.data)
             }
         )
@@ -79,7 +78,6 @@ export default {
             method: "GET",
         }).then(
             res => {
-                store.commit('global/set_alert', `${res.status}  ${res.statusText}`)
                 store.commit('report/setReports', res.data)
             }
         )
@@ -97,7 +95,6 @@ export default {
             method: "GET",
         }).then(
             res => {
-                store.commit('global/set_alert', `${res.status}  ${res.statusText}`)
                 store.commit('report/setReports', res.data)
             }
         )
@@ -117,7 +114,6 @@ export default {
             method: "GET",
         }).then(
             res => {
-                store.commit('global/set_alert', `${res.status}  ${res.statusText}`)
                 store.commit('report/setReport', res.data)
             }
         )
