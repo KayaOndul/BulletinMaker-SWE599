@@ -10,15 +10,18 @@ export default {
     CREATE_REPORT() {
         store.commit('global/set_loading', true)
         const idStored = store.state.report.report.id
+        const layout=store.state.report.report.layout
         store.commit('report/resetState',)
         return http({
             url: `${Constants.API}${Constants.BACKEND_REPORT_POST}`,
             method: "POST",
         }).then(
             res => {
-                const id = idStored
-                if (id && !store.state.report.report.layout) {
-                    this.DELETE_REPORT({id})
+                console.log(idStored)
+                console.log(store.state.report.report.layout)
+
+                if (idStored && !layout) {
+                    this.DELETE_REPORT({id: idStored})
                 }
                 store.commit('report/setReportNumber', res.data)
                 store.commit('report/setReport', res.data)

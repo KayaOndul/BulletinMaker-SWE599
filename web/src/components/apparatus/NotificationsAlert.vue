@@ -8,7 +8,7 @@
                  border="left"
                  elevation="2"
                  colored-border
-                 :icon="alert.includes('4')?'mdi-close':'mdi-check'"
+                 :icon="conditions.some(el=>alert.includes(el))?'mdi-close-outline':'mdi-check-outline'"
         >
             {{alert}}
 
