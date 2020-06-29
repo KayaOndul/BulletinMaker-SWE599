@@ -60,6 +60,18 @@
                         </v-tooltip>
                     </v-list-item>
                 </v-list-item-group>
+                <v-list-item-group v-if="!isOwner">
+                    <div v-if="isLoggedIn&&!isSubscriber" class="d-flex justify-end">
+                        <v-tooltip bottom light class=" teal primary--text">
+                            <template v-slot:activator="{ on }">
+                                <v-btn @click="likeReport(card.id)" icon v-on="on">
+                                    <v-icon color="red">mdi-heart</v-icon>
+                                </v-btn>
+                            </template>
+                            <span>Follow Report</span>
+                        </v-tooltip>
+                    </div>
+                </v-list-item-group>
 
             </v-toolbar>
 
@@ -149,6 +161,7 @@
     import reportService from "../../service/reportService";
     import store from "../../store/store";
     import router from "../router";
+    import {mapGetters} from 'vuex'
 
     const initState = () => {
         return {
@@ -170,6 +183,13 @@
             this.layout = mockLayout.slice(0)
         },
         computed: {
+            isSubscriber() {
+                const username = localStorage.getItem('username') ? localStorage.getItem('username'): ''
+
+                return !this.username ? true :
+                    this.report ? this.report.subscribers.filter(e => e.username = username).length > 0 : true
+            },
+            ...mapGetters('auth', ['isLoggedIn']),
             isOwner() {
                 return store.state.auth.username === store.state.report.report.owner
             },

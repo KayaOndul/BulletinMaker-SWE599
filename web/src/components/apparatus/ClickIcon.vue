@@ -46,6 +46,7 @@
                     authService.LOGOUT()
                     this.$store.commit('global/set_alert', 'Logged Out')
                     this.$store.commit('report/resetState')
+                    reportService.GET_ALL_REPORTS()
                     router.push({name: 'MyFresh'})
                 }
 

@@ -129,11 +129,11 @@ class ReportViews:
     @api_view(["GET"])
     @permission_classes([AllowAny])
     def get_reports(self):
-        user = User.objects.get(username=self.user.username)
         reports = []
-        if user.username == '':
+        if self.auth is None:
             reports = Report.objects.filter(layout__isnull=False)
         else:
+            user = self.user
             reports = Report.objects.exclude(subscribers=user).exclude(owner=user).filter(layout__isnull=False)
         serializer = ReportSerializer(reports, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)

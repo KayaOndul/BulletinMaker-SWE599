@@ -85,9 +85,7 @@
         created() {
 
         },
-        mounted() {
-            this.getReports()
-        },
+
         watch: {},
         computed: {
 
@@ -120,7 +118,12 @@
         },
         beforeDestroy() {
             store.commit('report/resetState');
-        }
+        },
+        beforeRouteEnter(to, from, next) {
+            const user = store.state.auth.username
+            reportService.GET_ALL_REPORTS_VIA_USERNAME({user})
+            next()
+        },
     }
 
 </script>

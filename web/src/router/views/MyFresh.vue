@@ -88,9 +88,7 @@
         created() {
 
         },
-        mounted() {
-            this.getReports()
-        },
+
         watch: {},
         computed: {
             ...mapGetters('auth', ['isLoggedIn']),
@@ -123,9 +121,13 @@
             },
             randomColor() {
 
-            }
+            },
 
 
+        },
+        beforeRouteEnter(to, from, next) {
+            reportService.GET_ALL_REPORTS()
+            next()
         },
         beforeDestroy() {
             store.commit('report/resetState');

@@ -86,9 +86,7 @@
         created() {
 
         },
-        mounted() {
-            this.getReports()
-        },
+
         watch: {},
         computed: {
             ...mapGetters('auth', ['isLoggedIn']),
@@ -127,7 +125,12 @@
         },
         beforeDestroy() {
             store.commit('report/resetState');
-        }
+        },
+        beforeRouteEnter(to, from, next) {
+            const user = store.state.auth.username
+            reportService.GET_SUBSCRIBED_REPORTS({user})
+            next()
+        },
     }
 
 </script>
