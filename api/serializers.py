@@ -1,3 +1,5 @@
+from abc import ABCMeta
+
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 
@@ -17,7 +19,7 @@ class CreateReportSerializer(serializers.ModelSerializer):
 class UserSerializerForSubsciberList(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username',)
+        fields = ('username', id)
 
 
 # used for to save report on frontend
@@ -65,6 +67,13 @@ class UserSerializer(serializers.ModelSerializer):
 class SearchSerializer(serializers.Serializer):
     users = UserSerializer(many=True)
     reports = ReportSerializer(many=True)
+
+
+class ProfileSerializer(serializers.Serializer):
+    followed_reports = ReportSerializerEssential(many=True)
+    authored_reports = ReportSerializerEssential(many=True)
+    followed_by = serializers.StringRelatedField(many=True)
+    followed_users = serializers.StringRelatedField(many=True)
 
 
 class UserCreateSerializer(serializers.ModelSerializer):

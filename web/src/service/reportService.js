@@ -22,7 +22,7 @@ export default {
                 }
                 store.commit('report/setReportNumber', res.data)
                 store.commit('report/setReport', res.data)
-                store.commit('global/set_alert', `${res.status} ${res.statusText}`)
+                store.commit('global/set_alert', `Report ${id} created`)
             }
         )
 
@@ -136,7 +136,7 @@ export default {
             method: "DELETE",
         }).then(
             res => {
-                store.commit('global/set_alert', `${res.status}  ${res.statusText}`)
+                store.commit('global/set_alert', ` Report ${payload.id} ${res.data.detail}`)
 
             }
         )

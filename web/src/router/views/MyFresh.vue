@@ -69,7 +69,7 @@
 
         </v-card>
         <div v-if="reports&&reports.length<1">
-            <v-card-title class="red--text display-2">Nothing Here!</v-card-title>
+            <v-card-title class="red--text display-2">Nothing New!</v-card-title>
         </div>
 
     </div>

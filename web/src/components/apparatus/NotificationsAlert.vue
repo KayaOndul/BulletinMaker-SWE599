@@ -1,7 +1,7 @@
 <template>
-    <v-container style="z-index: 3; position:absolute;right:0px">
+    <v-container style="z-index: 3; position:absolute;right:0px;max-width: 50vh">
         <v-alert class="d-flex flex-column " v-for="(alert,index) in alerts" :key="index"
-                 :type="alert.includes('4')?'error':'success'"
+                 :type="conditions.some(el=>alert.includes(el))?'error':'success'"
                  mode="out-in"
                  transition="slide-x-reverse-transition"
                  dismissible
@@ -25,7 +25,9 @@
 
     export default {
         data() {
-            return {}
+            return {
+                conditions:['401','402','403','404','405','406']
+            }
         },
 
         computed: {
@@ -40,7 +42,7 @@
         methods: {
             debounceRemove: _.debounce(function () {
                 store.dispatch('global/removeAlert')
-            }, 700)
+            }, 1500)
         },
         watch: {
             alerts(newVal) {

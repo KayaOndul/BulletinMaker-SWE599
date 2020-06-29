@@ -15,8 +15,32 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from api.models import Report, User
 from api.serializers import UserSerializer, UserCreateSerializer, CreateReportSerializer, \
     FileSerializer, PatchReportSerializer, ReportSerializer, UserSerializerForSubsciberList, SearchSerializer, \
-    LikeSerializer
+    LikeSerializer, ProfileSerializer
 from api.service.services import UserService, ReportService
+
+
+class ProfileViews(RetrieveAPIView):
+    @api_view(["GET"])
+    @permission_classes([AllowAny])
+    def getProfile(self, username):
+        searched_user = User.objects.filter(username=username)
+        if searched_user is None:
+            return response.Response(status.HTTP_400_BAD_REQUEST)
+
+        followed_reports = Report.objects.filter(subscribers__username=username)
+        authored_reports = Report.objects.filter(owner__username=username)
+        followed_by = User.objects.filter(friends__username=username)
+        followed_users = User.objects.filter(username=username).values_list('friends__username',flat=True)
+
+        # data = list(chain(followed_reports,authored_reports,followed_by,followed_users))
+        data={
+            'followed_reports':followed_reports,
+            'authored_reports':authored_reports,
+            'followed_by':followed_by,
+            'followed_users':followed_users
+        }
+        serializer = ProfileSerializer(data)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
 
 class UserViews:
@@ -34,9 +58,9 @@ class UserViews:
 
     @api_view(["GET"])
     def getAll(self):
-
         data = list(UserService.get_all_users(self))
         return JsonResponse(data, safe=False, status=status.HTTP_200_OK)
+
 
 
 class AuthViews:
