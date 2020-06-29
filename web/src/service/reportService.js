@@ -22,7 +22,7 @@ export default {
                 }
                 store.commit('report/setReportNumber', res.data)
                 store.commit('report/setReport', res.data)
-                store.commit('global/set_alert', `Report ${id} created`)
+                store.commit('global/set_alert', `Report created`)
             }
         )
 
