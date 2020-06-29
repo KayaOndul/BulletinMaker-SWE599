@@ -2,7 +2,7 @@
     <div class="d-flex flex-wrap mt-12">
 
 
-            <v-card v-for="(card,index) in reports" :key="index" width="30vh" class=" mx-auto my-6"
+        <v-card v-for="(card,index) in reports" :key="index" width="30vh" class=" mx-auto my-6"
 
 
         >
@@ -36,11 +36,11 @@
 
             </v-img>
             <div v-if="isLoggedIn" class="d-flex justify-end">
-                      <v-card-text class=" black--text text-left  "
+                <v-card-text class=" black--text text-left  "
                 >by <span @click="goToProfile(card.owner)" class="clickable">{{card.owner}}</span></v-card-text>
                 <v-tooltip bottom light class=" teal primary--text">
                     <template v-slot:activator="{ on }">
-                        <v-btn @click="deleteItem(card.id)" icon v-on="on">
+                        <v-btn @click="likeReport(card.id)" icon v-on="on">
                             <v-icon color="red">mdi-heart</v-icon>
                         </v-btn>
                     </template>
@@ -79,6 +79,7 @@
     import router from "../router";
     import reportService from "../../service/reportService";
     import {mapGetters} from 'vuex'
+    import likeService from "../../service/likeService";
 
     export default {
         name: 'MyFresh',
@@ -100,6 +101,12 @@
 
 
         methods: {
+            likeReport(idx) {
+                const model = 'report'
+                const id = idx
+                likeService.LIKE({model, id})
+                    .then(() => this.getReports())
+            },
             goToProfile(username) {
                 router.push({name: 'Profile', params: {username: username}})
             },

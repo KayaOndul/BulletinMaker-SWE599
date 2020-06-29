@@ -27,14 +27,6 @@ class Report(models.Model):
         return self.title
 
 
-class ReportSubscription(models.Model):
-    report = models.ForeignKey(Report, on_delete=models.CASCADE)
-    person = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_joined = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.report.title + ' / ' + self.person.username
-
 
 class File(models.Model):
     file = models.FileField(blank=False, null=False)

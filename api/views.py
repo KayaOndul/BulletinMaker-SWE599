@@ -129,12 +129,12 @@ class ReportViews:
     @api_view(["GET"])
     @permission_classes([AllowAny])
     def get_reports(self):
-        user = self.user
+        user = User.objects.get(username=self.user.username)
         reports = []
         if user.username == '':
             reports = Report.objects.filter(layout__isnull=False)
         else:
-            reports = Report.objects.exclude(owner=user).filter(layout__isnull=False)
+            reports = Report.objects.exclude(subscribers=user).exclude(owner=user).filter(layout__isnull=False)
         serializer = ReportSerializer(reports, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
@@ -149,7 +149,7 @@ class ReportViews:
     @api_view(["GET"])
     @permission_classes([AllowAny])
     def get_subscriptions_via_username(self, user):
-        reports = Report.objects.filter(subscribers__username=user)
+        reports = Report.objects.filter(subscribers__username=self.user.username)
         serializer = ReportSerializer(reports, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
@@ -160,8 +160,10 @@ class SearchViews(RetrieveAPIView):
     def search(self):
         keyword = self.data['keyword']
         users = User.objects.filter(username__icontains=keyword)
-        reports = Report.objects.filter(title__icontains=keyword)
-        data = {'users': users, 'reports': reports}
+        reports1 = Report.objects.filter(title__icontains=keyword)
+        reports2 = Report.objects.filter(owner__username__icontains=keyword)
+        reports1 = reports1 | reports2
+        data = {'users': users, 'reports': reports1}
         serializer = SearchSerializer(data)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
@@ -189,17 +191,27 @@ class LikeViews:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         if serializer.data['model'] == 'report':
             report = Report.objects.get(id=serializer.data['id'])
-            if user in report.subscribers:
-                report.subscribers.remove(user)
+            if Report.objects.filter(subscribers__username__contains=self.user.username):
+                report.subscribers.remove(self.user)
+                report.save()
+                res = {'detail': 'Removed ' + str(report.id) + ' from followed reports'}
+                return response.Response(res, status=status.HTTP_200_OK)
             else:
                 report.subscribers.add(user)
+                report.save()
+                res = {'detail': 'Added ' + str(report.id) + ' to followed reports'}
+                return response.Response(res, status=status.HTTP_200_OK)
+
         elif serializer.data['model'] == 'user':
             friended_user = User.objects.get(username=serializer.data['name'])
             if User.objects.filter(friends__username__contains=friended_user.username):
                 self.user.friends.remove(friended_user)
+                self.user.save()
                 res = {'detail': 'Removed ' + friended_user.username + ' from followed users'}
                 return response.Response(res, status=status.HTTP_200_OK)
+
             else:
                 self.user.friends.add(friended_user)
+                self.user.save()
                 res = {'detail': 'Added ' + friended_user.username + ' to followed users'}
                 return response.Response(res, status=status.HTTP_200_OK)

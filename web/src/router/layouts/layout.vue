@@ -155,6 +155,7 @@
                 router.push({name: 'Profile', params: {username: username}})
             },
             searchItem: function () {
+
                 router.push({
                     path: '/Search',
                     name: 'Search',

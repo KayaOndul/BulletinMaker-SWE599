@@ -9,6 +9,7 @@ const BACKEND_ALL_REPORTS='reports/all/'
 const BACKEND_ALL_REPORTS_VIA_USERNAME='reports/'
 const BACKEND_SUBSCRIBED_REPORTS='reports/subs/'
 const SEARCH_ENDPOINT='search/'
+const BACKEND_LIKE='like/'
 
 
 export default {
@@ -22,6 +23,7 @@ export default {
     BACKEND_ALL_REPORTS,
     BACKEND_ALL_REPORTS_VIA_USERNAME,
     BACKEND_SUBSCRIBED_REPORTS,
-    SEARCH_ENDPOINT
+    SEARCH_ENDPOINT,
+    BACKEND_LIKE
 
 }

@@ -51,6 +51,7 @@
                         align: 'start',
                         value: 'name',
                     },
+                    {text: 'Owner', value: 'owner'},
                     {text: 'Category', value: 'category'},
                 ],
 

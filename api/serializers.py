@@ -1,7 +1,7 @@
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 
-from api.models import User, Report, File, ReportSubscription
+from api.models import User, Report, File
 
 
 # used when report created

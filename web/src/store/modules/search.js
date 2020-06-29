@@ -38,6 +38,7 @@ const getters = {
                 return {
                     name: e.title,
                     id: e.id,
+                    owner:e.owner,
                     category: 'Report',
                     component:'Report'
 
