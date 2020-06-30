@@ -5,23 +5,22 @@
         <div class="d-flex justify-start align-center ">
 
 
-
-
         </div>
 
         <div class="d-flex justify-space-between ">
-            <div class="d-flex flex-column">
+            <div class="d-flex flex-row">
 
-                <div class="d-flex flex-row  align-center ">
-                    <v-img width="150" style="border-radius: 50%"
-                           :src="'https://picsum.photos/302'">
-
-                    </v-img>
-
-                    <div class="d-flex justify-end flex-column">
-                        <v-card-title><strong>{{this.userNameHandler()}}</strong></v-card-title>
-                        <v-card-subtitle><strong>User Since::</strong>{{changeTime(items.date_joined)}}</v-card-subtitle>
-                    </div>
+                <div class="d-flex flex-column  align-center ">
+                    <v-list-item-avatar
+                            size="15vh" class="clickable  primary mx-1">
+                        <span class="white--text display-3">{{badgeName()}}</span>
+                    </v-list-item-avatar>
+                </div>
+                <div class="d-flex justify-center flex-column">
+                    <v-card-title class="display-3"><strong>{{username}}</strong></v-card-title>
+                </div>
+                <div class="d-flex justify-center flex-column">
+                    <v-card-title class="display-3"><strong>{{username}}</strong></v-card-title>
                 </div>
 
 
@@ -37,10 +36,8 @@
 </template>
 
 <script>
-    import moment from 'moment'
-    import store from "../../store/store";
-    import {mapGetters} from 'vuex';
 
+    import store from "../../store/store";
     export default {
         data() {
             return {}
@@ -48,28 +45,22 @@
         components: {},
         methods: {
 
-            changeTime(time) {
-                return moment(time)
-            }, userNameHandler() {
-                return store.state.auth.username ? store.state.auth.username : ''
-            }
+            badgeName() {
+                return this.username.split(' ').map(e => e.toUpperCase()[0]).join()
+            },
 
         },
 
         computed: {
-            ...mapGetters('auth', ['isLoggedIn']),
 
-            showActions() {
-
-                if (localStorage.getItem('username') === this.$route.params.username) {
-                    return true
-                }
-                return false
+            username() {
+                return this.$route.params.username
             },
-
-            items() {
-                return store.state.global.visitedUserDetails ? store.state.global.visitedUserDetails : []
+            profileData() {
+                return store.state.search.profile ? store.state.search.profile : []
             }
+
+
         }
 
     }

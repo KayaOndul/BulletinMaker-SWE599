@@ -2,18 +2,7 @@
 
     <div>
         <Layout>
-            <v-card class="my-4"
-
-                    color="primary"
-                    dark
-            >
-                <div class="d-flex flex-no-wrap justify-space-between ">
-                    <v-card-title class="headline">Login</v-card-title>
-
-
-                </div>
-
-            </v-card>
+            <Header :name="'Login'"/>
             <v-card>
 
                 <v-card-text>
@@ -53,10 +42,11 @@
     import {required} from 'vuelidate/lib/validators'
     import {mdiLogin} from '@mdi/js'
     import authService from "../../service/authService";
+    import Header from "../../components/Header";
 
     export default {
         mixins: [validationMixin],
-        components: {Layout},
+        components: {Header, Layout},
 
         validations: {
             password: {required},

@@ -1,6 +1,7 @@
 const getDefaultState = () => {
     return {
-        searchResponse: []
+        searchResponse: [],
+        profile: []
 
     }
 }
@@ -12,6 +13,9 @@ const state = getDefaultState()
 const mutations = {
     setSearchResponse(state, payload) {
         state.searchResponse = payload
+    },
+    setProfile(state, payload) {
+        state.profile = payload
     },
 
     resetState(state) {
@@ -30,7 +34,7 @@ const getters = {
                     name: e.username,
                     id: e.id,
                     category: 'User',
-                    component:'Profile'
+                    component: 'Profile'
 
                 }
             }) : []
@@ -38,9 +42,9 @@ const getters = {
                 return {
                     name: e.title,
                     id: e.id,
-                    owner:e.owner,
+                    owner: e.owner,
                     category: 'Report',
-                    component:'Report'
+                    component: 'Report'
 
                 }
             }) : []

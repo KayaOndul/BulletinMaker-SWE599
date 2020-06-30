@@ -5,23 +5,18 @@
         <layout>
 
 
-            <v-card class="my-4"
-
-                    color="primary"
-                    dark
-            >
-                <div class="d-flex flex-no-wrap justify-space-between ">
-                    <v-card-title class="headline">Profile</v-card-title>
-
-
-                </div>
-
-            </v-card>
+            <Header :name="'Profile'"/>
             <UserCard/>
             <v-spacer class="pa-3"/>
-            <div class="d-flex justify-space-between mb-12">
-            </div>
-            <v-spacer class="pa-3"/>
+            <v-tabs class="mt-2">
+                <v-tab default :to="{name:'UserReports'}">Authored Reports</v-tab>
+                <v-tab :to="{name:'UserFollow'}">Followed Reports</v-tab>
+
+            </v-tabs>
+
+
+            <router-view></router-view>
+
 
         </layout>
 
@@ -33,13 +28,17 @@
 <script>
     import layout from "../layouts/layout";
     import UserCard from "@/components/User/UserCard";
+    import Header from "../../components/Header";
+    import store from "../../store/store";
+    import profileService from "../../service/profileService";
+    import reportService from "../../service/reportService";
 
     export default {
         name: 'Profile',
         data() {
             return {}
         },
-        components: {UserCard, layout},
+        components: {Header, UserCard, layout},
         computed: {},
 
         watch: {
@@ -61,6 +60,16 @@
         }
         ,
         beforeDestroy() {
+            store.commit('report/resetState')
+
+        },
+        beforeRouteEnter(to, from, next) {
+            const username = to.params.username
+            reportService.GET_ALL_REPORTS_VIA_USERNAME({user: username})
+                .then(() => profileService.GET_PROFILE({username})
+                )
+                .then(() => next())
+
 
         }
 

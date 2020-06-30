@@ -129,7 +129,7 @@ class ReportViews:
             return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
         if self.method == "GET":
 
-            serializer = PatchReportSerializer(report)
+            serializer = ReportSerializer(report)
             return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
 
         elif self.method == "DELETE":
@@ -174,7 +174,7 @@ class ReportViews:
     def get_subscriptions_via_username(self, user):
 
         reports = Report.objects.filter(subscribers__username=self.user.username)
-        serializer = ReportSerializerEssential(reports,many=True)
+        serializer = ReportSerializerEssential(reports, many=True)
         # if not serializer.is_valid():
         #     return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST, safe=False)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
@@ -217,7 +217,7 @@ class LikeViews:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         if serializer.data['model'] == 'report':
             report = Report.objects.get(id=serializer.data['id'])
-            if Report.objects.filter(subscribers__username__contains=self.user.username):
+            if Report.objects.filter(id=serializer.data['id'], subscribers__username__contains=self.user.username):
                 report.subscribers.remove(self.user)
                 report.save()
                 res = {'detail': 'Removed ' + str(report.id) + ' from followed reports'}

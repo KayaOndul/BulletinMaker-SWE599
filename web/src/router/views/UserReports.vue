@@ -1,24 +1,20 @@
 <template>
-    <Follow></Follow>
+    <reports/>
 </template>
 <script>
-
-    import Follow from "../../components/Shared/Follow";
+    import Reports from "../../components/Shared/Reports";
     import store from "../../store/store";
     import reportService from "../../service/reportService";
+
     export default {
-        name: 'MyFollow',
-        components: {Follow},
-        data: () => ({}),
+        components: {Reports},
         beforeDestroy() {
             store.commit('report/resetState');
         },
         beforeRouteEnter(to, from, next) {
-            const user = store.state.auth.username
-            reportService.GET_SUBSCRIBED_REPORTS({user})
+            const user = to.params.username
+            reportService.GET_ALL_REPORTS_VIA_USERNAME({user})
             next()
         },
-
     }
-
 </script>

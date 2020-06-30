@@ -2,18 +2,7 @@
 
     <div>
         <Layout>
-            <v-card class="my-4"
-
-                    color="primary"
-                    dark
-            >
-                <div class="d-flex flex-no-wrap justify-space-between ">
-                    <v-card-title class="headline">Register</v-card-title>
-
-
-                </div>
-
-            </v-card>
+            <Header :name="'Register'"/>
             <v-card>
 
                 <v-card-text>
@@ -70,12 +59,13 @@
     import {mdiAccountPlus} from '@mdi/js'
     import authService from "../../service/authService";
     import Layout from '../layouts/layout'
+    import Header from "../../components/Header";
 
     export default {
         name: 'RegisterForm',
         mixins: [validationMixin],
 
-        components: {Layout},
+        components: {Header, Layout},
         validations: {
             password: {required, minLength: minLength(4)},
             email: {required, email},
