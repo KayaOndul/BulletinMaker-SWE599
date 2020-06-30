@@ -68,8 +68,6 @@ N
 web/src/router/views/Grids.vue,e/e/eed1f923d24524d954a3d8f95601a8056820768b
 O
 web/src/store/modules/report.js,9/f/9f27436b9f39da9862837b771f9534b0ddd6176a
-R
-"web/src/mocks/mockLayoutSaved.json,a/2/a2c1d8cef0c52af140c01f2f751591f7e3d14a14
 c
 3web/src/components/apparatus/NotificationsAlert.vue,b/1/b17fd388da2f4e55925eaf26c9c5a47d7abdc0d4
 C

@@ -1,7 +1,9 @@
+from abc import ABCMeta
+
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 
-from api.models import User, Report, File, ReportSubscription
+from api.models import User, Report, File
 
 
 # used when report created
@@ -17,7 +19,7 @@ class CreateReportSerializer(serializers.ModelSerializer):
 class UserSerializerForSubsciberList(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username',)
+        fields = ('username', id)
 
 
 # used for to save report on frontend
@@ -29,14 +31,14 @@ class PatchReportSerializer(serializers.ModelSerializer):
         model = Report
         fields = ('id', 'title', 'layout', 'owner', 'subscribers')
 
-    def get_validation_exclusions(self):
-        exclusions = super(PatchReportSerializer, self).get_validation_exclusions()
-        return exclusions + ['title']
+    # def get_validation_exclusions(self):
+    #     exclusions = super(PatchReportSerializer, self).get_validation_exclusions()
+    #     return exclusions + ['title']
 
 
 class ReportSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField()
-    subscribers = UserSerializerForSubsciberList(many=True)
+    subscribers = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Report
@@ -45,10 +47,11 @@ class ReportSerializer(serializers.ModelSerializer):
 
 class ReportSerializerEssential(serializers.ModelSerializer):
     subscribers = serializers.StringRelatedField(many=True)
+    owner = serializers.StringRelatedField()
 
     class Meta:
         model = Report
-        fields = ('title', 'subscribers', 'id',)
+        fields = ('title', 'subscribers', 'id', 'owner')
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -56,7 +59,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'is_staff', 'bio', 'friends', 'user_reports','id')
+        fields = ('username', 'email', 'is_staff', 'bio', 'friends', 'user_reports', 'id')
 
     def __str__(self):
         return self.username
@@ -64,7 +67,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 class SearchSerializer(serializers.Serializer):
     users = UserSerializer(many=True)
-    reports = ReportSerializer(many=True)
+    reports = ReportSerializerEssential(many=True)
+
+
+class ProfileSerializer(serializers.Serializer):
+    followed_reports = ReportSerializerEssential(many=True)
+    authored_reports = ReportSerializerEssential(many=True)
+    followed_by = serializers.StringRelatedField(many=True)
+    followed_users = serializers.StringRelatedField(many=True)
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -101,6 +111,12 @@ class UserCreateSerializer(serializers.ModelSerializer):
         instance.password = validated_data.get('password', make_password(instance.password, hasher='pbkdf2_sha256'))
         instance.save()
         return instance
+
+
+class LikeSerializer(serializers.Serializer):
+    model = serializers.CharField(required=True)
+    id = serializers.CharField(required=False)
+    name = serializers.CharField(required=False)
 
 
 class FileSerializer(serializers.ModelSerializer):

@@ -14,8 +14,33 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from api.models import Report, User
 from api.serializers import UserSerializer, UserCreateSerializer, CreateReportSerializer, \
-    FileSerializer, PatchReportSerializer, ReportSerializer, UserSerializerForSubsciberList, SearchSerializer
+    FileSerializer, PatchReportSerializer, ReportSerializer, UserSerializerForSubsciberList, SearchSerializer, \
+    LikeSerializer, ProfileSerializer, ReportSerializerEssential
 from api.service.services import UserService, ReportService
+
+
+class ProfileViews(RetrieveAPIView):
+    @api_view(["GET"])
+    @permission_classes([AllowAny])
+    def getProfile(self, username):
+        searched_user = User.objects.filter(username=username)
+        if searched_user is None:
+            return response.Response(status.HTTP_400_BAD_REQUEST)
+
+        followed_reports = Report.objects.filter(subscribers__username=username)
+        authored_reports = Report.objects.filter(owner__username=username)
+        followed_by = User.objects.filter(friends__username=username)
+        followed_users = User.objects.filter(username=username).values_list('friends__username', flat=True)
+
+        # data = list(chain(followed_reports,authored_reports,followed_by,followed_users))
+        data = {
+            'followed_reports': followed_reports,
+            'authored_reports': authored_reports,
+            'followed_by': followed_by,
+            'followed_users': followed_users
+        }
+        serializer = ProfileSerializer(data)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
 
 class UserViews:
@@ -33,7 +58,6 @@ class UserViews:
 
     @api_view(["GET"])
     def getAll(self):
-
         data = list(UserService.get_all_users(self))
         return JsonResponse(data, safe=False, status=status.HTTP_200_OK)
 
@@ -104,9 +128,11 @@ class ReportViews:
             serializer = ReportSerializer(report)
             return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
         if self.method == "GET":
-
-            serializer = PatchReportSerializer(report)
-            return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
+            report = Report.objects.get(id=id)
+            serializer = ReportSerializerEssential(report)
+            # if not serializer.is_valid():
+            #     return JsonResponse(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR, safe=False)
+            return response.Response(serializer.data,status.HTTP_200_OK)
 
         elif self.method == "DELETE":
             if report.owner.username != self.user.username:
@@ -128,28 +154,30 @@ class ReportViews:
     @api_view(["GET"])
     @permission_classes([AllowAny])
     def get_reports(self):
-        user = self.user
         reports = []
-        if user.username == '':
+        if self.auth is None:
             reports = Report.objects.filter(layout__isnull=False)
         else:
-            reports = Report.objects.exclude(owner=user).filter(layout__isnull=False)
+            user = self.user
+            reports = Report.objects.exclude(subscribers=user).exclude(owner=user).filter(layout__isnull=False)
         serializer = ReportSerializer(reports, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
     @api_view(["GET"])
     @permission_classes([AllowAny])
     def report_list_via_username(self, user):
-        key = User.objects.get(username=user)
-        reports = Report.objects.filter(owner=key, layout__isnull=False)
-        serializer = ReportSerializer(reports, many=True)
+        reports = Report.objects.filter(owner__username=user)
+        serializer = ReportSerializerEssential(reports,many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
     @api_view(["GET"])
     @permission_classes([AllowAny])
     def get_subscriptions_via_username(self, user):
-        reports = Report.objects.filter(subscribers__username=user)
-        serializer = ReportSerializer(reports, many=True)
+
+        reports = Report.objects.filter(subscribers__username=self.user.username)
+        serializer = ReportSerializerEssential(reports, many=True)
+        # if not serializer.is_valid():
+        #     return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST, safe=False)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
 
@@ -159,8 +187,10 @@ class SearchViews(RetrieveAPIView):
     def search(self):
         keyword = self.data['keyword']
         users = User.objects.filter(username__icontains=keyword)
-        reports = Report.objects.filter(title__icontains=keyword)
-        data = {'users': users, 'reports': reports}
+        reports1 = Report.objects.filter(title__icontains=keyword)
+        reports2 = Report.objects.filter(owner__username__icontains=keyword)
+        reports1 = reports1 | reports2
+        data = {'users': users, 'reports': reports1}
         serializer = SearchSerializer(data)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
@@ -177,3 +207,38 @@ class FileUploadView(APIView):
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LikeViews:
+    @api_view(["POST"])
+    def like_detail(self):
+        user = self.user
+        serializer = LikeSerializer(data=self.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if serializer.data['model'] == 'report':
+            report = Report.objects.get(id=serializer.data['id'])
+            if Report.objects.filter(id=serializer.data['id'], subscribers__username__contains=self.user.username):
+                report.subscribers.remove(self.user)
+                report.save()
+                res = {'detail': 'Removed ' + str(report.id) + ' from followed reports'}
+                return response.Response(res, status=status.HTTP_200_OK)
+            else:
+                report.subscribers.add(user)
+                report.save()
+                res = {'detail': 'Added ' + str(report.id) + ' to followed reports'}
+                return response.Response(res, status=status.HTTP_200_OK)
+
+        elif serializer.data['model'] == 'user':
+            friended_user = User.objects.get(username=serializer.data['name'])
+            if User.objects.filter(friends__username__contains=friended_user.username):
+                self.user.friends.remove(friended_user)
+                self.user.save()
+                res = {'detail': 'Removed ' + friended_user.username + ' from followed users'}
+                return response.Response(res, status=status.HTTP_200_OK)
+
+            else:
+                self.user.friends.add(friended_user)
+                self.user.save()
+                res = {'detail': 'Added ' + friended_user.username + ' to followed users'}
+                return response.Response(res, status=status.HTTP_200_OK)

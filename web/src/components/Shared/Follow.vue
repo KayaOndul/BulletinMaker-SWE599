@@ -1,7 +1,5 @@
 <template>
     <div class="d-flex flex-wrap mt-12">
-
-
         <v-card v-for="(card,index) in reports" :key="index" width="30vh" class=" mx-auto my-6"
 
 
@@ -22,7 +20,6 @@
 
 
             >
-
                 <template v-slot:placeholder>
                     <v-row
                             class="fill-height ma-0"
@@ -49,16 +46,17 @@
             </div>
             <v-card-actions class="d-flex flex-row  flex-wrap">
 
-                <v-card-subtitle v-if="card.subscribers.length>0" class="text-left">Subscribers:</v-card-subtitle>
+
+                <v-card-subtitle class="text-left">Subscribers:</v-card-subtitle>
                 <div v-for="(person,idx) in card.subscribers" :key="idx">
                     <v-tooltip bottom light class=" teal primary--text">
                         <template v-slot:activator="{ on }">
-                            <v-avatar @click="goToProfile(person.username)"
+                            <v-avatar @click="goToProfile(person)"
                                       size="3vh" v-on="on" class="clickable  accent mx-1">
-                                <span class="white--text caption">{{person.username[0].toUpperCase()}}</span>
+                                <span class="white--text caption">{{badgeName(person)}}</span>
                             </v-avatar>
                         </template>
-                        <span>{{person.username}}</span>
+                        <span>{{person}}</span>
                     </v-tooltip>
 
                 </div>
@@ -69,32 +67,36 @@
 
         </v-card>
         <div v-if="reports&&reports.length<1">
-            <v-card-title class="red--text display-2">Nothing New!</v-card-title>
+            <v-card-title class="red--text display-2">Nothing Here!</v-card-title>
         </div>
 
     </div>
 </template>
 <script>
     import store from "../../store/store";
-    import router from "../router";
+    import router from "../../router/router";
     import reportService from "../../service/reportService";
-    import {mapGetters} from 'vuex'
     import likeService from "../../service/likeService";
+    import {mapGetters} from 'vuex'
 
     export default {
-        name: 'MyFresh',
+        name: 'Follow',
         components: {},
         data: () => ({}),
-        created() {
 
-        },
 
         watch: {},
         computed: {
-            ...mapGetters('auth', ['isLoggedIn']),
-            reports: function () {
-                return store.state.report.reports ? store.state.report.reports : []
+            ...mapGetters({
+                isLoggedIn: 'auth/isLoggedIn',
+                reports: 'report/getReports'
+            }),
+             isOwner() {
+                return store.state.auth.username ? false :
+                    this.$route.params.username === store.state.auth.username
             }
+
+
         },
 
 
@@ -105,6 +107,9 @@
                 likeService.LIKE({model, id})
                     .then(() => this.getReports())
             },
+            badgeName(username) {
+                return username.split(' ').map(e => e.toUpperCase()[0]).join()
+            },
             goToProfile(username) {
                 router.push({name: 'Profile', params: {username: username}})
             },
@@ -113,25 +118,25 @@
 
             },
             getReports() {
+                   let user
+                if (this.isOwner) {
+                    user = store.state.auth.username
+                } else {
+                    user = this.$route.params.username
+                }
 
-                reportService.GET_ALL_REPORTS()
+                reportService.GET_SUBSCRIBED_REPORTS({user})
             },
             pushHandlerCommunity(name) {
                 this.$router.push(`/Community/${name}`)
             },
             randomColor() {
 
-            },
+            }
 
 
         },
-        beforeRouteEnter(to, from, next) {
-            reportService.GET_ALL_REPORTS()
-            next()
-        },
-        beforeDestroy() {
-            store.commit('report/resetState');
-        }
+
     }
 
 </script>

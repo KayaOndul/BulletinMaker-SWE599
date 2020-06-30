@@ -3,7 +3,7 @@
         <layout>
 
 
-            <v-tabs class="mt-2">
+            <v-tabs v-model=tabs  class="mt-2">
                  <v-tab :to="{name:'MyFresh'}">Fresh from Site</v-tab>
                 <v-tab v-if="isLoggedIn" default :to="{name:'MyReport'}">My Reports</v-tab>
                 <v-tab v-if="isLoggedIn" :to="{name:'MyFollow'}">Followed Reports</v-tab>
@@ -30,7 +30,7 @@
         name: 'Welcome',
         components: {Layout},
         data: () => ({
-
+            tabs:null
         }),
         created() {
 

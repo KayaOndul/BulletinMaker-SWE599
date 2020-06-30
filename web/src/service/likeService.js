@@ -6,13 +6,13 @@ let http = helpers.putToken()
 
 
 export default {
-    SEARCH(payload) {
-          store.commit('search/setSearchResponse', [])
+    LIKE(payload) {
+
         store.commit('global/set_loading', true)
 
-        return http.post(Constants.API + Constants.SEARCH_ENDPOINT, payload)
+        return http.post(Constants.API + Constants.BACKEND_LIKE, payload)
             .then(res => {
-                store.commit('search/setSearchResponse', res.data)
+                store.commit('global/set_alert', `${res.status} ${res.data.detail}`)
             }).catch(err => {
                 const error = err.response.data.error
                 store.commit('global/set_alert', `${err.response.status} ${error}`)

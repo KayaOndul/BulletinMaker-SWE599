@@ -58,7 +58,7 @@
                     <v-list-item>
                         <click-icon :note="'Dashboard'"
                                     :icon="'mdi-home'"
-                                    :route="{name:'Profile'}"/>
+                                    :route="{name:'MyReport'}"/>
 
                     </v-list-item>
 
@@ -155,6 +155,7 @@
                 router.push({name: 'Profile', params: {username: username}})
             },
             searchItem: function () {
+
                 router.push({
                     path: '/Search',
                     name: 'Search',

@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c0aabf98-86c5-4ac6-a70c-c58ed13c7bad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/router/views/Grids.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router/views/Grids.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/router/views/Search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router/views/Search.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/service/reportService.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/service/reportService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/User/UserCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/User/UserCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/User/UserFollowedUsers.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/store/modules/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/store/modules/search.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,12 +57,14 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web/src/router/views" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/src/components" />
+      <recent name="$PROJECT_DIR$/web/src/router/views/Shared" />
       <recent name="$PROJECT_DIR$/web/src/store/modules" />
       <recent name="$PROJECT_DIR$/api/service" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/src/router/views" />
     </key>
   </component>
   <component name="RunManager" selected="Django Server.bulletin599">
@@ -159,7 +158,8 @@
       <workItem from="1593200955379" duration="2058000" />
       <workItem from="1593209088820" duration="14256000" />
       <workItem from="1593233197709" duration="15624000" />
-      <workItem from="1593302982453" duration="43186000" />
+      <workItem from="1593302982453" duration="55593000" />
+      <workItem from="1593437696147" duration="34669000" />
     </task>
     <servers />
   </component>
@@ -171,50 +171,50 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="532" y="255" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592924111399" />
-    <state x="591" y="386" width="727" height="434" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1592954656697">
+    <state x="591" y="386" width="727" height="441" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1593481518600">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="591" y="386" width="727" height="434" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592954656697" />
-    <state x="1920" y="27" width="1720" height="1000" maximized="true" key="DiffContextDialog" timestamp="1593313563265">
+    <state x="591" y="386" width="727" height="441" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593481518600" />
+    <state x="1990" y="27" width="1680" height="1028" maximized="true" key="DiffContextDialog" timestamp="1593494782238">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="1920" y="27" width="1720" height="1000" maximized="true" key="DiffContextDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593313563265" />
+    <state x="1990" y="27" width="1680" height="1028" maximized="true" key="DiffContextDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593494782238" />
     <state x="690" y="301" width="530" height="605" key="FileChooserDialogImpl" timestamp="1592916019647">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="690" y="301" width="530" height="605" key="FileChooserDialogImpl/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592916019647" />
-    <state width="1864" height="383" key="GridCell.Tab.0.bottom" timestamp="1593378383287">
+    <state width="1864" height="383" key="GridCell.Tab.0.bottom" timestamp="1593497553839">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593378383287" />
-    <state width="1864" height="383" key="GridCell.Tab.0.center" timestamp="1593378383287">
+    <state width="1864" height="383" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593497553839" />
+    <state width="1864" height="383" key="GridCell.Tab.0.center" timestamp="1593497553839">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593378383287" />
-    <state width="1864" height="383" key="GridCell.Tab.0.left" timestamp="1593378383287">
+    <state width="1864" height="383" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593497553839" />
+    <state width="1864" height="383" key="GridCell.Tab.0.left" timestamp="1593497553839">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593378383287" />
-    <state width="1864" height="383" key="GridCell.Tab.0.right" timestamp="1593378383287">
+    <state width="1864" height="383" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593497553839" />
+    <state width="1864" height="383" key="GridCell.Tab.0.right" timestamp="1593497553839">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593378383287" />
-    <state width="1864" height="383" key="GridCell.Tab.1.bottom" timestamp="1593371501129">
+    <state width="1864" height="383" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593497553839" />
+    <state width="1864" height="383" key="GridCell.Tab.1.bottom" timestamp="1593497553840">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593371501129" />
-    <state width="1864" height="383" key="GridCell.Tab.1.center" timestamp="1593371501129">
+    <state width="1864" height="383" key="GridCell.Tab.1.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593497553840" />
+    <state width="1864" height="383" key="GridCell.Tab.1.center" timestamp="1593497553839">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593371501129" />
-    <state width="1864" height="383" key="GridCell.Tab.1.left" timestamp="1593371501129">
+    <state width="1864" height="383" key="GridCell.Tab.1.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593497553839" />
+    <state width="1864" height="383" key="GridCell.Tab.1.left" timestamp="1593497553839">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593371501129" />
-    <state width="1864" height="383" key="GridCell.Tab.1.right" timestamp="1593371501129">
+    <state width="1864" height="383" key="GridCell.Tab.1.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593497553839" />
+    <state width="1864" height="383" key="GridCell.Tab.1.right" timestamp="1593497553839">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593371501129" />
+    <state width="1864" height="383" key="GridCell.Tab.1.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593497553839" />
     <state width="318" height="572" key="HiddenNamespacesPopup" timestamp="1592653180930">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
@@ -235,33 +235,33 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state width="960" height="600" key="XDebugger.FullValuePopup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593370680095" />
-    <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1593201051542">
+    <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1593492749713">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593201051542" />
-    <state x="270" y="0" width="1620" height="937" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1593369569214">
+    <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593492749713" />
+    <state x="270" y="0" width="1590" height="958" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1593472181804">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="270" y="0" width="1620" height="937" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593369569214" />
+    <state x="270" y="0" width="1590" height="958" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593472181804" />
     <state x="560" y="131" width="789" height="945" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1593238130657">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="560" y="131" width="789" height="945" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593238130657" />
-    <state x="580" y="283" width="759" height="634" key="find.popup" timestamp="1593372471602">
+    <state x="580" y="283" width="759" height="634" key="find.popup" timestamp="1593491513972">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="580" y="283" width="759" height="634" key="find.popup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593372471602" />
-    <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup" timestamp="1593191220540">
+    <state x="580" y="283" width="759" height="634" key="find.popup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593491513972" />
+    <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup" timestamp="1593481532571">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593191220540" />
+    <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593481532571" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>36</line>
+          <line>60</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -275,54 +275,39 @@
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>91</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/service/services.py</url>
           <line>27</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>136</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>24</line>
+          <line>49</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>27</line>
+          <line>52</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
+          <line>131</line>
+          <option name="timeStamp" value="82" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/views.py</url>
           <line>130</line>
-          <option name="timeStamp" value="41" />
+          <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>142</line>
-          <option name="timeStamp" value="42" />
+          <line>32</line>
+          <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>164</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>104</line>
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>102</line>
-          <option name="timeStamp" value="51" />
+          <line>232</line>
+          <option name="timeStamp" value="85" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

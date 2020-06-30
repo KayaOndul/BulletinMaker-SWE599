@@ -51,6 +51,7 @@
                         align: 'start',
                         value: 'name',
                     },
+                    {text: 'Owner', value: 'owner'},
                     {text: 'Category', value: 'category'},
                 ],
 
@@ -72,7 +73,7 @@
 
         watch: {
             queryParam: {
-                immediate: true,
+                immediate: false,
                 handler(newVal) {
                     if (newVal) {
                         const payload = {'keyword': newVal}

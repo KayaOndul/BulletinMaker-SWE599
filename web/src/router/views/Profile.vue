@@ -1,88 +1,69 @@
 <template>
 
 
-            <div >
-                <layout>
+    <div>
+        <layout>
 
 
-                <v-card class="my-4"
+            <Header :name="'Profile'"/>
+            <UserCard/>
+            <v-spacer class="pa-3"/>
+            <v-tabs v-model="tabs" class="mt-2">
+                <v-tab :to="{name:'UserReports'}">Authored Reports</v-tab>
+                <v-tab :to="{name:'UserFollow'}">Followed Reports</v-tab>
+                <v-tab :to="{name:'Friends'}">Friends</v-tab>
 
-                        color="primary"
-                        dark
-                >
-                    <div class="d-flex flex-no-wrap justify-space-between ">
-                        <v-card-title class="headline">Profile</v-card-title>
+            </v-tabs>
 
 
-                    </div>
+            <router-view></router-view>
 
-                </v-card>
-                <UserCard/>
-                <v-spacer class="pa-3"/>
-                <div class="d-flex justify-space-between mb-12">
-                </div>
-                <v-spacer class="pa-3"/>
-                <div class="d-flex justify-space-between">
-                    <UserFollowedUsers/>
-                </div>
-                <v-spacer class="pa-3"/>
-                <div class="d-flex justify-space-between">
-                </div>
-                <v-spacer class="pa-3"/>
-                <div class="d-flex justify-space-between">
-                </div>
-                <v-spacer class="pa-3"/>
-                <div class="d-flex justify-space-between">
-                </div>
-                <v-spacer class="pa-3"/>
+
         </layout>
 
-            </div>
-
+    </div>
 
 
 </template>
 
 <script>
     import layout from "../layouts/layout";
-    import store from "../../store/store";
     import UserCard from "@/components/User/UserCard";
-    import UserFollowedUsers from "@/components/User/UserFollowedUsers";
+    import Header from "../../components/Header";
+    import store from "../../store/store";
+    import profileService from "../../service/profileService";
+    import reportService from "../../service/reportService";
+
     export default {
         name: 'Profile',
         data() {
             return {
-
+                tabs: null
             }
         },
-        components: { UserCard, UserFollowedUsers,layout},
-        computed: {},
-
+        components: {Header, UserCard, layout},
         watch: {
-            $route(){
-                this.getUserDetails()
+            $route(newVal, oldVal) {
+                if (newVal.params.username != oldVal.params.username) {
+                    const username = newVal.params.username
+                    reportService.GET_ALL_REPORTS_VIA_USERNAME({user: username})
+                }
+
             }
         },
 
-
-        mounted() {
-            this.getUserDetails()
-
-        },
-        methods: {
-            getUserDetails() {
-
-
-
-
-            }
-        }
-        ,
         beforeDestroy() {
-            store.commit('wiki/reset')
-            store.commit('postStore/resetState')
-            store.commit('postTypeStore/resetState')
-            store.commit('communityStore/resetState')
+            store.commit('report/resetState')
+
+        },
+        beforeRouteEnter(to, from, next) {
+            const username = to.params.username
+            reportService.GET_ALL_REPORTS_VIA_USERNAME({user: username})
+                .then(() => profileService.GET_PROFILE({username})
+                )
+                .then(() => next())
+
+
         }
 
 

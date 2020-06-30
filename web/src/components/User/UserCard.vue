@@ -2,31 +2,40 @@
     <v-card class="pa-3" style="text-align: left">
 
 
-        <div class="d-flex justify-start align-center ">
-
-
-
-
-        </div>
-
         <div class="d-flex justify-space-between ">
-            <div class="d-flex flex-column">
+            <div class="d-flex flex-row">
 
-                <div class="d-flex flex-row  align-center ">
-                    <v-img width="150" style="border-radius: 50%"
-                           :src="'https://picsum.photos/302'">
+                <div class="d-flex flex-column  align-center ">
+                    <v-list-item-avatar
+                            size="15vh" class="clickable  primary mx-1">
+                        <span class="white--text display-3">{{badgeName()}}</span>
+                    </v-list-item-avatar>
+                    <v-card-title class="headline"><strong>{{username}}</strong></v-card-title>
+                </div>
+                <v-spacer class="mx-4"/>
 
-                    </v-img>
 
-                    <div class="d-flex justify-end flex-column">
-                        <v-card-title><strong>{{this.userNameHandler()}}</strong></v-card-title>
-                        <v-card-subtitle><strong>User Since::</strong>{{changeTime(items.date_joined)}}</v-card-subtitle>
+                <div class="d-flex justify-center align-content-start flex-row flex-wrap"
+                >
+                    <div v-for="(item,idx) in profileData" class="d-flex align-center flex-column mx-3" :key="idx">
+                        <v-card-title style="border-bottom: 1px solid black" class="text">{{getKey(idx)}}
+                        </v-card-title>
+                        <v-spacer class="mt-1"/>
+                        <v-card-title>{{item.length}}</v-card-title>
                     </div>
+
+
                 </div>
 
 
             </div>
+            <div class="d-flex justify-space-between align-content-start flex-row flex-wrap"
+            >
+                <v-btn @click="likeUser" :color="isFollower()?'primary':'error'" x-large>
+                    {{isFollower()?'UNFOLLOW':'FOLLOW'}}
+                </v-btn>
 
+            </div>
 
         </div>
 
@@ -37,39 +46,59 @@
 </template>
 
 <script>
-    import moment from 'moment'
+
     import store from "../../store/store";
-    import {mapGetters} from 'vuex';
+    import router from "../../router/router";
+    import _ from "lodash"
+    import likeService from "../../service/likeService";
+    import profileService from "../../service/profileService";
 
     export default {
         data() {
-            return {}
+            return {
+                values: ["followed reports", "authored reports", "followed users", "followed by"]
+            }
         },
         components: {},
         methods: {
 
-            changeTime(time) {
-                return moment(time)
-            }, userNameHandler() {
-                return store.state.auth.username ? store.state.auth.username : ''
-            }
+            badgeName() {
+                return this.username.split(' ').map(e => e.toUpperCase()[0]).join()
+            },
+            goToProfile(username) {
+                router.push({name: 'Profile', params: {username: username}})
+            },
+            getKey(idx) {
+
+                return _.startCase(_.camelCase(idx.split('_').join()))
+
+            },
+            isFollower() {
+                const uname = localStorage.getItem('username') ? localStorage.getItem('username') : ''
+
+                return this.profileData.followed_by.filter(e => e === uname).length > 0
+            },
+            likeUser() {
+                const model = 'user'
+                const name = this.$route.params.username
+                likeService.LIKE({model, name})
+                    .then(() => profileService.GET_PROFILE({username:name}))
+
+            },
+
 
         },
 
         computed: {
-            ...mapGetters('auth', ['isLoggedIn']),
 
-            showActions() {
-
-                if (localStorage.getItem('username') === this.$route.params.username) {
-                    return true
-                }
-                return false
+            username() {
+                return this.$route.params.username
             },
-
-            items() {
-                return store.state.global.visitedUserDetails ? store.state.global.visitedUserDetails : []
+            profileData() {
+                return store.state.search.profile ? store.state.search.profile : []
             }
+
+
         }
 
     }

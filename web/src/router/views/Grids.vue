@@ -60,6 +60,18 @@
                         </v-tooltip>
                     </v-list-item>
                 </v-list-item-group>
+                <v-list-item-group v-if="!isOwner">
+                    <div v-if="isLoggedIn===true" class="d-flex justify-end">
+                        <v-tooltip bottom light class=" teal primary--text">
+                            <template v-slot:activator="{ on }">
+                                <v-btn @click="likeReport" icon v-on="on">
+                                    <v-icon :color="isSubscriber===true?'red':'black'">mdi-heart</v-icon>
+                                </v-btn>
+                            </template>
+                            <span>{{isSubscriber===true?'Unfollow Report':'Follow Report'}}</span>
+                        </v-tooltip>
+                    </div>
+                </v-list-item-group>
 
             </v-toolbar>
 
@@ -138,7 +150,6 @@
 <script>
     import layout from "../layouts/layout";
     import {GridItem, GridLayout} from 'vue-grid-layout'
-    import _ from 'lodash'
     import LineComponent from "@/components/panes/LineComponent";
     import BarComponent from "@/components/panes/BarComponent";
     import EmptyPane from "@/components/panes/EmptyPane"
@@ -149,6 +160,7 @@
     import reportService from "../../service/reportService";
     import store from "../../store/store";
     import router from "../router";
+    import {mapGetters} from 'vuex'
 
     const initState = () => {
         return {
@@ -156,6 +168,7 @@
             layout: [],
         }
     }
+    import likeService from "../../service/likeService";
 
     export default {
         name: 'Grids',
@@ -170,18 +183,19 @@
             this.layout = mockLayout.slice(0)
         },
         computed: {
+            isSubscriber() {
+                const uname = localStorage.getItem('username') ? localStorage.getItem('username') : ''
+
+                return this.report.subscribers.filter(e => e === uname).length > 0
+            },
+            ...mapGetters('auth', ['isLoggedIn']),
             isOwner() {
                 return store.state.auth.username === store.state.report.report.owner
             },
             report() {
                 return store.state.report.report ? store.state.report.report : []
             },
-            savedReport() {
-                const storedReport = store.state.report.report ? store.state.report.report : []
-                const layout = this.layout
-                const title = this.title
-                return _.isEqual(layout, storedReport.layout) && _.isEqual(title, storedReport.title)
-            }
+
         },
         watch: {
 
@@ -299,6 +313,13 @@
 
                 reportService.DELETE_REPORT({id})
                     .then(() => router.push({name: 'MyReport'}))
+            },
+            likeReport() {
+                const model = 'report'
+                const id = store.state.report.report.id
+                likeService.LIKE({model, id})
+                    .then(() => reportService.GET_REPORT({id})
+                    )
             },
         },
         beforeRouteEnter(to, from, next) {

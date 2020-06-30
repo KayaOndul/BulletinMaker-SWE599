@@ -21,19 +21,11 @@ class Report(models.Model):
     title = models.CharField(max_length=50, blank=True, null=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_reports')
     layout = JSONField(blank=True, null=True)
-    subscribers = models.ManyToManyField(User, null=True)
+    subscribers = models.ManyToManyField(User)
 
     def __str__(self):
         return self.title
 
-
-class ReportSubscription(models.Model):
-    report = models.ForeignKey(Report, on_delete=models.CASCADE)
-    person = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_joined = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.report.title + ' / ' + self.person.username
 
 
 class File(models.Model):

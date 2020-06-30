@@ -2,18 +2,7 @@
 
     <div>
         <Layout>
-            <v-card class="my-4"
-
-                    color="primary"
-                    dark
-            >
-                <div class="d-flex flex-no-wrap justify-space-between ">
-                    <v-card-title class="headline">Change Password</v-card-title>
-
-
-                </div>
-
-            </v-card>
+            <Header :name="'Change Password'"/>
             <v-card>
 
                 <v-card-text>
@@ -55,12 +44,13 @@
     import authService from "../../service/authService";
     import Layout from '../layouts/layout'
     import store from "../../store/store";
+    import Header from "../../components/Header";
 
     export default {
         name: 'ChangePassForm',
         mixins: [validationMixin],
 
-        components: {Layout},
+        components: {Header, Layout},
         validations: {
             password: {required, minLength: minLength(4)},
             rePassword: {sameAsPassword: sameAs('password')},
