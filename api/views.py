@@ -1,6 +1,3 @@
-import json
-from itertools import chain
-
 from django.contrib.auth import logout, authenticate
 from django.http import JsonResponse
 from rest_framework import status, permissions, response
@@ -13,8 +10,8 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from api.models import Report, User
-from api.serializers import UserSerializer, UserCreateSerializer, CreateReportSerializer, \
-    FileSerializer, PatchReportSerializer, ReportSerializer, UserSerializerForSubsciberList, SearchSerializer, \
+from api.serializers import UserSerializer, UserCreateSerializer, \
+    FileSerializer, ReportSerializer, SearchSerializer, \
     LikeSerializer, ProfileSerializer, ReportSerializerEssential
 from api.service.services import UserService, ReportService
 
@@ -53,8 +50,6 @@ class UserViews:
             user = User.objects.get(username=username)
             serializer = UserSerializer(user)
             return JsonResponse(serializer.data, safe=False, status=status.HTTP_200_OK)
-        if self.method == "PATCH":
-            pass
 
     @api_view(["GET"])
     def getAll(self):
@@ -132,7 +127,7 @@ class ReportViews:
             serializer = ReportSerializerEssential(report)
             # if not serializer.is_valid():
             #     return JsonResponse(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR, safe=False)
-            return response.Response(serializer.data,status.HTTP_200_OK)
+            return response.Response(serializer.data, status.HTTP_200_OK)
 
         elif self.method == "DELETE":
             if report.owner.username != self.user.username:
@@ -167,7 +162,7 @@ class ReportViews:
     @permission_classes([AllowAny])
     def report_list_via_username(self, user):
         reports = Report.objects.filter(owner__username=user)
-        serializer = ReportSerializerEssential(reports,many=True)
+        serializer = ReportSerializerEssential(reports, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
     @api_view(["GET"])

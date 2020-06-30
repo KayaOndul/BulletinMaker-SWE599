@@ -1,22 +1,12 @@
 from api.models import User, Report
-from api.serializers import UserSerializer, ReportSerializer, CreateReportSerializer, PatchReportSerializer
+from api.serializers import UserSerializer, ReportSerializer
 
 
 class UserService:
 
-
     def get_all_users(self):
         users = User.objects.all()
         return UserSerializer(users, many=True).data
-
-    def change_password(self, request):
-        pass
-        # todo
-        # if request.data.password2 is not request.data.password:
-        #     raise ValueError("Passwords doesn't match")
-        # user = User.objects.filter(username=request.data.username, many=False)
-        # user.set_password(request.data.password)
-        # return UserSerializer(user)
 
 
 class ReportService:
@@ -30,5 +20,3 @@ class ReportService:
         else:
             Report.objects.filter(id=id).update(layout=self.data['layout'], title=self.data['title'])
         return Report.objects.get(id=id)
-
-

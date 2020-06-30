@@ -69,13 +69,13 @@
                                     :route="{name:'MyFresh'}"/>
 
                     </v-list-item>
-                    <v-list-item>
+<!--                    <v-list-item>-->
 
-                        <click-icon :note="'Change Password'"
-                                    :icon="'mdi-key-outline'"
-                                    :route="{name:'ChangePassword'}"/>
+<!--                        <click-icon :note="'Change Password'"-->
+<!--                                    :icon="'mdi-key-outline'"-->
+<!--                                    :route="{name:'ChangePassword'}"/>-->
 
-                    </v-list-item>
+<!--                    </v-list-item>-->
                     <v-list-item>
 
                         <v-tooltip top light class="  primary--text">
