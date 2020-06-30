@@ -6,35 +6,6 @@ from rest_framework import serializers
 from api.models import User, Report, File
 
 
-# used when report created
-class CreateReportSerializer(serializers.ModelSerializer):
-    owner = serializers.StringRelatedField()
-
-    class Meta:
-        model = Report
-
-        fields = ('id', 'owner')
-
-
-class UserSerializerForSubsciberList(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('username', id)
-
-
-# used for to save report on frontend
-class PatchReportSerializer(serializers.ModelSerializer):
-    owner = serializers.StringRelatedField(required=False)
-    subscribers = UserSerializerForSubsciberList(many=True)
-
-    class Meta:
-        model = Report
-        fields = ('id', 'title', 'layout', 'owner', 'subscribers')
-
-    # def get_validation_exclusions(self):
-    #     exclusions = super(PatchReportSerializer, self).get_validation_exclusions()
-    #     return exclusions + ['title']
-
 
 class ReportSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField()
@@ -75,6 +46,9 @@ class ProfileSerializer(serializers.Serializer):
     authored_reports = ReportSerializerEssential(many=True)
     followed_by = serializers.StringRelatedField(many=True)
     followed_users = serializers.StringRelatedField(many=True)
+
+
+
 
 
 class UserCreateSerializer(serializers.ModelSerializer):

@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0aabf98-86c5-4ac6-a70c-c58ed13c7bad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/web/src/router/views/Grids.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router/views/Grids.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/service/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/service/services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bulletin599/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bulletin599/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/router/layouts/layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router/layouts/layout.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +161,7 @@
       <workItem from="1593209088820" duration="14256000" />
       <workItem from="1593233197709" duration="15624000" />
       <workItem from="1593302982453" duration="55593000" />
-      <workItem from="1593437696147" duration="34967000" />
+      <workItem from="1593437696147" duration="44381000" />
     </task>
     <servers />
   </component>
@@ -168,10 +173,10 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="532" y="255" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592924111399" />
-    <state x="591" y="386" width="727" height="441" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1593481518600">
+    <state x="591" y="386" width="755" height="441" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1593524138175">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="591" y="386" width="727" height="441" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593481518600" />
+    <state x="591" y="386" width="755" height="441" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593524138175" />
     <state x="1990" y="27" width="1680" height="1028" maximized="true" key="DiffContextDialog" timestamp="1593494782238">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -180,38 +185,38 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="690" y="301" width="530" height="605" key="FileChooserDialogImpl/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592916019647" />
-    <state width="1864" height="383" key="GridCell.Tab.0.bottom" timestamp="1593498683772">
+    <state width="1864" height="383" key="GridCell.Tab.0.bottom" timestamp="1593522806813">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593498683772" />
-    <state width="1864" height="383" key="GridCell.Tab.0.center" timestamp="1593498683772">
+    <state width="1864" height="383" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593522806813" />
+    <state width="1864" height="383" key="GridCell.Tab.0.center" timestamp="1593522806813">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593498683772" />
-    <state width="1864" height="383" key="GridCell.Tab.0.left" timestamp="1593498683772">
+    <state width="1864" height="383" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593522806813" />
+    <state width="1864" height="383" key="GridCell.Tab.0.left" timestamp="1593522806813">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593498683772" />
-    <state width="1864" height="383" key="GridCell.Tab.0.right" timestamp="1593498683772">
+    <state width="1864" height="383" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593522806813" />
+    <state width="1864" height="383" key="GridCell.Tab.0.right" timestamp="1593522806813">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593498683772" />
-    <state width="1864" height="383" key="GridCell.Tab.1.bottom" timestamp="1593498683773">
+    <state width="1864" height="383" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593522806813" />
+    <state width="1864" height="383" key="GridCell.Tab.1.bottom" timestamp="1593522832509">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593498683773" />
-    <state width="1864" height="383" key="GridCell.Tab.1.center" timestamp="1593498683773">
+    <state width="1864" height="383" key="GridCell.Tab.1.bottom/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593522832509" />
+    <state width="1864" height="383" key="GridCell.Tab.1.center" timestamp="1593522832509">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593498683773" />
-    <state width="1864" height="383" key="GridCell.Tab.1.left" timestamp="1593498683772">
+    <state width="1864" height="383" key="GridCell.Tab.1.center/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593522832509" />
+    <state width="1864" height="383" key="GridCell.Tab.1.left" timestamp="1593522832509">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593498683772" />
-    <state width="1864" height="383" key="GridCell.Tab.1.right" timestamp="1593498683773">
+    <state width="1864" height="383" key="GridCell.Tab.1.left/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593522832509" />
+    <state width="1864" height="383" key="GridCell.Tab.1.right" timestamp="1593522832509">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="1864" height="383" key="GridCell.Tab.1.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593498683773" />
+    <state width="1864" height="383" key="GridCell.Tab.1.right/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593522832509" />
     <state width="318" height="572" key="HiddenNamespacesPopup" timestamp="1592653180930">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
@@ -228,10 +233,10 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="ShowDiffWithBranchDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593313563265" />
-    <state width="960" height="600" key="XDebugger.FullValuePopup" timestamp="1593370680095">
+    <state width="960" height="600" key="XDebugger.FullValuePopup" timestamp="1593503801247">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state width="960" height="600" key="XDebugger.FullValuePopup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593370680095" />
+    <state width="960" height="600" key="XDebugger.FullValuePopup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593503801247" />
     <state x="585" y="52" width="739" height="1103" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1593492749713">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
@@ -258,55 +263,67 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>60</line>
+          <line>55</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/service/services.py</url>
-          <line>8</line>
+          <line>7</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/service/services.py</url>
-          <line>23</line>
+          <line>13</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/service/services.py</url>
-          <line>27</line>
+          <line>17</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>49</line>
+          <line>46</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>52</line>
+          <line>49</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>131</line>
+          <line>126</line>
           <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>130</line>
+          <line>125</line>
           <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>32</line>
+          <line>29</line>
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/views.py</url>
-          <line>232</line>
+          <line>227</line>
           <option name="timeStamp" value="85" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/serializers.py</url>
+          <line>71</line>
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
