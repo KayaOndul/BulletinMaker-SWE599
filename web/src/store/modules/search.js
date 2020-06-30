@@ -15,7 +15,7 @@ const mutations = {
         state.searchResponse = payload
     },
     setProfile(state, payload) {
-        state.profile = payload
+        state.profile = {...payload, followed_users: payload.followed_users ? payload.followed_users.filter(e => e !== "None") : []}
     },
 
     resetState(state) {

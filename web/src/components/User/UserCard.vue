@@ -29,6 +29,13 @@
 
 
             </div>
+            <div class="d-flex justify-space-between align-content-start flex-row flex-wrap"
+            >
+                <v-btn @click="likeUser" :color="isFollower()?'primary':'error'" x-large>
+                    {{isFollower()?'UNFOLLOW':'FOLLOW'}}
+                </v-btn>
+
+            </div>
 
         </div>
 
@@ -43,11 +50,13 @@
     import store from "../../store/store";
     import router from "../../router/router";
     import _ from "lodash"
+    import likeService from "../../service/likeService";
+    import profileService from "../../service/profileService";
 
     export default {
         data() {
             return {
-                values: ["followed reports", "authored reports", "followed by", "followed users"]
+                values: ["followed reports", "authored reports", "followed users", "followed by"]
             }
         },
         components: {},
@@ -63,7 +72,19 @@
 
                 return _.startCase(_.camelCase(idx.split('_').join()))
 
-            }
+            },
+            isFollower() {
+                const uname = localStorage.getItem('username') ? localStorage.getItem('username') : ''
+
+                return this.profileData.followed_by.filter(e => e === uname).length > 0
+            },
+            likeUser() {
+                const model = 'user'
+                const name = this.$route.params.username
+                likeService.LIKE({model, name})
+                    .then(() => profileService.GET_PROFILE({username:name}))
+
+            },
 
 
         },
