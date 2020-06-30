@@ -330,7 +330,7 @@
         beforeRouteLeave(to, from, next) {
             const id = store.state.report.report.id
 
-            if (id && !store.state.report.report.layout) {
+            if (id && !store.state.report.report.layout&&this.isOwner) {
                 reportService.DELETE_REPORT({id})
             }
             store.commit('report/resetState')
