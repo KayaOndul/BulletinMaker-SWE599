@@ -52,12 +52,12 @@
                 <div v-for="(person,idx) in card.subscribers" :key="idx">
                     <v-tooltip bottom light class=" teal primary--text">
                         <template v-slot:activator="{ on }">
-                            <v-avatar @click="goToProfile(person.username)"
-                                      size="3vh" v-on="on" class="clickable  primary mx-1">
-                                <span class="white--text caption">{{person.username[0].toUpperCase()}}</span>
+                            <v-avatar @click="goToProfile(person)"
+                                      size="3vh" v-on="on" class="clickable  accent mx-1">
+                                <span class="white--text caption">{{badgeName(person)}}</span>
                             </v-avatar>
                         </template>
-                        <span>{{person.username}}</span>
+                        <span>{{person}}</span>
                     </v-tooltip>
 
                 </div>
@@ -96,6 +96,9 @@
 
 
         methods: {
+            badgeName() {
+                return this.username.split(' ').map(e => e.toUpperCase()[0]).join()
+            },
             goToProfile(username) {
                 router.push({name: 'Profile', params: {username: username}})
             },

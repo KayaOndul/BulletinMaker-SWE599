@@ -8,8 +8,8 @@
             <Header :name="'Profile'"/>
             <UserCard/>
             <v-spacer class="pa-3"/>
-            <v-tabs class="mt-2">
-                <v-tab default :to="{name:'UserReports'}">Authored Reports</v-tab>
+            <v-tabs v-model="tabs" class="mt-2">
+                <v-tab  :to="{name:'UserReports'}">Authored Reports</v-tab>
                 <v-tab :to="{name:'UserFollow'}">Followed Reports</v-tab>
 
             </v-tabs>
@@ -36,29 +36,13 @@
     export default {
         name: 'Profile',
         data() {
-            return {}
+            return {
+                tabs:null
+            }
         },
         components: {Header, UserCard, layout},
         computed: {},
 
-        watch: {
-            $route() {
-                this.getUserDetails()
-            }
-        },
-
-
-        mounted() {
-            this.getUserDetails()
-
-        },
-        methods: {
-            getUserDetails() {
-
-
-            }
-        }
-        ,
         beforeDestroy() {
             store.commit('report/resetState')
 

@@ -164,9 +164,8 @@ class ReportViews:
     @api_view(["GET"])
     @permission_classes([AllowAny])
     def report_list_via_username(self, user):
-        key = User.objects.get(username=user)
-        reports = Report.objects.filter(owner=key, layout__isnull=False)
-        serializer = ReportSerializer(reports, many=True)
+        reports = Report.objects.filter(owner__username=user)
+        serializer = ReportSerializerEssential(reports,many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
     @api_view(["GET"])

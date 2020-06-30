@@ -47,10 +47,11 @@ class ReportSerializer(serializers.ModelSerializer):
 
 class ReportSerializerEssential(serializers.ModelSerializer):
     subscribers = serializers.StringRelatedField(many=True)
-    owner=serializers.StringRelatedField()
+    owner = serializers.StringRelatedField()
+
     class Meta:
         model = Report
-        fields = ('title', 'subscribers', 'id','owner')
+        fields = ('title', 'subscribers', 'id', 'owner')
 
 
 class UserSerializer(serializers.ModelSerializer):

@@ -49,12 +49,13 @@ export default [
     },
     {
         name: 'Profile',
-        path: '/profile/:username/reports',
+        path: '/profile/:username/',
         component: Profile,
         children: [
+
             {
                 name: 'UserReports',
-                path: '',
+                path: 'reports',
                 component: UserReports
 
             },

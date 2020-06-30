@@ -7,7 +7,7 @@ let http = helpers.putToken()
 
 export default {
     GET_PROFILE(payload) {
-
+         store.commit('search/setProfile',[])
         store.commit('global/set_loading', true)
 
         return http.get(`${Constants.API}${Constants.BACKEND_PROFILE}${payload.username}/`)

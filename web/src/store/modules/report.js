@@ -30,7 +30,11 @@ const mutations = {
 }
 
 
-const getters = {}
+const getters = {
+    getReports(state){
+        return state.reports?state.reports:[]
+    }
+}
 
 
 export default {

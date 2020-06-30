@@ -74,7 +74,7 @@ export default {
             })
     },
     GET_ALL_REPORTS_VIA_USERNAME(payload) {
-
+        store.commit('report/setReports',[])
         store.commit('global/set_loading', true)
         return http({
             url: `${Constants.API}${Constants.BACKEND_ALL_REPORTS_VIA_USERNAME}${payload.user}/`,
