@@ -37,7 +37,7 @@
                 <v-card-text class=" black--text text-left  "
                 >by <span @click="goToProfile(card.owner)" class="clickable">{{card.owner}}</span></v-card-text>
 
-                <v-tooltip bottom light class=" teal primary--text">
+                <v-tooltip v-if="isOwner==true" bottom light class=" teal primary--text">
                     <template v-slot:activator="{ on }">
                         <v-btn @click="deleteItem(card.id)" icon v-on="on">
                             <v-icon>mdi-trash-can-outline</v-icon>
@@ -45,6 +45,8 @@
                     </template>
                     <span>Delete Report</span>
                 </v-tooltip>
+
+
             </div>
             <v-card-actions class="d-flex flex-row  flex-wrap">
 
@@ -59,6 +61,7 @@
                         </template>
                         <span>{{person}}</span>
                     </v-tooltip>
+
 
                 </div>
 
@@ -77,6 +80,7 @@
     import store from "../../store/store";
     import router from "../../router/router";
     import reportService from "../../service/reportService";
+    import likeService from "../../service/likeService";
 
     export default {
         name: 'Reports',
@@ -91,13 +95,17 @@
 
             reports: function () {
                 return store.state.report.reports ? store.state.report.reports : []
+            },
+            isOwner() {
+                return store.state.auth.username ? false :
+                    this.$route.params.username === store.state.auth.username
             }
         },
 
 
         methods: {
-            badgeName() {
-                return this.username.split(' ').map(e => e.toUpperCase()[0]).join()
+            badgeName(username) {
+                return username.split(' ').map(e => e.toUpperCase()[0]).join()
             },
             goToProfile(username) {
                 router.push({name: 'Profile', params: {username: username}})
@@ -107,7 +115,13 @@
 
             },
             getReports() {
-                const user = store.state.auth.username
+                let user
+                if (this.isOwner) {
+                    user = store.state.auth.username
+                } else {
+                    user = this.$route.params.username
+                }
+
                 reportService.GET_ALL_REPORTS_VIA_USERNAME({user})
             },
             deleteItem(id) {
@@ -115,7 +129,13 @@
                     .then(() => this.getReports())
 
 
-            }
+            },
+            likeReport(idx) {
+                const model = 'report'
+                const id = idx
+                likeService.LIKE({model, id})
+                    .then(() => this.getReports())
+            },
 
 
         },

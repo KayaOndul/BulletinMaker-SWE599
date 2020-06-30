@@ -9,7 +9,7 @@
             <UserCard/>
             <v-spacer class="pa-3"/>
             <v-tabs v-model="tabs" class="mt-2">
-                <v-tab  :to="{name:'UserReports'}">Authored Reports</v-tab>
+                <v-tab :to="{name:'UserReports'}">Authored Reports</v-tab>
                 <v-tab :to="{name:'UserFollow'}">Followed Reports</v-tab>
 
             </v-tabs>
@@ -37,11 +37,19 @@
         name: 'Profile',
         data() {
             return {
-                tabs:null
+                tabs: null
             }
         },
         components: {Header, UserCard, layout},
-        computed: {},
+        watch: {
+            $route(newVal, oldVal) {
+                if (newVal.params.username != oldVal.params.username) {
+                    const username = newVal.params.username
+                    reportService.GET_ALL_REPORTS_VIA_USERNAME({user: username})
+                }
+
+            }
+        },
 
         beforeDestroy() {
             store.commit('report/resetState')

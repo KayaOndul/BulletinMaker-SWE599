@@ -2,10 +2,7 @@
     <v-card class="pa-3" style="text-align: left">
 
 
-        <div class="d-flex justify-start align-center ">
-
-
-        </div>
+       
 
         <div class="d-flex justify-space-between ">
             <div class="d-flex flex-row">

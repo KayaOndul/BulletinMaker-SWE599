@@ -91,6 +91,10 @@
                 isLoggedIn: 'auth/isLoggedIn',
                 reports: 'report/getReports'
             }),
+             isOwner() {
+                return store.state.auth.username ? false :
+                    this.$route.params.username === store.state.auth.username
+            }
 
 
         },
@@ -114,7 +118,13 @@
 
             },
             getReports() {
-                const user = store.state.auth.username
+                   let user
+                if (this.isOwner) {
+                    user = store.state.auth.username
+                } else {
+                    user = this.$route.params.username
+                }
+
                 reportService.GET_SUBSCRIBED_REPORTS({user})
             },
             pushHandlerCommunity(name) {
