@@ -97,7 +97,8 @@
                 return store.state.report.reports ? store.state.report.reports : []
             },
             isOwner() {
-                return store.state.auth.username ? false :
+                return this.$route.path==='/myreport'?true:
+                store.state.auth.username ? false :
                     this.$route.params.username === store.state.auth.username
             }
         },

@@ -61,14 +61,14 @@
                     </v-list-item>
                 </v-list-item-group>
                 <v-list-item-group v-if="!isOwner">
-                    <div v-if="isLoggedIn&&!isSubscriber" class="d-flex justify-end">
+                    <div v-if="isLoggedIn===true" class="d-flex justify-end">
                         <v-tooltip bottom light class=" teal primary--text">
                             <template v-slot:activator="{ on }">
-                                <v-btn @click="likeReport(card.id)" icon v-on="on">
-                                    <v-icon color="red">mdi-heart</v-icon>
+                                <v-btn @click="likeReport" icon v-on="on">
+                                    <v-icon :color="isSubscriber===true?'red':'black'">mdi-heart</v-icon>
                                 </v-btn>
                             </template>
-                            <span>Follow Report</span>
+                            <span>{{isSubscriber===true?'Unfollow Report':'Follow Report'}}</span>
                         </v-tooltip>
                     </div>
                 </v-list-item-group>
@@ -168,6 +168,7 @@
             layout: [],
         }
     }
+    import likeService from "../../service/likeService";
 
     export default {
         name: 'Grids',
@@ -183,10 +184,9 @@
         },
         computed: {
             isSubscriber() {
-                const username = localStorage.getItem('username') ? localStorage.getItem('username'): ''
+                const uname = localStorage.getItem('username') ? localStorage.getItem('username') : ''
 
-                return !this.username ? true :
-                    this.report ? this.report.subscribers.filter(e => e.username = username).length > 0 : true
+                return this.report.subscribers.filter(e => e === uname).length > 0
             },
             ...mapGetters('auth', ['isLoggedIn']),
             isOwner() {
@@ -313,6 +313,13 @@
 
                 reportService.DELETE_REPORT({id})
                     .then(() => router.push({name: 'MyReport'}))
+            },
+            likeReport() {
+                const model = 'report'
+                const id = store.state.report.report.id
+                likeService.LIKE({model, id})
+                    .then(() => reportService.GET_REPORT({id})
+                    )
             },
         },
         beforeRouteEnter(to, from, next) {

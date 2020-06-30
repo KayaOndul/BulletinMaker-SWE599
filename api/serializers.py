@@ -31,14 +31,14 @@ class PatchReportSerializer(serializers.ModelSerializer):
         model = Report
         fields = ('id', 'title', 'layout', 'owner', 'subscribers')
 
-    def get_validation_exclusions(self):
-        exclusions = super(PatchReportSerializer, self).get_validation_exclusions()
-        return exclusions + ['title']
+    # def get_validation_exclusions(self):
+    #     exclusions = super(PatchReportSerializer, self).get_validation_exclusions()
+    #     return exclusions + ['title']
 
 
 class ReportSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField()
-    subscribers = UserSerializerForSubsciberList(many=True)
+    subscribers = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Report

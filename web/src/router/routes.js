@@ -10,12 +10,14 @@ import MyReports from "./views/MyReports"
 import ChangePass from "./views/ChangePass"
 import UserFollow from "./views/UserFollow"
 import UserReports from "./views/UserReports"
+import FollowList from "./views/FollowList"
 
 export default [
 
     {
         component: Welcome,
         path: '/',
+        redirect: 'MyFresh',
         children: [
             {
                 name: 'MyReport',
@@ -51,8 +53,8 @@ export default [
         name: 'Profile',
         path: '/profile/:username/',
         component: Profile,
-        redirect:{
-            name:'UserReports'
+        redirect: {
+            name: 'UserReports'
         },
         children: [
 
@@ -69,6 +71,13 @@ export default [
                 component: UserFollow,
 
             },
+            {
+                name: 'Friends',
+                path: 'friends',
+                component: FollowList,
+
+            },
+
 
         ]
     },

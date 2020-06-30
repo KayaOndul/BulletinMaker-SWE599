@@ -128,9 +128,11 @@ class ReportViews:
             serializer = ReportSerializer(report)
             return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
         if self.method == "GET":
-
-            serializer = ReportSerializer(report)
-            return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
+            report = Report.objects.get(id=id)
+            serializer = ReportSerializerEssential(report)
+            # if not serializer.is_valid():
+            #     return JsonResponse(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR, safe=False)
+            return response.Response(serializer.data,status.HTTP_200_OK)
 
         elif self.method == "DELETE":
             if report.owner.username != self.user.username:
