@@ -51,9 +51,13 @@ export default [
         name: 'Profile',
         path: '/profile/:username/',
         component: Profile,
+        redirect:{
+            name:'UserReports'
+        },
         children: [
 
             {
+
                 name: 'UserReports',
                 path: 'reports',
                 component: UserReports

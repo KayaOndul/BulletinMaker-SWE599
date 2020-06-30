@@ -73,7 +73,7 @@
 
         watch: {
             queryParam: {
-                immediate: true,
+                immediate: false,
                 handler(newVal) {
                     if (newVal) {
                         const payload = {'keyword': newVal}
