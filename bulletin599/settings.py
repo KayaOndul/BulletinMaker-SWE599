@@ -26,11 +26,23 @@ SECRET_KEY = '%8%9*8$=u1==ta2_z^_u7b^j((e(w7403#p&fct+9=!ok77bsd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost:8000","localhost:8080","94.237.96.118"]
+ALLOWED_HOSTS = [
+    '0.0.0.0',
+    'localhost',
+    '94.237.96.118',
+    '94.237.96.118:8000',
+    '94.237.96.118:8080',
+]
 
 # Application definition
 
-CORS_ORIGIN_WHITELIST=["http://localhost:8080","http://94.237.96.118"]
+CORS_ORIGIN_WHITELIST=[
+    'http://0.0.0.0:8000',
+    'http://0.0.0.0:8080',
+    'http://94.237.96.118',
+    'http://94.237.96.118:8000',
+    'http://94.237.96.118:8080',
+]
 
 CORS_ALLOW_METHODS = [
     'DELETE',
@@ -120,7 +132,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'swe',
-        'HOST': 'localhost',
+        'HOST': 'postgres',
         'USER': 'dummy_user',
         'PASSWORD': '1234',
         'PORT': 5432
@@ -169,10 +181,6 @@ AUTH_USER_MODEL = 'api.User'
 
 MEDIA_URL =  '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-# CELERY STUFF
-BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Europe/Istanbul'
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')

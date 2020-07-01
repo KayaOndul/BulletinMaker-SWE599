@@ -2,45 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0aabf98-86c5-4ac6-a70c-c58ed13c7bad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/b/0b6421ec5792f7721c2d28f5a2864da5ccd38440" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/9/19359a61ae2446b51b549167b014da2fcf265768" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/7/2774a015d995c11a593aa943ecbf2752fcde4640" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/9/29169afdcf53dfe5c57a2795339e2c7c793c495a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/b/2bc2f9c1dcffd3480e5ff7a694ba195e51119346" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/d/2d2a87922a20520b843f278c98fd07943ac25e1e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/e/2eacd009fc39b8907819376e52578322a922de4b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/c/3c96dcd2dd3f8a3c4ccb7b2d72d1bdf51efeafa3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/5/45204b0e9548ce8d2b1f9edf7649a1feb08048f6" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/a/4a6406639b54c66f60832033746cf3ac6c6007bc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/9/59c84a7fe901de2dde7574f0ce48deafdb593002" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/d/5de3a0d32813236411441702f4133a7730141c5b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/0/60d7798ccdc89f946272431dbf52664e644a1dc6" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/7/77d9f0f9c3d3f9e3dd89d70751332f2f7ea64716" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/8/78db5e935d8352b3194116332a39f029f4f53b90" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/e/7e2fd4f9aec273d8729907f57a2e7099e96f5caa" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/f/7f1674e432b6f3c4575193e62c4391ebccd5ae82" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/3/83dc766e4aa0756f6da8351eef7bdd349d02088d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/a/8ae82313a6064cfbe647375b277f589af65b1caf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/0/909edd776d82c5e4abb8beeafa92647e40021e1f" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/2/92e9df2976700de297955e88086d608e456fa19b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/9/994f4e4447555648891e91af99ba04f94944e3c2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/a/9a8032ee9d0071a4b4f5bddb03125d8236020c01" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/a/9ab87a77761fd3f04ce69b2b053acd030b39d3a5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/f/9f27436b9f39da9862837b771f9534b0ddd6176a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/1/b17fd388da2f4e55925eaf26c9c5a47d7abdc0d4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/b/bb071170a240f4c6252a5bb1b2f86f59f64e6d77" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/f/bf3cd84f9c1fe76477f74f2aacda1fe1fd9db639" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/6/c6147b23ae917cf7e49acaaaae666835a413b491" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/4/d49468a031ca5b7a648795a8f12db3148f61ecec" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/d/dd19da474a922ab07250e07691b7ab5ae4cf5dd0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/e/ee895a0907a9ba37d2e6b51a960ecef4033f3735" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/e/eed1f923d24524d954a3d8f95601a8056820768b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/8/f88d0b018eecc521b45685a078dcedbf977a1d72" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/9/f985d341cfba538595ff50168ae02fceca8bc0b1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bulletin599/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bulletin599/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bulletin599/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bulletin599/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +49,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../bm/backend" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -92,14 +57,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/src/router/views" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/bulletin599" />
       <recent name="$PROJECT_DIR$/web/src/components" />
       <recent name="$PROJECT_DIR$/web/src/router/views/Shared" />
       <recent name="$PROJECT_DIR$/web/src/store/modules" />
       <recent name="$PROJECT_DIR$/api/service" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web/src/router/views" />
     </key>
   </component>
   <component name="RunManager" selected="Django Server.bulletin599">
@@ -196,6 +162,8 @@
       <workItem from="1593302982453" duration="55593000" />
       <workItem from="1593437696147" duration="44381000" />
       <workItem from="1593622624516" duration="403000" />
+      <workItem from="1593623528763" duration="2418000" />
+      <workItem from="1593627881501" duration="5831000" />
     </task>
     <servers />
   </component>
@@ -215,10 +183,11 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="1990" y="27" width="1680" height="1028" maximized="true" key="DiffContextDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593494782238" />
-    <state x="690" y="301" width="530" height="605" key="FileChooserDialogImpl" timestamp="1592916019647">
-      <screen x="0" y="27" width="1920" height="1173" />
+    <state x="2610" y="252" width="530" height="605" key="FileChooserDialogImpl" timestamp="1593624288787">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="690" y="301" width="530" height="605" key="FileChooserDialogImpl/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1592916019647" />
+    <state x="2610" y="252" key="FileChooserDialogImpl/1920.0.1920.1080/0.27.1920.1173@1920.0.1920.1080" timestamp="1593624288787" />
     <state width="1864" height="383" key="GridCell.Tab.0.bottom" timestamp="1593522806813">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
@@ -291,6 +260,10 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593481532571" />
+    <state x="663" y="487" width="594" height="232" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1593634135159">
+      <screen x="0" y="27" width="1920" height="1173" />
+    </state>
+    <state x="663" y="487" width="594" height="232" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593634135159" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
