@@ -3,6 +3,8 @@ __pycache__/
 **/__pycache__/**
 /__pycache__/
 *.py[cod]
-/media/
 .idea
 /venv/
+/myenv/
+/media/
+/media/**
