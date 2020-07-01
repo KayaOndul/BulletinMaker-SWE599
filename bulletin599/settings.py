@@ -37,6 +37,8 @@ ALLOWED_HOSTS = [
 # Application definition
 
 CORS_ORIGIN_WHITELIST=[
+    'http://localhost',
+    'http://localhost:8080',
     'http://0.0.0.0:8000',
     'http://0.0.0.0:8080',
     'http://94.237.96.118',
