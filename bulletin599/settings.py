@@ -26,11 +26,11 @@ SECRET_KEY = '%8%9*8$=u1==ta2_z^_u7b^j((e(w7403#p&fct+9=!ok77bsd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost:8000","localhost:8080","94.237.96.118"]
 
 # Application definition
 
-CORS_ORIGIN_WHITELIST=["http://localhost:8080"]
+CORS_ORIGIN_WHITELIST=["http://localhost:8080","http://94.237.96.118"]
 
 CORS_ALLOW_METHODS = [
     'DELETE',
