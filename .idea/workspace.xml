@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0aabf98-86c5-4ac6-a70c-c58ed13c7bad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/service/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/service/services.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bulletin599/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bulletin599/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/router/layouts/layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router/layouts/layout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bulletin599/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bulletin599/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,22 +47,23 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/src/router/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/src/router/views" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/web/src/components" />
       <recent name="$PROJECT_DIR$/web/src/router/views/Shared" />
       <recent name="$PROJECT_DIR$/web/src/store/modules" />
       <recent name="$PROJECT_DIR$/api/service" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web/src/router/views" />
     </key>
   </component>
   <component name="RunManager" selected="Django Server.bulletin599">
@@ -162,6 +159,7 @@
       <workItem from="1593233197709" duration="15624000" />
       <workItem from="1593302982453" duration="55593000" />
       <workItem from="1593437696147" duration="44381000" />
+      <workItem from="1593651935987" duration="6361000" />
     </task>
     <servers />
   </component>
@@ -225,10 +223,10 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="675" y="236" width="560" height="734" key="RollbackChangesDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593322172667" />
-    <state x="324" y="147" width="1271" height="912" key="SettingsEditor" timestamp="1593039747919">
+    <state x="324" y="147" width="1271" height="912" key="SettingsEditor" timestamp="1593652805297">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
-    <state x="324" y="147" width="1271" height="912" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593039747919" />
+    <state x="324" y="147" width="1271" height="912" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593652805297" />
     <state x="100" y="100" width="1720" height="1000" key="ShowDiffWithBranchDialog" timestamp="1593313563265">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
@@ -253,6 +251,10 @@
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
     <state x="580" y="283" width="759" height="634" key="find.popup/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593491513972" />
+    <state x="633" y="248" width="643" height="711" key="git4idea.branch.GitSmartOperationDialog" timestamp="1593659453322">
+      <screen x="0" y="27" width="1920" height="1173" />
+    </state>
+    <state x="633" y="248" width="643" height="711" key="git4idea.branch.GitSmartOperationDialog/1920.0.1920.1080/0.27.1920.1173@0.27.1920.1173" timestamp="1593659453322" />
     <state x="539" y="165" width="840" height="1034" key="search.everywhere.popup" timestamp="1593481532571">
       <screen x="0" y="27" width="1920" height="1173" />
     </state>
