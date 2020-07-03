@@ -123,12 +123,13 @@ class ReportViews:
                 return response.Response(res, status.HTTP_406_NOT_ACCEPTABLE)
 
             Report.objects.filter(id=id).update(layout=self.data['layout'], title=self.data['title'])
+
             report = Report.objects.get(id=id)
             serializer = ReportSerializer(report)
             return JsonResponse(serializer.data, status=status.HTTP_202_ACCEPTED, safe=False)
         if self.method == "GET":
             report = Report.objects.get(id=id)
-            serializer = ReportSerializerEssential(report)
+            serializer = ReportSerializer(report)
             # if not serializer.is_valid():
             #     return JsonResponse(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR, safe=False)
             return response.Response(serializer.data, status.HTTP_200_OK)
