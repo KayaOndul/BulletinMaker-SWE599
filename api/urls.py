@@ -1,8 +1,8 @@
 from django.urls import path, include, re_path
-from django.views.generic import TemplateView
 from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
 
 from api import views
+from api.views import FileUploadView
 
 urlpatterns = [
 
@@ -25,8 +25,14 @@ urlpatterns = [
             re_path(r'^(?P<user>.*)/$', views.ReportViews.report_list_via_username, name="get_with_params"),
             path('<id>', views.ReportViews.report_detail)
         ])),
+<<<<<<< Updated upstream
         re_path(r'^search/$', views.SearchViews.search),
 
+=======
+        re_path(r'^search/$', views.SearchViews.search)
+
+qq
+>>>>>>> Stashed changes
     ]))
 
 ]
