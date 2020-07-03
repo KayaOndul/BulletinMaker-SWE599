@@ -1,5 +1,6 @@
 <template>
     <vue-editor class="pb-12" id="editor"
+                :editor-toolbar="customToolbar"
                 useCustomImageHandler
                 @image-added="handleImageAdded" v-model="content">
     </vue-editor>
@@ -23,21 +24,41 @@
 
         data: () => ({
             content: "",
-            iAm:"",
+            iAm: "",
+            customToolbar: [
+                ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                ['blockquote', 'code-block'],
+
+                [{'header': 1}, {'header': 2}],               // custom button values
+                [{'list': 'ordered'}, {'list': 'bullet'}],
+                [{'script': 'sub'}, {'script': 'super'}],      // superscript/subscript
+                [{'indent': '-1'}, {'indent': '+1'}],          // outdent/indent
+                [{'direction': 'rtl'}],                         // text direction
+
+                [{'size': ['small', false, 'large', 'huge']}],  // custom dropdown
+                [{'header': [1, 2, 3, 4, 5, 6, false]}],
+
+                [{'color': []}, {'background': []}],          // dropdown with defaults from theme
+                [{'font': []}],
+                [{'align': []}],
+
+                ['clean'],                                         // remove formatting button
+                ['video']
+            ]
 
 
         }),
-            props: ['GridIndex','ReceivedContent'],
+        props: ['GridIndex', 'ReceivedContent'],
         mounted() {
-            this.iAm=this.GridIndex
-            this.content=this.ReceivedContent
+            this.iAm = this.GridIndex
+            this.content = this.ReceivedContent
         },
 
 
         watch: {
             content(newVal) {
-                const iAm=this.iAm
-                this.$emit('changed', {newVal,iAm})
+                const iAm = this.iAm
+                this.$emit('changed', {newVal, iAm})
             }
         },
         methods: {

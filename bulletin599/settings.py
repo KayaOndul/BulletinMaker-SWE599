@@ -24,27 +24,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%8%9*8$=u1==ta2_z^_u7b^j((e(w7403#p&fct+9=!ok77bsd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [
-    '0.0.0.0',
-    'localhost',
-    '94.237.96.118',
-    '94.237.96.118:8000',
-    '94.237.96.118:8080',
-]
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-CORS_ORIGIN_WHITELIST=[
-    'http://localhost',
-    'http://localhost:8080',
-    'http://0.0.0.0:8000',
-    'http://0.0.0.0:8080',
-    'http://94.237.96.118',
-    'http://94.237.96.118:8000',
-    'http://94.237.96.118:8080',
-]
+CORS_ORIGIN_ALLOW_ALL=True
+
 
 CORS_ALLOW_METHODS = [
     'DELETE',
@@ -134,7 +121,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'swe',
-        'HOST': 'postgres',
+        'HOST': 'localhost',
         'USER': 'dummy_user',
         'PASSWORD': '1234',
         'PORT': 5432
@@ -181,8 +168,6 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'api.User'
 
-MEDIA_URL =  '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')

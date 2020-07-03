@@ -100,6 +100,6 @@ export default [
     },
 
 
-    {path: '*', component: Welcome}
+    {path: '*', redirect: '/'}
 
 ]

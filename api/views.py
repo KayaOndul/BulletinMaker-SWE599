@@ -1,5 +1,7 @@
 from django.contrib.auth import logout, authenticate
 from django.http import JsonResponse
+from django.views.decorators.cache import never_cache
+from django.views.generic import TemplateView
 from rest_framework import status, permissions, response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import RetrieveAPIView
@@ -14,6 +16,8 @@ from api.serializers import UserSerializer, UserCreateSerializer, \
     FileSerializer, ReportSerializer, SearchSerializer, \
     LikeSerializer, ProfileSerializer, ReportSerializerEssential
 from api.service.services import UserService, ReportService
+
+
 
 
 class ProfileViews(RetrieveAPIView):

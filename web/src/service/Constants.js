@@ -1,5 +1,5 @@
-const SERVER_IP='http://94.237.96.118'
-const API = 'http://94.237.96.118/api/'
+const SERVER_IP='http://localhost:8000'
+const API = 'http://localhost:8000/api/'
 const BACKEND_LOGIN = 'login/'
 const BACKEND_REFRESH = 'refresh/'
 const BACKEND_REGISTER = 'register/'
