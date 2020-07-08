@@ -29,7 +29,7 @@
 
 
             </div>
-            <div class="d-flex justify-space-between align-content-start flex-row flex-wrap"
+            <div v-if="isLoggedIn===true" class="d-flex justify-space-between align-content-start flex-row flex-wrap"
             >
                 <v-btn @click="likeUser" :color="isFollower()?'primary':'error'" x-large>
                     {{isFollower()?'UNFOLLOW':'FOLLOW'}}
@@ -50,6 +50,7 @@
     import store from "../../store/store";
     import router from "../../router/router";
     import _ from "lodash"
+    import {mapGetters} from 'vuex';
     import likeService from "../../service/likeService";
     import profileService from "../../service/profileService";
 
@@ -59,7 +60,9 @@
                 values: ["followed reports", "authored reports", "followed users", "followed by"]
             }
         },
-        components: {},
+        components: {
+            ...mapGetters('auth', ['isLoggedIn']),
+        },
         methods: {
 
             badgeName() {
@@ -82,7 +85,7 @@
                 const model = 'user'
                 const name = this.$route.params.username
                 likeService.LIKE({model, name})
-                    .then(() => profileService.GET_PROFILE({username:name}))
+                    .then(() => profileService.GET_PROFILE({username: name}))
 
             },
 

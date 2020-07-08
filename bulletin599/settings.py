@@ -30,8 +30,7 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-CORS_ORIGIN_ALLOW_ALL=True
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_METHODS = [
     'DELETE',
@@ -53,7 +52,6 @@ CORS_ALLOW_HEADERS = [
     'x-csrftoken',
     'x-requested-with',
 ]
-
 
 INSTALLED_APPS = [
     'api.apps.ApiConfig',
@@ -121,8 +119,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'swe',
-        # 'HOST': 'postgres',
-         'HOST': 'localhost',
+        'HOST': 'postgres',
+        # 'HOST': 'localhost',
 
         'USER': 'dummy_user',
         'PASSWORD': '1234',
@@ -169,7 +167,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'api.User'
-
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
